@@ -3,8 +3,6 @@
   import Footer from "$lib/components/Footer.svelte";
   import "$lib/styles/app.css";
   import Navbar from "../lib/components/NavbarHandler.svelte";
-
-  export const prerender = true;
 </script>
 
 <svelte:head>

@@ -18,7 +18,7 @@ jobs:
               run: npm install
             - name: build
               env:
-                  BASE_PATH: '/${{ github.event.repository.name }}'
+                  BASE_PATH: '/qds_website'
               run: |
                   npm run build
             - name: Upload Artifacts
