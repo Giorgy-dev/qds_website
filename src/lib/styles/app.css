@@ -1,0 +1,22 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    @apply text-filled;
+}
+
+body{
+    @apply bg-neutral;
+    overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'FFF Acid Grotesk Bold', sans-serif;
+}
+
+p{
+    font-family: 'aktiv-grotesk', sans-serif;
+}
