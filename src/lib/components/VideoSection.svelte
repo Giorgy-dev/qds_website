@@ -1,17 +1,17 @@
 <script lang="ts">
-    export let banner : string;
-    export let bottomBanner : string | undefined = undefined;
-    export let videoSrc : string;
+  export let banner: string;
+  export let bottomBanner: string | undefined = undefined;
+  export let videoSrc: string;
 </script>
 
 <div
-  class="flex flex-col w-full min-h-[92svh]
+  class="flex flex-col w-full
       lg:max-h-[92svh] aspect-square mb-10 overflow-hidden
       border-grey-200 border-2 rounded-lg"
 >
   <div class="flex text-[4rem]">
     {#each { length: 10 } as _}
-      <h1 class="reverse-marquee pr-5">{banner}</h1>
+      <h1 class="reverse-marquee pr-5 -mb-40">{banner}</h1>
     {/each}
   </div>
 
@@ -23,7 +23,7 @@
     class="w-full h-full object-cover"
   />
 
-  <div class="flex text-[4rem]">
+  <div class="flex text-[4rem] -mt-[6rem]">
     {#each { length: 10 } as _}
       <h1 class="marquee pr-5">{bottomBanner ?? banner}</h1>
     {/each}

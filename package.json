@@ -8,11 +8,11 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"deploy": "npx gh-pages -d dist"
+		"deploy": "npx gh-pages -d .svelte-kit"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.4",
-		"@sveltejs/adapter-static": "^3.0.2",
+		"@sveltejs/adapter-static": "^3.0.4",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"autoprefixer": "^10.4.19",
