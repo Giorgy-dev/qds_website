@@ -2,6 +2,16 @@
   export let banner: string;
   export let bottomBanner: string | undefined = undefined;
   export let videoSrc: string;
+
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    var videoElements = document.querySelectorAll("video");
+    videoElements.forEach((videoElement) => {
+      videoElement.removeAttribute("controls");
+      videoElement.play();
+    });
+  });
 </script>
 
 <div
@@ -16,11 +26,14 @@
   </div>
 
   <video
-    src={videoSrc}
-    autoplay={true}
-    loop
+    autoplay
     muted
-    class="w-full h-full object-cover"
+    loop
+    playsinline
+    preload="none"
+    controls={false}
+    class="w-full h-full object-cover pointer-events-none"
+    src={videoSrc}
   />
 
   <div class="flex text-[4rem] -mt-[6rem]">
@@ -48,5 +61,13 @@
     100% {
       transform: translate3d(-100%, 0, 0);
     }
+  }
+
+  video::-webkit-media-controls {
+    display: none !important;
+    opacity: 0;
+  }
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
   }
 </style>

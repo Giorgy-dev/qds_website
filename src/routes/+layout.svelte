@@ -1,8 +1,9 @@
 <script lang="ts">
   import Contatti from "$lib/components/Contatti.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import "$lib/styles/app.css";
   import Navbar from "../lib/components/NavbarHandler.svelte";
+  
+  import "$lib/styles/app.css";
 </script>
 
 <svelte:head>

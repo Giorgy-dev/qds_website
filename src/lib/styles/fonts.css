@@ -15,18 +15,12 @@
   font-stretch: normal;
   font-style: normal;
   font-weight: 600;
-  src: url("/fonts/Acid_Grotesk/acid-grotesk-bold.otf") format("opentype"),
+  src:
+    url(//:) format("no404"),
+    url("/fonts/Acid_Grotesk/acid-grotesk-bold.otf") format("opentype"),
+    url("/fonts/Acid_Grotesk/acid-grotesk-bold.eot") format("embedded-opentype"),
     url("/fonts/Acid_Grotesk/acid-grotesk-bold.eot?#iefix") format("embedded-opentype"),
     url("/fonts/Acid_Grotesk/acid-grotesk-bold.woff") format("woff"),
-    url("/fonts/Acid_Grotesk/acid-grotesk-bold.ttf") format("truetype");
-}
-
-/*Acid Grotesk*/
-@font-face {
-  font-family: "FFF Acid Grotesk Black", sans-serif;
-  font-display: auto;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 900;
-  src: url("/fonts/Acid_Grotesk/acid-grotesk-black.otf") format("opentype");
+    url("/fonts/Acid_Grotesk/acid-grotesk-bold.ttf") format("truetype"),
+    url("/fonts/Acid_Grotesk/acid-grotesk-bold.svg") format("svg");
 }

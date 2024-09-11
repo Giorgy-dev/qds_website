@@ -142,7 +142,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css6) => css6.code).join("\n"),
+          code: Array.from(result.css).map((css7) => css7.code).join("\n"),
           map: null
           // TODO
         },
@@ -1299,8 +1299,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.C1z_7okD.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.CU06Wx1y.js", "_app/immutable/chunks/entry.Brv8U9oC.js"];
-    stylesheets = ["_app/immutable/assets/0.Bew4_VTb.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports = ["_app/immutable/nodes/0.BLKkjjF7.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.C-Z6tuTy.js", "_app/immutable/chunks/entry.DG5c0K4D.js"];
+    stylesheets = ["_app/immutable/assets/0.DzYONnw-.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts = [];
   }
 });
@@ -1338,7 +1338,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.BKi4_lun.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.CU06Wx1y.js", "_app/immutable/chunks/entry.Brv8U9oC.js"];
+    imports2 = ["_app/immutable/nodes/1.CVfSnenE.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.C-Z6tuTy.js", "_app/immutable/chunks/entry.DG5c0K4D.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1400,19 +1400,24 @@ var page_svelte_exports = {};
 __export(page_svelte_exports, {
   default: () => Page
 });
-var VideoBtn, Person, Page;
+var css4, VideoBtn, Person, Page;
 var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_ssr();
     init_Scroll();
     init_Section();
     init_Grid();
+    css4 = {
+      code: "video.svelte-f9jhf5::-webkit-media-controls{display:none !important;opacity:0}video.svelte-f9jhf5::-webkit-media-controls-start-playback-button{display:none !important}",
+      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA+CE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+    };
     VideoBtn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
       let { videoSrc } = $$props;
       if ($$props.title === void 0 && $$bindings.title && title !== void 0) $$bindings.title(title);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
-      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} ${"autoplay"} loop muted class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block"></video>  <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div></div>`;
+      $$result.css.add(css4);
+      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 svelte-f9jhf5"></video>  <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
     });
     Person = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { imgsrc } = $$props;
@@ -1583,8 +1588,8 @@ var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
-    imports3 = ["_app/immutable/nodes/2.Ck8DtcCt.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.DnluQ33U.js"];
-    stylesheets3 = ["_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports3 = ["_app/immutable/nodes/2.Da-LYHyL.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.DnluQ33U.js"];
+    stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts3 = [];
   }
 });
@@ -1594,16 +1599,16 @@ var page_svelte_exports2 = {};
 __export(page_svelte_exports2, {
   default: () => Page2
 });
-var css4, VideoSection, HiddenText, Quote, Page2;
+var css5, VideoSection, HiddenText, Quote, Page2;
 var init_page_svelte2 = __esm({
   ".svelte-kit/output/server/entries/pages/branding/_page.svelte.js"() {
     init_ssr();
     init_Grid();
     init_Scroll();
     init_Section();
-    css4 = {
-      code: ".marquee.svelte-1p8hkqn{white-space:nowrap;animation:svelte-1p8hkqn-marquee 5s linear infinite}.reverse-marquee.svelte-1p8hkqn{white-space:nowrap;animation:svelte-1p8hkqn-marquee 5s linear reverse infinite}@keyframes svelte-1p8hkqn-marquee{0%{transform:translate3d(0, 0, 0)}100%{transform:translate3d(-100%, 0, 0)}}",
-      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden\\n      border-grey-200 border-2 rounded-lg\\"\\n>\\n  <div class=\\"flex text-[4rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    src={videoSrc}\\n    autoplay={true}\\n    loop\\n    muted\\n    class=\\"w-full h-full object-cover\\"\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n</style>\\n"],"names":[],"mappings":"AAgCE,uBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,sBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,+BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,sBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,sBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF"}'
+    css5 = {
+      code: ".marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear infinite}.reverse-marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear reverse infinite}@keyframes svelte-58oqjv-marquee{0%{transform:translate3d(0, 0, 0)}100%{transform:translate3d(-100%, 0, 0)}}video.svelte-58oqjv::-webkit-media-controls{display:none !important;opacity:0}video.svelte-58oqjv::-webkit-media-controls-start-playback-button{display:none !important}",
+      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\nimport { onMount } from \\"svelte\\";\\nonMount(() => {\\n  var videoElements = document.querySelectorAll(\\"video\\");\\n  videoElements.forEach((videoElement) => {\\n    videoElement.removeAttribute(\\"controls\\");\\n    videoElement.play();\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden\\n      border-grey-200 border-2 rounded-lg\\"\\n>\\n  <div class=\\"flex text-[4rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    autoplay\\n    muted\\n    loop\\n    playsinline\\n    preload=\\"none\\"\\n    controls={false}\\n    class=\\"w-full h-full object-cover pointer-events-none\\"\\n    src={videoSrc}\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA2CE,sBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,8BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,qBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF,CAEA,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoSection = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { banner } = $$props;
@@ -1612,11 +1617,11 @@ var init_page_svelte2 = __esm({
       if ($$props.banner === void 0 && $$bindings.banner && banner !== void 0) $$bindings.banner(banner);
       if ($$props.bottomBanner === void 0 && $$bindings.bottomBanner && bottomBanner !== void 0) $$bindings.bottomBanner(bottomBanner);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
-      $$result.css.add(css4);
+      $$result.css.add(css5);
       return `<div class="flex flex-col w-full lg:max-h-[92svh] aspect-square mb-10 overflow-hidden border-grey-200 border-2 rounded-lg"><div class="flex text-[4rem]">${each({ length: 10 }, (_) => {
-        return `<h1 class="reverse-marquee pr-5 -mb-40 svelte-1p8hkqn">${escape(banner)}</h1>`;
-      })}</div> <video${add_attribute("src", videoSrc, 0)} ${"autoplay"} loop muted class="w-full h-full object-cover"></video> <div class="flex text-[4rem] -mt-[6rem]">${each({ length: 10 }, (_) => {
-        return `<h1 class="marquee pr-5 svelte-1p8hkqn">${escape(bottomBanner ?? banner)}</h1>`;
+        return `<h1 class="reverse-marquee pr-5 -mb-40 svelte-58oqjv">${escape(banner)}</h1>`;
+      })}</div> <video autoplay muted loop playsinline preload="none" ${""} class="w-full h-full object-cover pointer-events-none svelte-58oqjv"${add_attribute("src", videoSrc, 0)}></video> <div class="flex text-[4rem] -mt-[6rem]">${each({ length: 10 }, (_) => {
+        return `<h1 class="marquee pr-5 svelte-58oqjv">${escape(bottomBanner ?? banner)}</h1>`;
       })}</div> </div>`;
     });
     HiddenText = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1742,8 +1747,8 @@ var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
-    imports4 = ["_app/immutable/nodes/3.Dky3xzJb.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.DnluQ33U.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
-    stylesheets4 = ["_app/immutable/assets/3.BjsyhoRm.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports4 = ["_app/immutable/nodes/3.DWQz5d62.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.DnluQ33U.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
+    stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts4 = [];
   }
 });
@@ -1823,17 +1828,17 @@ var page_svelte_exports5 = {};
 __export(page_svelte_exports5, {
   default: () => Page5
 });
-var css5, Page5;
+var css6, Page5;
 var init_page_svelte5 = __esm({
   ".svelte-kit/output/server/entries/pages/mission/_page.svelte.js"() {
     init_ssr();
     init_Scroll();
-    css5 = {
+    css6 = {
       code: ".rotate-onscroll.svelte-sx6zvp{animation-name:svelte-sx6zvp-rotateAnimation;animation-duration:1ms;animation-direction:alternate;animation-timeline:scroll(block nearest)}.write.svelte-sx6zvp{animation:svelte-sx6zvp-writeAnimation 2s 0.4s infinite}@keyframes svelte-sx6zvp-rotateAnimation{from{transform:rotate(0deg)}90%{transform:rotate(360deg)}to{transform:rotate(360deg)}}@keyframes svelte-sx6zvp-writeAnimation{0%{transform:rotate(0deg)}25%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}100%{transform:rotate(0deg)}}.show-x-onscroll.svelte-sx6zvp{animation-name:svelte-sx6zvp-showXAnimation;animation-duration:1ms;animation-direction:alternate;animation-timeline:scroll(block nearest)}@keyframes svelte-sx6zvp-showXAnimation{50%{transform:translate(-150%, -10%);opacity:0}75%{transform:translate(0%);opacity:0.3}100%{transform:translate(150%, 10%);opacity:0}}",
       map: '{"version":3,"file":"+page.svelte","sources":["+page.svelte"],"sourcesContent":["<script>\\n  import Hero from \\"$lib/components/Hero.svelte\\";\\n  import Scroll from \\"$lib/components/Scroll.svelte\\";\\n<\/script>\\n\\n<div class=\\"absolute bottom-16 w-[25vw]\\">\\n  <Scroll />\\n</div>\\n<div class=\\"mt-5 lg:mt-0\\">\\n  <Hero\\n    title={[\\"Our Mission\\", \\"Never Lorem\\"]}\\n    titleMobile={[\\"Our Mission\\", \\"Never Lorem\\"]}\\n    content={[\\"\\"]}\\n    contentMobile={[\\"\\"]}\\n  />\\n  <div class=\\"h-svh\\"></div>\\n\\n  <div class=\\"flex flex-col gap-5 mt-20\\">\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">OBIETTIVO</p>\\n        <h1 class=\\"text-2xl\\">Espandere gli orizzonti propri e altrui</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Definire, scoprire e progettare brand nuovi o gi\xE0 esistenti \xE8 solo una\\n          parte dell\u2019obiettivo di QDS, per espandere gli orizzonti altrui \xE8\\n          necessario creare persistenza e lasciare un segno nel tempo\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] z-0\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/espandi.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VISIONE</p>\\n        <h1 class=\\"text-2xl\\">Realizzabile.</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Pensare il contrario \xE8 penalizzante gi\xE0 dalla nascita: tutto \xE8\\n          realizzabile\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 translate-x-[25%] lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full write opacity-30\\"\\n          src=\\"/assets/graphics/pen.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">POSIZIONAMENTO</p>\\n        <h1 class=\\"text-2xl\\">Il passato come risorsa</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Utilizzare il pensiero per elaborare il passato ci permette di creare\\n          armonia o contrasto con esso e con ci\xF2 che ci circonda tuttora\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full show-x-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/connection.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VALORI</p>\\n        <h1 class=\\"text-2xl\\">Contrasto</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Il contrasto, insieme al pensiero, \xE8 ci\xF2 che permette di creare qualcosa\\n        di sempre nuovo, pi\xF9 o meno forte rimarr\xE0 sempre presente all\u2019interno\\n        delle creazioni\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/contrasto.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n  </div>\\n\\n  <div class=\\"flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-2 gap-5\\">\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      lg:even:pl-5 lg:odd:pr-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/chirale.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Chiralit\xE0</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS \xE8 una copia non sovrapponibile del passato per il futuro in quanto\\n        lo utilizza solamente come risorsa\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/determinazione.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Determinazione</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Aspirazioni, ambizioni e promesse sfociano in determinazione per il\\n        raggiungimento degli obiettivi\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/pulizia.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Pulizia</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Linee decise e nette aiutano a convogliare i nostri valori\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img class=\\"w-full lg:w-1/6\\" src=\\"/assets/graphics/sfondo.svg\\" alt=\\"\\" />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Sfondo</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS mantiene a pari passo ci\xF2 che \xE8 visibile all\u2019esterno e ci\xF2 che non\\n        lo \xE8\\n      </p>\\n    </div>\\n  </div>\\n</div>\\n\\n<style>\\n  .rotate-onscroll {\\n    animation-name: rotateAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  .write {\\n    animation: writeAnimation 2s 0.4s infinite;\\n  }\\n  @keyframes rotateAnimation {\\n    from {\\n      transform: rotate(0deg);\\n    }\\n    90% {\\n      transform: rotate(360deg);\\n    }\\n    to {\\n      transform: rotate(360deg);\\n    }\\n  }\\n  @keyframes writeAnimation {\\n    0% {\\n      transform: rotate(0deg);\\n    }\\n    25% {\\n      transform: rotate(5deg);\\n    }\\n    50% {\\n      transform: rotate(-5deg);\\n    }\\n    75% {\\n      transform: rotate(5deg);\\n    }\\n    100% {\\n      transform: rotate(0deg);\\n    }\\n  }\\n  .show-x-onscroll{\\n    animation-name: showXAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  @keyframes showXAnimation {\\n\\n    50% {\\n      transform: translate(-150%, -10%);\\n      opacity: 0;\\n    }\\n    75% {\\n      transform: translate(0%);\\n      opacity: 0.3;\\n    }\\n    100% {\\n      transform: translate(150%, 10%);\\n      opacity: 0;\\n    }\\n  }\\n</style>\\n"],"names":[],"mappings":"AAmLE,8BAAiB,CACf,cAAc,CAAE,6BAAe,CAC/B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,oBAAO,CACL,SAAS,CAAE,4BAAc,CAAC,EAAE,CAAC,IAAI,CAAC,QACpC,CACA,WAAW,6BAAgB,CACzB,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,MAAM,CAC1B,CACA,EAAG,CACD,SAAS,CAAE,OAAO,MAAM,CAC1B,CACF,CACA,WAAW,4BAAe,CACxB,EAAG,CACD,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,KAAK,CACzB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACF,CACA,8BAAgB,CACd,cAAc,CAAE,4BAAc,CAC9B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,WAAW,4BAAe,CAExB,GAAI,CACF,SAAS,CAAE,UAAU,KAAK,CAAC,CAAC,IAAI,CAAC,CACjC,OAAO,CAAE,CACX,CACA,GAAI,CACF,SAAS,CAAE,UAAU,EAAE,CAAC,CACxB,OAAO,CAAE,GACX,CACA,IAAK,CACH,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,GAAG,CAAC,CAC/B,OAAO,CAAE,CACX,CACF"}'
     };
     Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css5);
+      $$result.css.add(css6);
       return `<div class="absolute bottom-16 w-[25vw]">${validate_component(Scroll, "Scroll").$$render($$result, {}, {}, {})}</div> <div class="mt-5 lg:mt-0">${validate_component(Hero, "Hero").$$render(
         $$result,
         {
@@ -2126,7 +2131,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1srdhwa"
+  version_hash: "13oi392"
 };
 async function get_hooks() {
   return {};
@@ -5108,10 +5113,10 @@ var manifest = (() => {
   return {
     appDir: "_app",
     appPath: "_app",
-    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png", "fonts/.DS_Store", "fonts/Acid_Grotesk/.DS_Store", "fonts/Acid_Grotesk/acid-grotesk-black.otf", "fonts/Acid_Grotesk/acid-grotesk-black.ttf", "fonts/Acid_Grotesk/acid-grotesk-bold.eot", "fonts/Acid_Grotesk/acid-grotesk-bold.otf", "fonts/Acid_Grotesk/acid-grotesk-bold.woff"]),
-    mimeTypes: { ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png", ".otf": "font/otf", ".ttf": "font/ttf", ".woff": "font/woff" },
+    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png", "fonts/.DS_Store", "fonts/Acid_Grotesk/.DS_Store", "fonts/Acid_Grotesk/acid-grotesk-bold.eot", "fonts/Acid_Grotesk/acid-grotesk-bold.otf", "fonts/Acid_Grotesk/acid-grotesk-bold.svg", "fonts/Acid_Grotesk/acid-grotesk-bold.woff"]),
+    mimeTypes: { ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png", ".otf": "font/otf", ".woff": "font/woff" },
     _: {
-      client: { "start": "_app/immutable/entry/start.BYj6W7iI.js", "app": "_app/immutable/entry/app.C2nreG0h.js", "imports": ["_app/immutable/entry/start.BYj6W7iI.js", "_app/immutable/chunks/entry.Brv8U9oC.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.C2nreG0h.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.M6Kk9AlA.js", "app": "_app/immutable/entry/app.DF9E53Uh.js", "imports": ["_app/immutable/entry/start.M6Kk9AlA.js", "_app/immutable/chunks/entry.DG5c0K4D.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.DF9E53Uh.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

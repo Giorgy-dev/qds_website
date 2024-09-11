@@ -3,12 +3,14 @@
 
   export let title: string;
   export let videoSrc: string;
-
+  
   onMount(() => {
     const videos = document.querySelectorAll("video");
-
+    
     videos.forEach((video) => {
       if (window.innerWidth > 1400) {
+        video.play();
+        video.controls = false;
         video.addEventListener("mouseover", function () {
           this.play();
           video.currentTime = 0;
@@ -31,11 +33,12 @@
 >
   <video
     src={videoSrc}
-    autoplay={true}
+    preload="none"
+    autoplay
     loop
     muted
     class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400
-    h-full lg:w-full overflow-hidden object-cover block"
+    h-full lg:w-full overflow-hidden object-cover block scale-110"
   />
 
   <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->
@@ -45,3 +48,13 @@
     <h1 class="text-4xl text-inherit">{title}</h1>
   </div>
 </div>
+
+<style>
+  video::-webkit-media-controls {
+    display: none !important;
+    opacity: 0;
+  }
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+</style>
