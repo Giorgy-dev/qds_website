@@ -9,6 +9,7 @@
     
     videos.forEach((video) => {
       if (window.innerWidth > 1400) {
+        video.playsInline = true;
         video.play();
         video.controls = false;
         video.addEventListener("mouseover", function () {

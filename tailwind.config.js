@@ -2,6 +2,11 @@
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
+    fontFamily: {
+      sans: ['"FFF Acid Grotesk Bold"', "aktiv-grotesk", "sans-serif"],
+      'display': ['"FFF Acid Grotesk Bold"'],
+      'body': ['aktiv-grotesk'],
+    },
     extend: {
       colors: {
         primary: "#FD4912",

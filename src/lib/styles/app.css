@@ -1,22 +1,58 @@
-@import './fonts.css';
+/*Aktiv Grotesk*/
+@import url("https://use.typekit.net/hhf6trd.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-    @apply text-filled;
+* {
+  @apply text-filled;
 }
 
-body{
-    @apply bg-neutral;
-    overflow-x: hidden;
+body {
+  @apply bg-neutral;
+  overflow-x: hidden;
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-family: 'FFF Acid Grotesk Bold', sans-serif;
+body * {
+  -webkit-font-smoothing: subpixel-antialiased !important;
 }
 
-p{
-    font-family: 'aktiv-grotesk', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "FFF Acid Grotesk Bold", sans-serif;
+}
+
+p {
+  font-family: "aktiv-grotesk", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: "aktiv-grotesk", system-ui, sans-serif;
+  }
+
+  /*Aktiv Grotesk*/
+  @font-face {
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 1 1000;
+    font-style: normal;
+    line-height: 1.625;
+    src: url("https://use.typekit.net/hhf6trd.css");
+  }
+
+  /*Acid Grotesk*/
+  @font-face {
+    font-family: "FFF Acid Grotesk Bold", sans-serif !important;
+    src:
+    url("/fonts/FFF Acid Grotesk Bold.eot?#iefix") format("embedded-opentype"),
+      url("/fonts/FFF Acid Grotesk Bold.woff2") format("woff2"),
+      url("/fonts/FFF Acid Grotesk Bold.woff") format("woff"),
+      url("/fonts/FFF Acid Grotesk Bold.ttf") format("truetype"),
+      url("/fonts/FFF Acid Grotesk Bold.svg#FFF Acid Grotesk Bold") format("svg");
+  }
 }

@@ -1299,8 +1299,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.BLKkjjF7.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.C-Z6tuTy.js", "_app/immutable/chunks/entry.DG5c0K4D.js"];
-    stylesheets = ["_app/immutable/assets/0.DzYONnw-.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports = ["_app/immutable/nodes/0.LkwsOgla.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.CNNUqJA5.js", "_app/immutable/chunks/entry.B4uS8Ii0.js"];
+    stylesheets = ["_app/immutable/assets/0.DfbuoJFH.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts = [];
   }
 });
@@ -1338,7 +1338,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.CVfSnenE.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.C-Z6tuTy.js", "_app/immutable/chunks/entry.DG5c0K4D.js"];
+    imports2 = ["_app/immutable/nodes/1.7Xz4Jsle.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.CNNUqJA5.js", "_app/immutable/chunks/entry.B4uS8Ii0.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1409,7 +1409,7 @@ var init_page_svelte = __esm({
     init_Grid();
     css4 = {
       code: "video.svelte-f9jhf5::-webkit-media-controls{display:none !important;opacity:0}video.svelte-f9jhf5::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA+CE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAgDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoBtn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
@@ -1588,7 +1588,7 @@ var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
-    imports3 = ["_app/immutable/nodes/2.Da-LYHyL.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.DnluQ33U.js"];
+    imports3 = ["_app/immutable/nodes/2.dSCaGKiT.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.DnluQ33U.js"];
     stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts3 = [];
   }
@@ -1628,7 +1628,7 @@ var init_page_svelte2 = __esm({
       let { texts } = $$props;
       if ($$props.texts === void 0 && $$bindings.texts && texts !== void 0) $$bindings.texts(texts);
       return `<div class="flex flex-col gap-4 mt-5">${each(texts, (ht) => {
-        return `<details class="flex flex-col"><summary class="cursor-pointer">${escape(ht.title)}</summary> <div class="vertical-line">${each(ht.content, (content) => {
+        return `<details class="flex flex-col"><summary class="cursor-pointer font-serif">${escape(ht.title)}</summary> <div class="vertical-line">${each(ht.content, (content) => {
           return `<p class="my-2 pl-5 lg:pl-10">${escape(content)}</p>`;
         })}</div> </details>`;
       })}</div>`;
@@ -1636,7 +1636,7 @@ var init_page_svelte2 = __esm({
     Quote = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { quote } = $$props;
       if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0) $$bindings.quote(quote);
-      return `<div class="flex flex-col w-full min-h-[92svh] mb-[10rem] mt-20"><h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] translate-y-[3.2rem] lg:translate-y-[4.6rem] flex-none" data-svelte-h="svelte-9mr80d">\xAB</h1> <div class="flex-grow grid place-content-center pt-10"><blockquote class="text-xl">${escape(quote.quote)}</blockquote> ${quote.author ? `<p class="text-right mt-10 w-full pr-0 lg:pr-20">${escape(quote.author)}</p>` : ``}</div> <h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] text-right -translate-y-[5rem] lg:-translate-y-[7.4rem] flex-none" data-svelte-h="svelte-18eeen0">\xBB</h1></div>`;
+      return `<div class="flex flex-col w-full min-h-[92svh] mb-[10rem] mt-20"><h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] translate-y-[3.2rem] lg:translate-y-[4.6rem] flex-none" data-svelte-h="svelte-9mr80d">\xAB</h1> <div class="flex-grow grid place-content-center pt-10"><blockquote><p class="text-xl">${escape(quote.quote)}</p></blockquote> ${quote.author ? `<p class="text-right mt-10 w-full pr-0 lg:pr-20">${escape(quote.author)}</p>` : ``}</div> <h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] text-right -translate-y-[5rem] lg:-translate-y-[7.4rem] flex-none" data-svelte-h="svelte-18eeen0">\xBB</h1></div>`;
     });
     Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let branding_process = [
@@ -1747,7 +1747,7 @@ var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
-    imports4 = ["_app/immutable/nodes/3.DWQz5d62.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.DnluQ33U.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
+    imports4 = ["_app/immutable/nodes/3.C3mO6qWM.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.DnluQ33U.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
     stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts4 = [];
   }
@@ -2131,7 +2131,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "13oi392"
+  version_hash: "1cerrw1"
 };
 async function get_hooks() {
   return {};
@@ -5113,10 +5113,10 @@ var manifest = (() => {
   return {
     appDir: "_app",
     appPath: "_app",
-    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png", "fonts/.DS_Store", "fonts/Acid_Grotesk/.DS_Store", "fonts/Acid_Grotesk/acid-grotesk-bold.eot", "fonts/Acid_Grotesk/acid-grotesk-bold.otf", "fonts/Acid_Grotesk/acid-grotesk-bold.svg", "fonts/Acid_Grotesk/acid-grotesk-bold.woff"]),
-    mimeTypes: { ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png", ".otf": "font/otf", ".woff": "font/woff" },
+    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png", "fonts/.DS_Store", "fonts/FFF Acid Grotesk Bold.eot", "fonts/FFF Acid Grotesk Bold.otf", "fonts/FFF Acid Grotesk Bold.svg", "fonts/FFF Acid Grotesk Bold.woff", "fonts/FFF Acid Grotesk Bold.woff2"]),
+    mimeTypes: { ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png", ".otf": "font/otf", ".woff": "font/woff", ".woff2": "font/woff2" },
     _: {
-      client: { "start": "_app/immutable/entry/start.M6Kk9AlA.js", "app": "_app/immutable/entry/app.DF9E53Uh.js", "imports": ["_app/immutable/entry/start.M6Kk9AlA.js", "_app/immutable/chunks/entry.DG5c0K4D.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.DF9E53Uh.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.DrjNYm8s.js", "app": "_app/immutable/entry/app.BdsUYnVQ.js", "imports": ["_app/immutable/entry/start.DrjNYm8s.js", "_app/immutable/chunks/entry.B4uS8Ii0.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.BdsUYnVQ.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

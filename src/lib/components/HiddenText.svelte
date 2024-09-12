@@ -10,7 +10,7 @@
 <div class="flex flex-col gap-4 mt-5">
   {#each texts as ht}
     <details class="flex flex-col">
-      <summary class="cursor-pointer">
+      <summary class="cursor-pointer font-serif">
         {ht.title}
       </summary>
       <div class="vertical-line">
