@@ -49,10 +49,10 @@ p {
   @font-face {
     font-family: "FFF Acid Grotesk Bold", sans-serif !important;
     src:
-    url("/assets/fonts/FFF%20Acid%20Grotesk%20Bold.eot?#iefix") format("embedded-opentype"),
-      url("/assets/fonts/FFF%20Acid%20Grotesk%20Bold.woff2") format("woff2"),
-      url("/assets/fonts/FFF%20Acid%20Grotesk%20Bold.woff") format("woff"),
-      url("/assets/fonts/FFF%20Acid%20Grotesk%20Bold.ttf") format("truetype"),
-      url("/assets/fonts/FFF%20Acid%20Grotesk%20Bold.svg#FFF Acid Grotesk Bold") format("svg");
+    url("/static/assets/fonts/FFF%20Acid%20Grotesk%20Bold.eot?#iefix") format("embedded-opentype"),
+      url("/static/assets/fonts/FFF%20Acid%20Grotesk%20Bold.woff2") format("woff2"),
+      url("/static/assets/fonts/FFF%20Acid%20Grotesk%20Bold.woff") format("woff"),
+      url("/static/assets/fonts/FFF%20Acid%20Grotesk%20Bold.ttf") format("truetype"),
+      url("/static/assets/fonts/FFF%20Acid%20Grotesk%20Bold.svg#FFF Acid Grotesk Bold") format("svg");
   }
 }
