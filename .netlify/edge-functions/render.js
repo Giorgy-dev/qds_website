@@ -1299,8 +1299,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.LkwsOgla.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.CNNUqJA5.js", "_app/immutable/chunks/entry.B4uS8Ii0.js"];
-    stylesheets = ["_app/immutable/assets/0.DfbuoJFH.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports = ["_app/immutable/nodes/0.DnwC98rM.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.DPdiQbed.js", "_app/immutable/chunks/entry.CVDnFIh4.js"];
+    stylesheets = ["_app/immutable/assets/0.DBDJzIT4.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts = [];
   }
 });
@@ -1338,7 +1338,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.7Xz4Jsle.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.CNNUqJA5.js", "_app/immutable/chunks/entry.B4uS8Ii0.js"];
+    imports2 = ["_app/immutable/nodes/1.BAVZpcbB.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.DPdiQbed.js", "_app/immutable/chunks/entry.CVDnFIh4.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -2131,7 +2131,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1cerrw1"
+  version_hash: "u03bkg"
 };
 async function get_hooks() {
   return {};
@@ -5113,10 +5113,10 @@ var manifest = (() => {
   return {
     appDir: "_app",
     appPath: "_app",
-    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png", "fonts/.DS_Store", "fonts/FFF Acid Grotesk Bold.eot", "fonts/FFF Acid Grotesk Bold.otf", "fonts/FFF Acid Grotesk Bold.svg", "fonts/FFF Acid Grotesk Bold.woff", "fonts/FFF Acid Grotesk Bold.woff2"]),
-    mimeTypes: { ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png", ".otf": "font/otf", ".woff": "font/woff", ".woff2": "font/woff2" },
+    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png"]),
+    mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.DrjNYm8s.js", "app": "_app/immutable/entry/app.BdsUYnVQ.js", "imports": ["_app/immutable/entry/start.DrjNYm8s.js", "_app/immutable/chunks/entry.B4uS8Ii0.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.BdsUYnVQ.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.MIqLVhSo.js", "app": "_app/immutable/entry/app.nyyupUh4.js", "imports": ["_app/immutable/entry/start.MIqLVhSo.js", "_app/immutable/chunks/entry.CVDnFIh4.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.nyyupUh4.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),
