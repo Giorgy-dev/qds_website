@@ -1299,7 +1299,7 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.Igfdd13p.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.Du0ml1HI.js", "_app/immutable/chunks/entry.DKqPV9yZ.js"];
+    imports = ["_app/immutable/nodes/0.CiC3E0mD.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.nZozvAIW.js", "_app/immutable/chunks/entry.DTtWcqXf.js"];
     stylesheets = ["_app/immutable/assets/0.DntzWIcw.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts = [];
   }
@@ -1338,7 +1338,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.DYcW3_pn.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.Du0ml1HI.js", "_app/immutable/chunks/entry.DKqPV9yZ.js"];
+    imports2 = ["_app/immutable/nodes/1.CUMX1_36.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.nZozvAIW.js", "_app/immutable/chunks/entry.DTtWcqXf.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1350,8 +1350,8 @@ var init_Scroll = __esm({
   ".svelte-kit/output/server/chunks/Scroll.js"() {
     init_ssr();
     css$12 = {
-      code: 'h1.svelte-19rif1a{font-family:"FFF Acid Grotesk Bold", sans-serif}.text-auto-scale.svelte-19rif1a{font-size:12vmin;font-size:17vmax;line-height:105%;transform:translateY(-5%)}.text-auto-scale-mobile.svelte-19rif1a{font-size:6vmin;font-size:9vmax;line-height:105%;transform:translateY(-5%)}',
-      map: '{"version":3,"file":"Hero.svelte","sources":["Hero.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { animateTyping } from \\"$lib/components/Typewriter\\";\\nexport let title;\\nexport let titleMobile;\\nexport let content;\\nexport let contentMobile;\\n<\/script>\\n\\n<!--hero-->\\n<div class=\\"h-svh w-max-content absolute\\">\\n  <!--mobile-->\\n  <h1 class=\\"inline-block text-auto-scale-mobile lg:hidden mt-1.5 lg:h-[55vh]\\">\\n    <span use:animateTyping={titleMobile} />\\n  </h1>\\n\\n  <div class=\\"lg:hidden\\">\\n    <!--contentMobile-->\\n    {#each contentMobile as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!--desktop-->\\n  <h1 class=\\"hidden lg:block text-auto-scale lg:h-[55vh] overflow-hidden\\">\\n    <span use:animateTyping={title} />\\n  </h1>\\n\\n  <!--content-->\\n  <div class=\\"hidden lg:block w-max\\">\\n    {#each content as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!-- <slot /> -->\\n\\n</div>\\n\\n<style>\\n  h1 {\\n    font-family: \\"FFF Acid Grotesk Bold\\", sans-serif;\\n  }\\n  .text-auto-scale {\\n    font-size: 12vmin;\\n    font-size: 17vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n  .text-auto-scale-mobile {\\n    font-size: 6vmin;\\n    font-size: 9vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n</style>\\n"],"names":[],"mappings":"AA0CE,iBAAG,CACD,WAAW,CAAE,uBAAuB,CAAC,CAAC,UACxC,CACA,+BAAiB,CACf,SAAS,CAAE,MAAM,CACjB,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B,CACA,sCAAwB,CACtB,SAAS,CAAE,KAAK,CAChB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B"}'
+      code: "h1.svelte-vuie7e{font-family:Acid Grotesk}.text-auto-scale.svelte-vuie7e{font-size:12vmin;font-size:17vmax;line-height:105%;transform:translateY(-5%)}.text-auto-scale-mobile.svelte-vuie7e{font-size:6vmin;font-size:9vmax;line-height:105%;transform:translateY(-5%)}",
+      map: '{"version":3,"file":"Hero.svelte","sources":["Hero.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { animateTyping } from \\"$lib/components/Typewriter\\";\\nexport let title;\\nexport let titleMobile;\\nexport let content;\\nexport let contentMobile;\\n<\/script>\\n\\n<!--hero-->\\n<div class=\\"h-svh w-max-content absolute\\">\\n  <!--mobile-->\\n  <h1 class=\\"inline-block text-auto-scale-mobile lg:hidden mt-1.5 lg:h-[55vh]\\">\\n    <span use:animateTyping={titleMobile} />\\n  </h1>\\n\\n  <div class=\\"lg:hidden\\">\\n    <!--contentMobile-->\\n    {#each contentMobile as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!--desktop-->\\n  <h1 class=\\"hidden lg:block text-auto-scale lg:h-[55vh] overflow-hidden\\">\\n    <span use:animateTyping={title} />\\n  </h1>\\n\\n  <!--content-->\\n  <div class=\\"hidden lg:block w-max\\">\\n    {#each content as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!-- <slot /> -->\\n\\n</div>\\n\\n<style>\\n  h1 {\\n    font-family: Acid Grotesk;\\n  }\\n  .text-auto-scale {\\n    font-size: 12vmin;\\n    font-size: 17vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n  .text-auto-scale-mobile {\\n    font-size: 6vmin;\\n    font-size: 9vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n</style>\\n"],"names":[],"mappings":"AA0CE,gBAAG,CACD,WAAW,CAAE,IAAI,CAAC,OACpB,CACA,8BAAiB,CACf,SAAS,CAAE,MAAM,CACjB,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B,CACA,qCAAwB,CACtB,SAAS,CAAE,KAAK,CAChB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B"}'
     };
     Hero = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
@@ -1363,9 +1363,9 @@ var init_Scroll = __esm({
       if ($$props.content === void 0 && $$bindings.content && content !== void 0) $$bindings.content(content);
       if ($$props.contentMobile === void 0 && $$bindings.contentMobile && contentMobile !== void 0) $$bindings.contentMobile(contentMobile);
       $$result.css.add(css$12);
-      return ` <div class="h-svh w-max-content absolute"> <h1 class="inline-block text-auto-scale-mobile lg:hidden mt-1.5 lg:h-[55vh] svelte-19rif1a"><span></span></h1> <div class="lg:hidden"> ${each(contentMobile, (paragraph) => {
+      return ` <div class="h-svh w-max-content absolute"> <h1 class="inline-block text-auto-scale-mobile lg:hidden mt-1.5 lg:h-[55vh] svelte-vuie7e"><span></span></h1> <div class="lg:hidden"> ${each(contentMobile, (paragraph) => {
         return `<p class="text-2xl">${escape(paragraph)} </p>`;
-      })}</div>  <h1 class="hidden lg:block text-auto-scale lg:h-[55vh] overflow-hidden svelte-19rif1a"><span></span></h1>  <div class="hidden lg:block w-max">${each(content, (paragraph) => {
+      })}</div>  <h1 class="hidden lg:block text-auto-scale lg:h-[55vh] overflow-hidden svelte-vuie7e"><span></span></h1>  <div class="hidden lg:block w-max">${each(content, (paragraph) => {
         return `<p class="text-2xl">${escape(paragraph)} </p>`;
       })}</div>  </div>`;
     });
@@ -1588,8 +1588,8 @@ var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
-    imports3 = ["_app/immutable/nodes/2.dSCaGKiT.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.DnluQ33U.js"];
-    stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports3 = ["_app/immutable/nodes/2.BCVIM5Oe.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BGNQyCEa.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js", "_app/immutable/chunks/Grid.CYKuP7nd.js"];
+    stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.B_9Msmgy.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts3 = [];
   }
 });
@@ -1747,8 +1747,8 @@ var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
-    imports4 = ["_app/immutable/nodes/3.C3mO6qWM.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.DnluQ33U.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
-    stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.Bqeh883a.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
+    imports4 = ["_app/immutable/nodes/3.CXdDZWbg.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.CYKuP7nd.js", "_app/immutable/chunks/Scroll.BGNQyCEa.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section._ojqOJzG.js"];
+    stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.B_9Msmgy.css", "_app/immutable/assets/Section.Cjh7qCQv.css"];
     fonts4 = [];
   }
 });
@@ -1877,8 +1877,8 @@ var init__7 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     index7 = 6;
     component7 = async () => component_cache7 ?? (component_cache7 = (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default);
-    imports7 = ["_app/immutable/nodes/6.vhf8AWZM.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.DEpN6GGv.js", "_app/immutable/chunks/Typewriter.oItSYdui.js"];
-    stylesheets7 = ["_app/immutable/assets/6.D9zlDmlX.css", "_app/immutable/assets/Scroll.Bqeh883a.css"];
+    imports7 = ["_app/immutable/nodes/6.DXRyI9dp.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BGNQyCEa.js", "_app/immutable/chunks/Typewriter.oItSYdui.js"];
+    stylesheets7 = ["_app/immutable/assets/6.D9zlDmlX.css", "_app/immutable/assets/Scroll.B_9Msmgy.css"];
     fonts7 = [];
   }
 });
@@ -2131,7 +2131,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "dxetqz"
+  version_hash: "pq97bv"
 };
 async function get_hooks() {
   return {};
@@ -5116,7 +5116,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.DXqwKbA7.js", "app": "_app/immutable/entry/app.DHgqoQah.js", "imports": ["_app/immutable/entry/start.DXqwKbA7.js", "_app/immutable/chunks/entry.DKqPV9yZ.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.DHgqoQah.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.CuqcuPT4.js", "app": "_app/immutable/entry/app.jDyTMuB9.js", "imports": ["_app/immutable/entry/start.CuqcuPT4.js", "_app/immutable/chunks/entry.DTtWcqXf.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.jDyTMuB9.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

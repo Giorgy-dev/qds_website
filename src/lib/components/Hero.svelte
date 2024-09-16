@@ -44,7 +44,7 @@
 
 <style>
   h1 {
-    font-family: "FFF Acid Grotesk Bold", sans-serif;
+    font-family: Acid Grotesk;
   }
   .text-auto-scale {
     font-size: 12vmin;
