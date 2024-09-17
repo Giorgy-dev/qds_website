@@ -43,8 +43,6 @@
     <!--nav mobile-->
     <div class={isOpen ? " show block " : " hide "}>
 
-      <meta name="theme-color" content="#FD4912" />
-
       <div
         class="
 fixed top-0 left-0 w-auto p-5 h-screen bg-primary

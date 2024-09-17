@@ -1,5 +1,5 @@
 <!--Scroll down-->
-<div class="grid grid-cols-1 grid-rows-3 w-fit mt-10">
+<div class="grid grid-cols-1 grid-rows-3 w-fit -mt-[15rem] lg:mt-10">
   <div class="bounce-del-0 mt-2">
     <svg
       width="41"
