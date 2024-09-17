@@ -17,8 +17,11 @@
 
     <!--burger menu-->
     <div class="{isOpen ? ' hide ' : ' show block '} ">
-      <div class="w-full flex justify-end fixed top-0 left-0 p-5 gap-5">
-        <hr class="w-full" />
+      <div class="w-full flex justify-start fixed top-0 left-0 p-5 gap-2.5">
+        <a href="/">
+          <img src="/assets/logo/logo_partial.svg" alt="" class="h-[32px]" />
+        </a>
+        <div class="flex w-full"></div>
         <button
           on:click={() => {
             isOpen = true;
@@ -39,6 +42,9 @@
 
     <!--nav mobile-->
     <div class={isOpen ? " show block " : " hide "}>
+
+      <meta name="theme-color" content="#FD4912" />
+
       <div
         class="
 fixed top-0 left-0 w-auto p-5 h-screen bg-primary
@@ -75,14 +81,17 @@ whitespace-nowrap
             </div>
             <div class="col-span-2 content-end text-xl">
               <a on:click={() => (isOpen = false)} class="text-neutral" href="/"
-                >{#if $page.url.pathname==='/'}› {/if}HOME</a
+                >{#if $page.url.pathname === "/"}›
+                {/if}HOME</a
               >
             </div>
             <div class="col-span-2 content-end text-xl ml-1.5">
               <a
                 on:click={() => (isOpen = false)}
                 class="text-neutral"
-                href="/mission">{#if $page.url.pathname==='/mission'}› {/if}MISSION</a
+                href="/mission"
+                >{#if $page.url.pathname === "/mission"}›
+                {/if}MISSION</a
               >
             </div>
           </div>
@@ -95,12 +104,16 @@ whitespace-nowrap
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
-              href="/branding">{#if $page.url.pathname==='/branding'}› {/if}BRANDING</a
+              href="/branding"
+              >{#if $page.url.pathname === "/branding"}›
+              {/if}BRANDING</a
             ><br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral mt-9"
-              href="/uiuxdesign">{#if $page.url.pathname==='/uiuxdesign'}› {/if}UI/UX DESIGN</a
+              href="/uiuxdesign"
+              >{#if $page.url.pathname === "/uiuxdesign"}›
+              {/if}UI/UX DESIGN</a
             >
           </div>
           <div
@@ -111,21 +124,27 @@ whitespace-nowrap
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
-              href="/grafica">{#if $page.url.pathname==='/grafica'}› {/if}GRAFICA</a
+              href="/grafica"
+              >{#if $page.url.pathname === "/grafica"}›
+              {/if}GRAFICA</a
             ><br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
-              href="/fotografia">{#if $page.url.pathname==='/fotografia'}› {/if}FOTOGRAFIA</a
+              href="/fotografia"
+              >{#if $page.url.pathname === "/fotografia"}›
+              {/if}FOTOGRAFIA</a
             ><br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
-              href="/sounddesign">{#if $page.url.pathname==='/sounddesign'}› {/if}SOUND DESIGN</a
+              href="/sounddesign"
+              >{#if $page.url.pathname === "/sounddesign"}›
+              {/if}SOUND DESIGN</a
             >
           </div>
         </nav>
-        <div class="absolute bottom-5 left-5">
+        <div class="absolute bottom-10">
           <p class="col-span-4 text-xs font-normal row-span-2 content-end">
             Q Design Studio by The Hive S.r.l.
             <br />

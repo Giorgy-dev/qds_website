@@ -3,10 +3,10 @@
 
   export let title: string;
   export let videoSrc: string;
-  
+
   onMount(() => {
     const videos = document.querySelectorAll("video");
-    
+
     videos.forEach((video) => {
       if (window.innerWidth > 1400) {
         video.playsInline = true;
@@ -32,6 +32,7 @@
   transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral
   min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"
 >
+
   <video
     src={videoSrc}
     preload="none"

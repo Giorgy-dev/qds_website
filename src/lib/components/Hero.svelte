@@ -11,7 +11,7 @@
 <!--hero-->
 <div class="h-svh w-max-content absolute">
   <!--mobile-->
-  <h1 class="inline-block text-auto-scale-mobile lg:hidden mt-1.5 lg:h-[55vh]">
+  <h1 class="inline-block text-auto-scale-mobile lg:hidden mt-[4rem] lg:h-[55vh]">
     <span use:animateTyping={titleMobile} />
   </h1>
 
