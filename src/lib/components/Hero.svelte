@@ -25,12 +25,12 @@
   </div>
 
   <!--desktop-->
-  <h1 class="hidden lg:block text-auto-scale lg:h-[55vh] overflow-hidden">
+  <h1 class="hidden lg:block text-auto-scale lg:min-h-[55vh] overflow-hidden mt-3.5">
     <span use:animateTyping={title} />
   </h1>
 
   <!--content-->
-  <div class="hidden lg:block w-max">
+  <div class="hidden lg:block w-max -mt-10">
     {#each content as paragraph}
       <p class="text-2xl">
         {paragraph}
@@ -43,9 +43,6 @@
 </div>
 
 <style>
-  h1 {
-    font-family: Acid Grotesk;
-  }
   .text-auto-scale {
     font-size: 12vmin;
     font-size: 17vmax;

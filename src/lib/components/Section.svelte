@@ -13,7 +13,8 @@
 
 <style>
   h6 {
-    font-family: "FFF Acid Grotesk Bold", sans-serif;
+    font-family: Acid Grotesk;
+    font-weight: 200;
   }
   hr {
     border: 1.33px solid #0a0a0a; /*rgb(229 231 235)*/

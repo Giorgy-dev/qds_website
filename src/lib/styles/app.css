@@ -59,8 +59,10 @@ p {
   /*Acid Grotesk*/
   @font-face {
     font-family: Acid Grotesk;
+    font-weight: 200;
     src: url("/assets/fonts/FFF Acid Grotesk Bold.eot?#iefix")
         format("embedded-opentype"),
+      url("/assets/fonts/FFFAcidGroteskVariable.ttf") format("truetype"),
       url("/assets/fonts/FFF Acid Grotesk Bold.woff2") format("woff2"),
       url("/assets/fonts/FFF Acid Grotesk Bold.woff") format("woff"),
       /*url("/assets/fonts/FFF Acid Grotesk Bold.ttf") format("truetype"),*/

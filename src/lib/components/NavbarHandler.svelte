@@ -46,7 +46,6 @@ fixed top-0 left-0 w-auto p-5 h-screen bg-primary
       >
         <nav
           class="
-mt-10
 grid grid-cols-4 grid-rows-12 gap-5
 whitespace-nowrap
 "

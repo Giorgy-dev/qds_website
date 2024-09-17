@@ -1,11 +1,10 @@
 <script>
-
   import { page } from "$app/stores";
-
 </script>
+
 <nav
   class="
-    h-screen
+    h-svh
     grid grid-cols-4 grid-rows-12 gap-5
     whitespace-nowrap
     font-bold
@@ -16,10 +15,16 @@
   </div>
 
   <div class="col-span-2 content-end text-xl">
-    <a class="text-primary" href="/">{#if $page.url.pathname==='/'}› {/if}HOME</a>
+    <a class="text-primary" href="/"
+      >{#if $page.url.pathname === "/"}›
+      {/if}HOME</a
+    >
   </div>
   <div class="col-span-2 content-end text-xl">
-    <a class="text-primary" href="/mission">{#if $page.url.pathname==='/mission'}› {/if}MISSION</a>
+    <a class="text-primary" href="/mission"
+      >{#if $page.url.pathname === "/mission"}›
+      {/if}MISSION</a
+    >
   </div>
   <div class="col-span-4"></div>
 
@@ -28,32 +33,50 @@
         grid grid-cols-subgrid row-span-2 col-span-2 text-xl
         "
   >
-    <a class="text-primary" href="/branding"> {#if $page.url.pathname==='/branding'}› {/if}BRANDING</a><br />
-    <a class="text-primary" href="/uiuxdesign"> {#if $page.url.pathname==='/uiuxdesign'}› {/if}UI/UX DESIGN</a>
+    <a class="text-primary" href="/branding">
+      {#if $page.url.pathname === "/branding"}›
+      {/if}BRANDING</a
+    ><br />
+    <a class="text-primary" href="/uiuxdesign">
+      {#if $page.url.pathname === "/uiuxdesign"}›
+      {/if}UI/UX DESIGN</a
+    >
   </div>
   <div
     class="
         grid grid-cols-subgrid row-span-2 col-span-2 text-xl
         "
   >
-    <a class="text-primary" href="/grafica">{#if $page.url.pathname==='/grafica'}› {/if}GRAFICA</a><br />
-    <a class="text-primary" href="/fotografia">{#if $page.url.pathname==='/fotografia'}› {/if}FOTOGRAFIA</a><br />
-    <a class="text-primary" href="/sounddesign">{#if $page.url.pathname==='/sounddesign'}› {/if}SOUND DESIGN</a>
+    <a class="text-primary" href="/grafica"
+      >{#if $page.url.pathname === "/grafica"}›
+      {/if}GRAFICA</a
+    ><br />
+    <a class="text-primary" href="/fotografia"
+      >{#if $page.url.pathname === "/fotografia"}›
+      {/if}FOTOGRAFIA</a
+    ><br />
+    <a class="text-primary" href="/sounddesign"
+      >{#if $page.url.pathname === "/sounddesign"}›
+      {/if}SOUND DESIGN</a
+    >
   </div>
 
-  <p class="col-span-4 text-xs font-normal row-span-2 content-end">
-    Q Design Studio by The Hive S.r.l.
-    <br />
-    Viale dell'Industria, 19 - 35129 PADOVA - PD
-    <br />
-    P.IVA: 05260180285
-    <br />
-    Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
-  </p>
+  <div class="col-span-4 row-span-2 place-content-end">
+    <p class="text-xs font-normal w-full">
+      Q Design Studio by The Hive S.r.l.
+      <br />
+      Viale dell'Industria, 19 - 35129 PADOVA - PD
+      <br />
+      P.IVA: 05260180285
+      <br />
+      Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
+    </p>
+  </div>
 </nav>
 
 <style lang="css">
   a {
-    font-family: "FFF Acid Grotesk Bold", sans-serif;
+    font-family: Acid Grotesk;
+    font-weight: 200;
   }
 </style>

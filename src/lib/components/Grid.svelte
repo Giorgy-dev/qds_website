@@ -16,7 +16,7 @@
   {#each items as item}
     <div
       class="
-      w-full h-full border-grey-200 border-2 p-5 rounded-lg text-filled
+      w-full h-full border-grey-200 border-2 p-5 pt-8 rounded-lg text-filled
       transition-all duration-300 hover:text-neutral bg-branding hover:bg-primary
       ">
       {#if item.icon}

@@ -65,7 +65,8 @@
     }
   }
   h1 {
-    font-family: "FFF Acid Grotesk Bold", sans-serif;
-    @apply whitespace-nowrap;
+    font-family: Acid Grotesk;
+    font-weight: 200;
+    white-space: nowrap;
   }
 </style>
