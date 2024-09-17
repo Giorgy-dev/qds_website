@@ -14,23 +14,25 @@
     <img src="/assets/logo/logo_partial.svg" alt="" srcset="" />
   </div>
 
-  <div class="col-span-2 content-end text-xl">
-    <a class="text-primary" href="/"
-      >{#if $page.url.pathname === "/"}›
-      {/if}HOME</a
-    >
-  </div>
-  <div class="col-span-2 content-end text-xl">
-    <a class="text-primary" href="/mission"
-      >{#if $page.url.pathname === "/mission"}›
-      {/if}MISSION</a
-    >
+  <div class="row-span-1 col-span-5 grid grid-rows-1 grid-cols-2 mt-5">
+    <div class="content-end text-xl mix-blend-exclusion">
+      <a class="text-primary" href="/"
+        >{#if $page.url.pathname === "/"}›
+        {/if}HOME</a
+      >
+    </div>
+    <div class="content-end text-xl mix-blend-exclusion">
+      <a class="text-primary" href="/mission"
+        >{#if $page.url.pathname === "/mission"}›
+        {/if}MISSION</a
+      >
+    </div>
   </div>
   <div class="col-span-4"></div>
 
   <div
     class="
-        grid grid-cols-subgrid row-span-2 col-span-2 text-xl
+        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion
         "
   >
     <a class="text-primary" href="/branding">
@@ -44,7 +46,7 @@
   </div>
   <div
     class="
-        grid grid-cols-subgrid row-span-2 col-span-2 text-xl
+        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion
         "
   >
     <a class="text-primary" href="/grafica"
@@ -61,7 +63,7 @@
     >
   </div>
 
-  <div class="col-span-4 row-span-2 place-content-end">
+  <div class="col-span-4 row-span-2 grid content-end">
     <p class="text-xs font-normal w-full">
       Q Design Studio by The Hive S.r.l.
       <br />

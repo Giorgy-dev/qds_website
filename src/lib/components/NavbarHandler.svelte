@@ -167,7 +167,8 @@ whitespace-nowrap
     }
   }
   a {
-    font-family: "FFF Acid Grotesk Bold", sans-serif;
+    font-family: Acid Grotesk;
+    font-weight: 200;
   }
   hr {
     border: 2px solid;

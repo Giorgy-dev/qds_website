@@ -104,6 +104,7 @@
       </Section>
     </div>
 
+    <div class="my-[15rem]"></div>
     <Quote {quote} />
 
     <div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg">
