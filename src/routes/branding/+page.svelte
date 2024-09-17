@@ -71,10 +71,8 @@
       `verbale e sensoriale che tocca il tuo pubblico.`,
     ]}
     contentMobile={[
-      `Branding è conoscere ciò che rende unico e differente un'azienda, un
-    prodotto, un servizio o una persona e renderlo evidente agli occhi di tutti.
-    È un processo articolato e continuo: il brand è l'espressione visiva,
-    verbale e sensoriale che tocca il tuo pubblico..`,
+      `Branding è conoscere ciò che rende unici e differenti. È un processo articolato e continuo: il brand è l'espressione visiva,
+    verbale e sensoriale che tocca il tuo pubblico.`,
     ]}
   ></Hero>
   <div class="h-svh"></div>
