@@ -1,5 +1,7 @@
 /*Aktiv Grotesk*/
 @import url("https://use.typekit.net/hhf6trd.css");
+/*Handjet (Acid Grotesk Fallback)*/
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght,ELGR,ELSH@800,1..2,0..16&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Acid Grotesk;
+  font-family: Acid Grotesk, "Handjet";
 }
 
 p {

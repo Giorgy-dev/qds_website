@@ -9,8 +9,6 @@
 
   export let data;
   let brandingProcess = data.trial;
-  let hiddenText = data.hiddenText;
-  let quote = data.quote;
 </script>
 
 <div class="absolute bottom-16 w-[25vw]">
@@ -36,28 +34,34 @@
       videoSrc="/assets/video/branding_stock.mp4"
     />
 
-    <div class="my-20">
-      <Section title={["↓ PERCORSO", "↘ PERCORSO", "• PERCORSO", "PERCORSO"]}>
-        <div>
-          <p class="mb-5">
-            Vuoi capire come funziona? Questo è il percorso di branding che
-            intraprenderemo.
-          </p>
-          <div class="w-full">
-            <Grid items={brandingProcess}></Grid>
+    {#if data.trial}
+      <div class="my-20">
+        <Section title={data.trial.section.title}>
+          <div>
+            <p class="mb-5">
+              {data.trial.section.paragraph}
+            </p>
+            <div class="w-full">
+              <Grid items={data.trial.content}></Grid>
+            </div>
           </div>
-        </div>
-      </Section>
-    </div>
+        </Section>
+      </div>
+    {/if}
 
     <div class="my-[15rem]"></div>
-    <Quote {quote} />
 
-    <div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg">
-      <h6 class="text-xl">Se vuoi leggere altro</h6>
-      <div class="lg:max-w-[80%] max-w-[90%]">
-        <HiddenText texts={hiddenText} />
+    {#if data.quote}
+      <Quote quote={data.quote} />
+    {/if}
+
+    {#if data.hiddenText}
+      <div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg">
+        <h6 class="text-xl">Se vuoi leggere altro</h6>
+        <div class="lg:max-w-[80%] max-w-[90%]">
+          <HiddenText texts={data.hiddenText} />
+        </div>
       </div>
-    </div>
+    {/if}
   </div>
 </div>

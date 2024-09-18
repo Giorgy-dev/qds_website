@@ -23,23 +23,41 @@
                 "Branding è conoscere ciò che rende unici e differenti. È un processo articolato e continuo: il brand è l'espressione visiva, verbale e sensoriale che tocca il tuo pubblico."
             ]
         },
-        "trial": [
+        "video": [
             {
-                "char": ".1",
-                "title": "Ambiente",
-                "description": "Ci conosciamo e valutiamo lo scenario competitivo e l'ambiente in cui si muove il brand"
-            },
-            {
-                "char": ".2",
-                "title": "Identità",
-                "description": "Definiamo i valori, visione, obiettivi e posizionamento del brand: tutto è specchio del cliente"
-            },
-            {
-                "char": ".3",
-                "title": "«Boom»",
-                "description": "Tutto viene tradotto visivamente e strutturato in un libro dedicato volto a guidare chiunque lavori con il brand"
+                "banner": "→BRANDING",
+                "bottomBanner": "BRANDING←",
+                "src": "/assets/video/branding_stock.mp4"
             }
         ],
+        "trial": {
+            "section": {
+                "title": [
+                    "↓ PERCORSO",
+                    "↘ PERCORSO",
+                    "• PERCORSO",
+                    "PERCORSO"
+                ],
+                "paragraph": "Vuoi capire come funziona? Questo è il percorso di branding che intraprenderemo."
+            },
+            "content": [
+                {
+                    "char": ".1",
+                    "title": "Ambiente",
+                    "description": "Ci conosciamo e valutiamo lo scenario competitivo e l'ambiente in cui si muove il brand"
+                },
+                {
+                    "char": ".2",
+                    "title": "Identità",
+                    "description": "Definiamo i valori, visione, obiettivi e posizionamento del brand: tutto è specchio del cliente"
+                },
+                {
+                    "char": ".3",
+                    "title": "«Boom»",
+                    "description": "Tutto viene tradotto visivamente e strutturato in un libro dedicato volto a guidare chiunque lavori con il brand"
+                }
+            ]
+        },
         "hiddenText": [
             {
                 "title": "Il branding riguarda solo grandi aziende?",
