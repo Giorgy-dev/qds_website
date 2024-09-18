@@ -6,8 +6,12 @@
   export let skills: string[];
 </script>
 
-<div class="rounded-lg border-2 overflow-hidden min-w-[300px]">
-  <img src={imgsrc} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top" />
+<div class="rounded-lg border-2 overflow-hidden min-w-[300px] max-w-[420px]">
+  <img
+    src={imgsrc}
+    alt=""
+    class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"
+  />
   <div class="grid p-5 gap-2.5">
     <div class="flex gap-0">
       <h2 class="text-2xl font-bold">{name}</h2>

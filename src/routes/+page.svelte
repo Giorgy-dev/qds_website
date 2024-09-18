@@ -6,29 +6,8 @@
   import VideoBtn from "$lib/components/VideoBtn.svelte";
   import Person from "$lib/components/Person.svelte";
 
-  let processo = [
-    {
-      char: ".1",
-      title: "Contatto",
-      description: `
-          La nostra consulenza inizia sempre con la profonda conoscenza del cliente
-          `,
-    },
-    {
-      char: ".2",
-      title: "Traduzione",
-      description: `
-          Le bozze si concretizzano in prime realizzazioni e valutazioni di quanto svolto
-          `,
-    },
-    {
-      char: ".3",
-      title: "Stretta di mano",
-      description: `
-          Formiamo il prodotto finito da poter integrare nella comunicazione aziendale
-          `,
-    },
-  ];
+  export let data;
+  let trial = data.trial;
 </script>
 
 <div class="absolute bottom-16 w-[25vw]">
@@ -36,20 +15,10 @@
 </div>
 <div class="mt-5 lg:mt-0 w-full">
   <Hero
-    title={["Design Studios", "↙Our Works", "Contact Us↘", "Never Lorem"]}
-    titleMobile={[
-      "Design Studios",
-      "Our Works↗",
-      "Contact Us↓",
-      "Never Lorem",
-    ]}
-    content={[
-      "Q Design Studios è una realtà dedicata alla creazione,",
-      "di cosa? tutto.",
-    ]}
-    contentMobile={[
-      "Q Design Studios è una realtà dedicata alla creazione, di cosa? tutto.",
-    ]}
+    title={data.hero.title}
+    titleMobile={data.hero.titleMobile}
+    content={data.hero.content}
+    contentMobile={data.hero.contentMobile}
   ></Hero>
   <div class="h-svh"></div>
 
@@ -86,37 +55,33 @@
     </Section>
 
     <div class="my-20"></div>
-    
-    <Section title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}>
-      <div class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5">
-        <Person
-          imgsrc={'assets/img/stock_portrait.webp'}
-          name={'Alessandro'}
-          paragraph={`Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.`}
-          label={'Co-founder'}
-          skills={['Management', 'Customer Care']}
+
+    <Section
+      title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}
+    >
+      <div
+        class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5"
+      >
+        {#each data.people as person}
+          <Person
+            imgsrc={person.imgsrc}
+            name={person.name}
+            paragraph={person.paragraph}
+            label={person.label}
+            skills={person.skills}
           />
-        <Person
-          imgsrc={'assets/img/stock_portrait.webp'}
-          name={'Alessandro'}
-          paragraph={`Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.`}
-          label={'Co-founder'}
-          skills={['Management', 'Customer Care']}
-          />
+        {/each}
       </div>
     </Section>
 
     <div class="my-20"></div>
 
-    <Section title={["↓ PROCESSO", "↘ PROCESSO", "• PROCESSO", "PROCESSO"]}>
-      <div>
-        <p class="mb-5">
-          Il processo è parte fondamentale per un team creativo di qualsiasi
-          genere, così come per il cliente
-        </p>
-        <div class="w-full">
-          <Grid items={processo}></Grid>
-        </div>
+    <Section title={data.trial.title}>
+      <p class="mb-5">
+        {data.trial.context}
+      </p>
+      <div class="w-full">
+        <Grid items={data.trial.content}></Grid>
       </div>
     </Section>
   </div>

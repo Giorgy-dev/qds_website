@@ -1,6 +1,6 @@
 <script lang="ts">
   type Quote = {
-    quote: string;
+    content: string;
     author?: string;
   };
 
@@ -15,7 +15,7 @@
   </h1>
   <div class="flex-grow grid place-content-center pt-10">
     <blockquote>
-      <p class="text-xl">{quote.quote}</p>
+      <p class="text-xl">{quote.content}</p>
     </blockquote>
     {#if quote.author}
       <p class="text-right mt-10 w-full pr-0 lg:pr-20">{quote.author}</p>

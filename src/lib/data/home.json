@@ -1,0 +1,63 @@
+[
+    {
+        "hero": {
+            "title": [
+                "Design Studios",
+                "↙Our Works",
+                "Contact Us↘",
+                "Never Lorem"
+            ],
+            "content": [
+                "Q Design Studios è una realtà dedicata alla creazione,",
+                "di cosa? tutto."
+            ],
+            "titleMobile": [
+                "Design Studios",
+                "Our Works↗",
+                "Contact Us↓",
+                "Never Lorem"
+            ],
+            "contentMobile": [
+                "Q Design Studios è una realtà dedicata alla creazione, di cosa? tutto."
+            ]
+        },
+        "people": [
+            {
+                "name": "Alessandro",
+                "imgsrc": "assets/img/stock_portrait.webp",
+                "label": "co-founder",
+                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "skills": [
+                    "Management",
+                    "Customer Care"
+                ]
+            }
+        ],
+        "trial": {
+            "title": [
+                "↓ PROCESSO",
+                "↘ PROCESSO",
+                "• PROCESSO",
+                "PROCESSO"
+            ],
+            "context": "Il processo è parte fondamentale per un team creativo di qualsiasi genere, così come per il cliente",
+            "content": [
+                {
+                    "char": ".1",
+                    "title": "Contatto",
+                    "description": "La nostra consulenza inizia sempre con la profonda conoscenza del cliente"
+                },
+                {
+                    "char": ".2",
+                    "title": "Traduzione",
+                    "description": "Le bozze si concretizzano in prime realizzazioni e valutazioni di quanto svolto"
+                },
+                {
+                    "char": ".3",
+                    "title": "Stretta di mano",
+                    "description": "Formiamo il prodotto finito da poter integrare nella comunicazione aziendale"
+                }
+            ]
+        }
+    }
+]
