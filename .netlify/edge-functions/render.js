@@ -1313,8 +1313,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.BnCxlK2B.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.cbXuaOJ8.js", "_app/immutable/chunks/entry.CL-ZjK6G.js"];
-    stylesheets = ["_app/immutable/assets/0.BiXR2vY0.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports = ["_app/immutable/nodes/0.DS6YeZVS.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.BseSCphR.js", "_app/immutable/chunks/entry.CSVDTeLS.js"];
+    stylesheets = ["_app/immutable/assets/0.CyMrU_kK.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts = [];
   }
 });
@@ -1352,9 +1352,88 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.CIauCgRs.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.cbXuaOJ8.js", "_app/immutable/chunks/entry.CL-ZjK6G.js"];
+    imports2 = ["_app/immutable/nodes/1.CddvbSEe.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.BseSCphR.js", "_app/immutable/chunks/entry.CSVDTeLS.js"];
     stylesheets2 = [];
     fonts2 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/_page.ts.js
+var page_ts_exports = {};
+__export(page_ts_exports, {
+  load: () => load
+});
+function load({ params }) {
+  const temp = cases.find((o) => o.name == params.nome);
+  if (!temp) throw new Error("Contenuto non disponibile");
+  return temp;
+}
+var cases;
+var init_page_ts = __esm({
+  ".svelte-kit/output/server/entries/pages/_page.ts.js"() {
+    cases = [
+      {
+        hero: {
+          title: [
+            "Design Studios",
+            "\u2199Our Works",
+            "Contact Us\u2198",
+            "Never Lorem"
+          ],
+          content: [
+            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione,",
+            "di cosa? tutto."
+          ],
+          titleMobile: [
+            "Design Studios",
+            "Our Works\u2197",
+            "Contact Us\u2193",
+            "Never Lorem"
+          ],
+          contentMobile: [
+            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione, di cosa? tutto."
+          ]
+        },
+        people: [
+          {
+            name: "Alessandro",
+            imgsrc: "assets/img/stock_portrait.webp",
+            label: "co-founder",
+            paragraph: "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.",
+            skills: [
+              "Management",
+              "Customer Care"
+            ]
+          }
+        ],
+        trial: {
+          title: [
+            "\u2193 PROCESSO",
+            "\u2198 PROCESSO",
+            "\u2022 PROCESSO",
+            "PROCESSO"
+          ],
+          context: "Il processo \xE8 parte fondamentale per un team creativo di qualsiasi genere, cos\xEC come per il cliente",
+          content: [
+            {
+              char: ".1",
+              title: "Contatto",
+              description: "La nostra consulenza inizia sempre con la profonda conoscenza del cliente"
+            },
+            {
+              char: ".2",
+              title: "Traduzione",
+              description: "Le bozze si concretizzano in prime realizzazioni e valutazioni di quanto svolto"
+            },
+            {
+              char: ".3",
+              title: "Stretta di mano",
+              description: "Formiamo il prodotto finito da poter integrare nella comunicazione aziendale"
+            }
+          ]
+        }
+      }
+    ];
   }
 });
 
@@ -1365,7 +1444,7 @@ var init_Scroll = __esm({
     init_ssr();
     css$12 = {
       code: ".text-auto-scale.svelte-1c0pivo{font-size:12vmin;font-size:17vmax;line-height:105%;transform:translateY(-5%)}.text-auto-scale-mobile.svelte-1c0pivo{font-size:6vmin;font-size:9vmax;line-height:105%;transform:translateY(-5%)}",
-      map: '{"version":3,"file":"Hero.svelte","sources":["Hero.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { animateTyping } from \\"$lib/components/Typewriter\\";\\nexport let title;\\nexport let titleMobile;\\nexport let content;\\nexport let contentMobile;\\n<\/script>\\n\\n<!--hero-->\\n<div class=\\"h-svh w-max-content absolute\\">\\n  <!--mobile-->\\n  <h1 class=\\"inline-block text-auto-scale-mobile lg:hidden mt-[4rem] lg:h-[55vh]\\">\\n    <span use:animateTyping={titleMobile} />\\n  </h1>\\n\\n  <div class=\\"lg:hidden\\">\\n    <!--contentMobile-->\\n    {#each contentMobile as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!--desktop-->\\n  <h1 class=\\"hidden lg:block text-auto-scale lg:min-h-[55vh] overflow-hidden mt-3.5\\">\\n    <span use:animateTyping={title} />\\n  </h1>\\n\\n  <!--content-->\\n  <div class=\\"hidden lg:block w-max -mt-10\\">\\n    {#each content as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!-- <slot /> -->\\n\\n</div>\\n\\n<style>\\n  .text-auto-scale {\\n    font-size: 12vmin;\\n    font-size: 17vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n  .text-auto-scale-mobile {\\n    font-size: 6vmin;\\n    font-size: 9vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n</style>\\n"],"names":[],"mappings":"AA0CE,+BAAiB,CACf,SAAS,CAAE,MAAM,CACjB,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B,CACA,sCAAwB,CACtB,SAAS,CAAE,KAAK,CAChB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B"}'
+      map: '{"version":3,"file":"Hero.svelte","sources":["Hero.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { animateTyping } from \\"$lib/components/Typewriter\\";\\nexport let title;\\nexport let titleMobile;\\nexport let content;\\nexport let contentMobile;\\n<\/script>\\n\\n<!--hero-->\\n<div class=\\"h-svh w-max-content absolute\\">\\n  <!--mobile-->\\n  <h1\\n    class=\\"inline-block text-auto-scale-mobile lg:hidden mt-[4rem] lg:h-[55vh]\\"\\n  >\\n    <span use:animateTyping={titleMobile} />\\n  </h1>\\n\\n  <div class=\\"lg:hidden\\">\\n    <!--contentMobile-->\\n    {#each contentMobile as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!--desktop-->\\n  <h1\\n    class=\\"hidden lg:block text-auto-scale lg:min-h-[55vh] overflow-hidden mt-3.5\\"\\n  >\\n    <span use:animateTyping={title} />\\n  </h1>\\n\\n  <!--content-->\\n  <div class=\\"hidden lg:block w-max -mt-10\\">\\n    {#each content as paragraph}\\n      <p class=\\"text-2xl\\">\\n        {paragraph}\\n      </p>\\n    {/each}\\n  </div>\\n\\n  <!-- <slot /> -->\\n</div>\\n\\n<style>\\n  .text-auto-scale {\\n    font-size: 12vmin;\\n    font-size: 17vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n  .text-auto-scale-mobile {\\n    font-size: 6vmin;\\n    font-size: 9vmax;\\n    line-height: 105%;\\n    transform: translateY(-5%);\\n  }\\n</style>\\n"],"names":[],"mappings":"AA6CE,+BAAiB,CACf,SAAS,CAAE,MAAM,CACjB,SAAS,CAAE,MAAM,CACjB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B,CACA,sCAAwB,CACtB,SAAS,CAAE,KAAK,CAChB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,IAAI,CACjB,SAAS,CAAE,WAAW,GAAG,CAC3B"}'
     };
     Hero = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
@@ -1423,7 +1502,7 @@ var init_page_svelte = __esm({
     init_Grid();
     css4 = {
       code: "video.svelte-f9jhf5::-webkit-media-controls{display:none !important;opacity:0}video.svelte-f9jhf5::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        video.currentTime = 0;\\n        this.play();\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAiDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        video.currentTime = 0;\\n        this.play();\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAkDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoBtn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
@@ -1431,7 +1510,7 @@ var init_page_svelte = __esm({
       if ($$props.title === void 0 && $$bindings.title && title !== void 0) $$bindings.title(title);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
       $$result.css.add(css4);
-      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none svelte-f9jhf5"></video>  <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
+      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none svelte-f9jhf5"></video>  <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
     });
     Person = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { imgsrc } = $$props;
@@ -1444,46 +1523,23 @@ var init_page_svelte = __esm({
       if ($$props.paragraph === void 0 && $$bindings.paragraph && paragraph !== void 0) $$bindings.paragraph(paragraph);
       if ($$props.label === void 0 && $$bindings.label && label !== void 0) $$bindings.label(label);
       if ($$props.skills === void 0 && $$bindings.skills && skills !== void 0) $$bindings.skills(skills);
-      return `<div class="rounded-lg border-2 overflow-hidden min-w-[300px]"><img${add_attribute("src", imgsrc, 0)} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"> <div class="grid p-5 gap-2.5"><div class="flex gap-0"><h2 class="text-2xl font-bold">${escape(name)}</h2> <div class="flex flex-wrap gap-2">${typeof label === "string" ? `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label)}</span>` : `${each(label, (label2) => {
+      return `<div class="rounded-lg border-2 overflow-hidden min-w-[300px] max-w-[420px]"><img${add_attribute("src", imgsrc, 0)} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"> <div class="grid p-5 gap-2.5"><div class="flex gap-0"><h2 class="text-2xl font-bold">${escape(name)}</h2> <div class="flex flex-wrap gap-2">${typeof label === "string" ? `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label)}</span>` : `${each(label, (label2) => {
         return `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label2)}</span>`;
       })}`}</div></div> <p class="text-m">${escape(paragraph)}</p> <div class="flex flex-wrap gap-2 pt-2.5">${each(skills, (skill) => {
         return `<span class="bg-gray-200 px-2 py-1 rounded-lg">${escape(skill)}</span>`;
       })}</div></div></div>`;
     });
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let processo = [
-        {
-          char: ".1",
-          title: "Contatto",
-          description: `
-          La nostra consulenza inizia sempre con la profonda conoscenza del cliente
-          `
-        },
-        {
-          char: ".2",
-          title: "Traduzione",
-          description: `
-          Le bozze si concretizzano in prime realizzazioni e valutazioni di quanto svolto
-          `
-        },
-        {
-          char: ".3",
-          title: "Stretta di mano",
-          description: `
-          Formiamo il prodotto finito da poter integrare nella comunicazione aziendale
-          `
-        }
-      ];
+      let { data } = $$props;
+      data.trial;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0) $$bindings.data(data);
       return `<div class="absolute bottom-16 w-[25vw]">${validate_component(Scroll, "Scroll").$$render($$result, {}, {}, {})}</div> <div class="mt-5 lg:mt-0 w-full">${validate_component(Hero, "Hero").$$render(
         $$result,
         {
-          title: ["Design Studios", "\u2199Our Works", "Contact Us\u2198", "Never Lorem"],
-          titleMobile: ["Design Studios", "Our Works\u2197", "Contact Us\u2193", "Never Lorem"],
-          content: [
-            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione,",
-            "di cosa? tutto."
-          ],
-          contentMobile: ["Q Design Studios \xE8 una realt\xE0 dedicata alla creazione, di cosa? tutto."]
+          title: data.hero.title,
+          titleMobile: data.hero.titleMobile,
+          content: data.hero.content,
+          contentMobile: data.hero.contentMobile
         },
         {},
         {}
@@ -1546,44 +1602,27 @@ var init_page_svelte = __esm({
         {},
         {
           default: () => {
-            return `<div class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5">${validate_component(Person, "Person").$$render(
-              $$result,
-              {
-                imgsrc: "assets/img/stock_portrait.webp",
-                name: "Alessandro",
-                paragraph: `Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.`,
-                label: "Co-founder",
-                skills: ["Management", "Customer Care"]
-              },
-              {},
-              {}
-            )} ${validate_component(Person, "Person").$$render(
-              $$result,
-              {
-                imgsrc: "assets/img/stock_portrait.webp",
-                name: "Alessandro",
-                paragraph: `Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.`,
-                label: "Co-founder",
-                skills: ["Management", "Customer Care"]
-              },
-              {},
-              {}
-            )}</div>`;
+            return `<div class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5">${each(data.people, (person) => {
+              return `${validate_component(Person, "Person").$$render(
+                $$result,
+                {
+                  imgsrc: person.imgsrc,
+                  name: person.name,
+                  paragraph: person.paragraph,
+                  label: person.label,
+                  skills: person.skills
+                },
+                {},
+                {}
+              )}`;
+            })}</div>`;
           }
         }
-      )} <div class="my-20"></div> ${validate_component(Section, "Section").$$render(
-        $$result,
-        {
-          title: ["\u2193 PROCESSO", "\u2198 PROCESSO", "\u2022 PROCESSO", "PROCESSO"]
-        },
-        {},
-        {
-          default: () => {
-            return `<div><p class="mb-5" data-svelte-h="svelte-1vm242d">Il processo \xE8 parte fondamentale per un team creativo di qualsiasi
-          genere, cos\xEC come per il cliente</p> <div class="w-full">${validate_component(Grid, "Grid").$$render($$result, { items: processo }, {}, {})}</div></div>`;
-          }
+      )} <div class="my-20"></div> ${validate_component(Section, "Section").$$render($$result, { title: data.trial.title }, {}, {
+        default: () => {
+          return `<p class="mb-5">${escape(data.trial.context)}</p> <div class="w-full">${validate_component(Grid, "Grid").$$render($$result, { items: data.trial.content }, {}, {})}</div>`;
         }
-      )}</div></div>`;
+      })}</div></div>`;
     });
   }
 });
@@ -1595,16 +1634,110 @@ __export(__exports3, {
   fonts: () => fonts3,
   imports: () => imports3,
   index: () => index3,
-  stylesheets: () => stylesheets3
+  stylesheets: () => stylesheets3,
+  universal: () => page_ts_exports,
+  universal_id: () => universal_id
 });
-var index3, component_cache3, component3, imports3, stylesheets3, fonts3;
+var index3, component_cache3, component3, universal_id, imports3, stylesheets3, fonts3;
 var init__3 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
+    init_page_ts();
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
-    imports3 = ["_app/immutable/nodes/2.fyW8jfZF.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
+    universal_id = "src/routes/+page.ts";
+    imports3 = ["_app/immutable/nodes/2.BD-djZvF.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
     stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts3 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/branding/_page.ts.js
+var page_ts_exports2 = {};
+__export(page_ts_exports2, {
+  load: () => load2
+});
+function load2({ params }) {
+  const temp = cases2.find((o) => o.name == params.nome);
+  if (!temp) throw new Error("Contenuto non disponibile");
+  return temp;
+}
+var cases2;
+var init_page_ts2 = __esm({
+  ".svelte-kit/output/server/entries/pages/branding/_page.ts.js"() {
+    cases2 = [
+      {
+        hero: {
+          title: [
+            "\xABBrand Boom\xBB",
+            "Contact Us\u2198",
+            "\u2199Other Works",
+            "Never Lorem"
+          ],
+          content: [
+            "Branding \xE8 conoscere ci\xF2 che rende unico e differente un'azienda, un",
+            "prodotto, un servizio o una persona e renderlo evidente agli occhi di tutti.",
+            "\xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva,",
+            "verbale e sensoriale che tocca il tuo pubblico."
+          ],
+          titleMobile: [
+            "\xABBrand Boom\xBB",
+            "Contact Us\u2198",
+            "\u2199Other Works",
+            "Never Lorem"
+          ],
+          contentMobile: [
+            "Branding \xE8 conoscere ci\xF2 che rende unici e differenti. \xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva, verbale e sensoriale che tocca il tuo pubblico."
+          ]
+        },
+        video: [
+          {
+            banner: "\u2192BRANDING",
+            bottomBanner: "BRANDING\u2190",
+            src: "/assets/video/branding_stock.mp4"
+          }
+        ],
+        trial: {
+          section: {
+            title: [
+              "\u2193 PERCORSO",
+              "\u2198 PERCORSO",
+              "\u2022 PERCORSO",
+              "PERCORSO"
+            ],
+            paragraph: "Vuoi capire come funziona? Questo \xE8 il percorso di branding che intraprenderemo."
+          },
+          content: [
+            {
+              char: ".1",
+              title: "Ambiente",
+              description: "Ci conosciamo e valutiamo lo scenario competitivo e l'ambiente in cui si muove il brand"
+            },
+            {
+              char: ".2",
+              title: "Identit\xE0",
+              description: "Definiamo i valori, visione, obiettivi e posizionamento del brand: tutto \xE8 specchio del cliente"
+            },
+            {
+              char: ".3",
+              title: "\xABBoom\xBB",
+              description: "Tutto viene tradotto visivamente e strutturato in un libro dedicato volto a guidare chiunque lavori con il brand"
+            }
+          ]
+        },
+        hiddenText: [
+          {
+            title: "Il branding riguarda solo grandi aziende?",
+            content: [
+              "Spesso si pensa al branding come un\u2019attivit\xE0 svolta solo da grandi aziende con ingenti budget, ti far\xE0 piacere sapere che non \xE8 strettamente necessario. Il mercato italiano \xE8 composto maggiormente da piccole e micro imprese spesso sconosciute. Il loro approccio \xE8 prettamente commerciale con focalizzazione sul prodotto o servizio ma \xE8 inevitabile che miglioramenti di qualit\xE0 o introduzione di innovazioni vengano adottati anche dalla concorrenza. Il risultato \xE8 che la clientela segue il prodotto a loro pi\xF9 conveniente, e gi\xE0 domani potrebbe non essere pi\xF9 il tuo. Fornire loro un legame visivo (e non solo) con un brand li porter\xE0 a sceglierti nuovamente qualora il tuo prodotto gli sia piaciuto in passato."
+            ]
+          }
+        ],
+        quote: {
+          content: "In questa societ\xE0 in continua evoluzione, i marchi pi\xF9 potenti e duraturi sono costruiti col cuore. Sono reali e sostenibili. Le loro basi sono solide perch\xE9 sono costruite con la forza dello spirito umano e non su una campagna pubblicitaria. Le societ\xE0 pi\xF9 durature sono quelle autentiche",
+          author: "Howard Schultz"
+        }
+      }
+    ];
   }
 });
 
@@ -1650,64 +1783,19 @@ var init_page_svelte2 = __esm({
     Quote = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { quote } = $$props;
       if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0) $$bindings.quote(quote);
-      return `<div class="flex flex-col w-full min-h-[92svh] mb-[10rem] mt-20"><h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] translate-y-[3.2rem] lg:translate-y-[4.6rem] flex-none" data-svelte-h="svelte-9mr80d">\xAB</h1> <div class="flex-grow grid place-content-center pt-10"><blockquote><p class="text-xl">${escape(quote.quote)}</p></blockquote> ${quote.author ? `<p class="text-right mt-10 w-full pr-0 lg:pr-20">${escape(quote.author)}</p>` : ``}</div> <h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] text-right -translate-y-[5rem] lg:-translate-y-[7.4rem] flex-none" data-svelte-h="svelte-18eeen0">\xBB</h1></div>`;
+      return `<div class="flex flex-col w-full min-h-[92svh] mb-[10rem] mt-20"><h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] translate-y-[3.2rem] lg:translate-y-[4.6rem] flex-none" data-svelte-h="svelte-9mr80d">\xAB</h1> <div class="flex-grow grid place-content-center pt-10"><blockquote><p class="text-xl">${escape(quote.content)}</p></blockquote> ${quote.author ? `<p class="text-right mt-10 w-full pr-0 lg:pr-20">${escape(quote.author)}</p>` : ``}</div> <h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] text-right -translate-y-[5rem] lg:-translate-y-[7.4rem] flex-none" data-svelte-h="svelte-18eeen0">\xBB</h1></div>`;
     });
     Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let branding_process = [
-        {
-          char: ".1",
-          title: "Ambiente",
-          description: `
-          Ci conosciamo e valutiamo lo scenario competitivo e l'ambiente in cui si muove il brand
-          `
-        },
-        {
-          char: ".2",
-          title: "Identit\xE0",
-          description: `
-          Definiamo i valori, visione, obiettivi e posizionamento del brand: tutto \xE8 specchio del cliente 
-          `
-        },
-        {
-          char: ".3",
-          title: "\xABBoom\xBB",
-          description: `
-          Tutto viene tradotto visivamente e strutturato in un libro dedicato volto a guidare chiunque lavori con il brand
-          `
-        }
-      ];
-      let HiddenTextData = [
-        {
-          title: "Il branding riguarda solo grandi aziende?",
-          content: [
-            `Spesso si pensa al branding come un\u2019attivit\xE0 svolta solo da grandi aziende con ingenti budget, ti far\xE0 piacere sapere che non \xE8 strettamente necessario.
-        Il mercato italiano \xE8 composto maggiormente da piccole e micro imprese spesso sconosciute. Il loro approccio \xE8 prettamente commerciale con focalizzazione
-        sul prodotto o servizio ma \xE8 inevitabile che miglioramenti di qualit\xE0 o introduzione di innovazioni vengano adottati anche dalla concorrenza. Il risultato
-        \xE8 che la clientela segue il prodotto a loro pi\xF9 conveniente, e gi\xE0 domani potrebbe non essere pi\xF9 il tuo. Fornire loro un legame visivo (e non solo) con
-        un brand li porter\xE0 a sceglierti nuovamente qualora il tuo prodotto gli sia piaciuto in passato.
-`
-          ]
-        }
-      ];
-      let quote = {
-        quote: "In questa societ\xE0 in continua evoluzione, i marchi pi\xF9 potenti e duraturi sono costruiti col cuore. Sono reali e sostenibili. Le loro basi sono solide perch\xE9 sono costruite con la forza dello spirito umano e non su una campagna pubblicitaria. Le societ\xE0 pi\xF9 durature sono quelle autentiche",
-        author: "Howard Schultz"
-      };
+      let { data } = $$props;
+      data.trial;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0) $$bindings.data(data);
       return `<div class="absolute bottom-16 w-[25vw]">${validate_component(Scroll, "Scroll").$$render($$result, {}, {}, {})}</div> <div class="mt-5 lg:mt-0">${validate_component(Hero, "Hero").$$render(
         $$result,
         {
-          title: ["\xABBrand Boom\xBB", "Contact Us\u2198", "\u2199Other Works", "Never Lorem"],
-          titleMobile: ["\xABBrand Boom\xBB", "Contact Us\u2198", "\u2199Other Works", "Never Lorem"],
-          content: [
-            `Branding \xE8 conoscere ci\xF2 che rende unico e differente un'azienda, un`,
-            `prodotto, un servizio o una persona e renderlo evidente agli occhi di tutti.`,
-            `\xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva,`,
-            `verbale e sensoriale che tocca il tuo pubblico.`
-          ],
-          contentMobile: [
-            `Branding \xE8 conoscere ci\xF2 che rende unici e differenti. \xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva,
-    verbale e sensoriale che tocca il tuo pubblico.`
-          ]
+          title: data.hero.title,
+          titleMobile: data.hero.titleMobile,
+          content: data.hero.content,
+          contentMobile: data.hero.contentMobile
         },
         {},
         {}
@@ -1728,19 +1816,11 @@ var init_page_svelte2 = __esm({
         },
         {},
         {}
-      )} <div class="my-20">${validate_component(Section, "Section").$$render(
-        $$result,
-        {
-          title: ["\u2193 PERCORSO", "\u2198 PERCORSO", "\u2022 PERCORSO", "PERCORSO"]
-        },
-        {},
-        {
-          default: () => {
-            return `<div><p class="mb-5" data-svelte-h="svelte-1um8fwu">Vuoi capire come funziona? Questo \xE8 il percorso di branding che
-            intraprenderemo.</p> <div class="w-full">${validate_component(Grid, "Grid").$$render($$result, { items: branding_process }, {}, {})}</div></div>`;
-          }
+      )} ${data.trial ? `<div class="my-20">${validate_component(Section, "Section").$$render($$result, { title: data.trial.section.title }, {}, {
+        default: () => {
+          return `<div><p class="mb-5">${escape(data.trial.section.paragraph)}</p> <div class="w-full">${validate_component(Grid, "Grid").$$render($$result, { items: data.trial.content }, {}, {})}</div></div>`;
         }
-      )}</div> <div class="my-[15rem]"></div> ${validate_component(Quote, "Quote").$$render($$result, { quote }, {}, {})} <div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg"><h6 class="text-xl" data-svelte-h="svelte-je895n">Se vuoi leggere altro</h6> <div class="lg:max-w-[80%] max-w-[90%]">${validate_component(HiddenText, "HiddenText").$$render($$result, { texts: HiddenTextData }, {}, {})}</div></div></div></div>`;
+      })}</div>` : ``} <div class="my-[15rem]"></div> ${data.quote ? `${validate_component(Quote, "Quote").$$render($$result, { quote: data.quote }, {}, {})}` : ``} ${data.hiddenText ? `<div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg"><h6 class="text-xl" data-svelte-h="svelte-je895n">Se vuoi leggere altro</h6> <div class="lg:max-w-[80%] max-w-[90%]">${validate_component(HiddenText, "HiddenText").$$render($$result, { texts: data.hiddenText }, {}, {})}</div></div>` : ``}</div></div>`;
     });
   }
 });
@@ -1752,14 +1832,18 @@ __export(__exports4, {
   fonts: () => fonts4,
   imports: () => imports4,
   index: () => index4,
-  stylesheets: () => stylesheets4
+  stylesheets: () => stylesheets4,
+  universal: () => page_ts_exports2,
+  universal_id: () => universal_id2
 });
-var index4, component_cache4, component4, imports4, stylesheets4, fonts4;
+var index4, component_cache4, component4, universal_id2, imports4, stylesheets4, fonts4;
 var init__4 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
+    init_page_ts2();
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
-    imports4 = ["_app/immutable/nodes/3.DorSUwOi.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js"];
+    universal_id2 = "src/routes/branding/+page.ts";
+    imports4 = ["_app/immutable/nodes/3.1yq96VkN.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js"];
     stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts4 = [];
   }
@@ -2143,7 +2227,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "bqof21"
+  version_hash: "1r9fpei"
 };
 async function get_hooks() {
   return {};
@@ -5128,7 +5212,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.DTUSeNi-.js", "app": "_app/immutable/entry/app.CzbKs46Y.js", "imports": ["_app/immutable/entry/start.DTUSeNi-.js", "_app/immutable/chunks/entry.CL-ZjK6G.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.CzbKs46Y.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.C82Bo-F6.js", "app": "_app/immutable/entry/app.BGLjovO5.js", "imports": ["_app/immutable/entry/start.C82Bo-F6.js", "_app/immutable/chunks/entry.CSVDTeLS.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.BGLjovO5.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

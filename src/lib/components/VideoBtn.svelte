@@ -32,13 +32,14 @@
   transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral
   min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"
 >
-
   <video
     src={videoSrc}
     preload="none"
     autoplay
     loop
     muted
+    disablepictureinpicture
+    controlslist="nofullscreen nodownload noremoteplayback"
     class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400
     h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none"
   />
