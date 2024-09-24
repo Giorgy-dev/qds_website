@@ -1313,8 +1313,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.-dUA9ZSm.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.Cz8Gc1gG.js", "_app/immutable/chunks/entry.jidg9gpv.js"];
-    stylesheets = ["_app/immutable/assets/0.BCpyxlXi.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports = ["_app/immutable/nodes/0.yOqeN93h.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.D5QZumei.js", "_app/immutable/chunks/entry.D1XGN7Yc.js"];
+    stylesheets = ["_app/immutable/assets/0.C2xsfBpN.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts = [];
   }
 });
@@ -1352,7 +1352,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.CAqqf48a.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.Cz8Gc1gG.js", "_app/immutable/chunks/entry.jidg9gpv.js"];
+    imports2 = ["_app/immutable/nodes/1.DsX9-XDA.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.D5QZumei.js", "_app/immutable/chunks/entry.D1XGN7Yc.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1502,7 +1502,7 @@ var init_page_svelte = __esm({
     init_Grid();
     css4 = {
       code: "video.svelte-f9jhf5::-webkit-media-controls{display:none !important;opacity:0}video.svelte-f9jhf5::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        video.currentTime = 0;\\n        this.play();\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none\\"\\n  />\\n\\n  <!--bg-gradient-to-tr from-neutral via-30% via-transparent-->\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAkDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        video.currentTime = 0;\\n        this.play();\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    disablepictureinpicture\\n    playsinline\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none\\"\\n  />\\n\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAkDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoBtn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
@@ -1510,7 +1510,7 @@ var init_page_svelte = __esm({
       if ($$props.title === void 0 && $$bindings.title && title !== void 0) $$bindings.title(title);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
       $$result.css.add(css4);
-      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none svelte-f9jhf5"></video>  <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
+      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted disablepictureinpicture playsinline controlslist="nofullscreen nodownload noremoteplayback" class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none svelte-f9jhf5"></video> <div class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
     });
     Person = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { imgsrc } = $$props;
@@ -1645,7 +1645,7 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
     universal_id = "src/routes/+page.ts";
-    imports3 = ["_app/immutable/nodes/2.Cno1PVCM.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
+    imports3 = ["_app/immutable/nodes/2.F4vvJUFO.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
     stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts3 = [];
   }
@@ -2227,7 +2227,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1v4sm41"
+  version_hash: "153aunq"
 };
 async function get_hooks() {
   return {};
@@ -5212,7 +5212,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.BUIIqOXK.js", "app": "_app/immutable/entry/app.CWtmveWp.js", "imports": ["_app/immutable/entry/start.BUIIqOXK.js", "_app/immutable/chunks/entry.jidg9gpv.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.CWtmveWp.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.CUpa4I_S.js", "app": "_app/immutable/entry/app.C5W4hVbK.js", "imports": ["_app/immutable/entry/start.CUpa4I_S.js", "_app/immutable/chunks/entry.D1XGN7Yc.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.C5W4hVbK.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),
