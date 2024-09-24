@@ -28,9 +28,9 @@
 
 <div
   class="relative flex items-center justify-center overflow-hidden
-  border-grey-200 border-2 hover:border-4 rounded-lg text-filled lg:text-primary
-  transition-all duration-100 hover:text-filled bg-primary lg:bg-neutral
-  min-h-[40vh] h-full hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"
+  border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary
+  transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral
+  min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"
 >
   <video
     src={videoSrc}

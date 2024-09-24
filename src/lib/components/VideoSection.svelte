@@ -32,6 +32,8 @@
     playsinline
     preload="none"
     controls={false}
+    disablepictureinpicture
+    controlslist="nofullscreen nodownload noremoteplayback"
     class="w-full h-full object-cover pointer-events-none"
     src={videoSrc}
   />
