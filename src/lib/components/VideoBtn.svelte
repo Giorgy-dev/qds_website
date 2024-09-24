@@ -42,11 +42,11 @@
     playsinline
     controlslist="nofullscreen nodownload noremoteplayback"
     class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400
-    h-full lg:w-full overflow-hidden object-cover block scale-110 touch-none"
+    h-full lg:w-full overflow-hidden object-cover block scale-110"
   />
 
   <div
-    class="w-full h-full z-30 text-inherit pointer-events-none p-5 grid content-end"
+    class="w-full h-full z-30 text-inherit lg:pointer-events-none p-5 grid content-end"
   >
     <h1 class="text-4xl text-inherit">{title}</h1>
   </div>
