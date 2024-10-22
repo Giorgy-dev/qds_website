@@ -31,6 +31,36 @@
                     "Management",
                     "Customer Care"
                 ]
+            },
+            {
+                "name": "Alessandro",
+                "imgsrc": "assets/img/stock_portrait.webp",
+                "label": "co-founder",
+                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "skills": [
+                    "Management",
+                    "Customer Care"
+                ]
+            },
+            {
+                "name": "Alessandro",
+                "imgsrc": "assets/img/stock_portrait.webp",
+                "label": "co-founder",
+                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "skills": [
+                    "Management",
+                    "Customer Care"
+                ]
+            },
+            {
+                "name": "Alessandro",
+                "imgsrc": "assets/img/stock_portrait.webp",
+                "label": "co-founder",
+                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "skills": [
+                    "Management",
+                    "Customer Care"
+                ]
             }
         ],
         "trial": {

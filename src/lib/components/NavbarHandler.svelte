@@ -42,7 +42,6 @@
 
     <!--nav mobile-->
     <div class={isOpen ? " show block " : " hide "}>
-
       <div
         class="
 fixed top-0 left-0 w-auto p-5 h-screen bg-primary
@@ -96,7 +95,7 @@ whitespace-nowrap
 
           <div
             class="
-  grid grid-cols-subgrid row-span-2 col-span-2 text-xl mt-10
+  row-span-2 col-span-2 text-xl mt-10
   "
           >
             <a
@@ -105,7 +104,9 @@ whitespace-nowrap
               href="/branding"
               >{#if $page.url.pathname === "/branding"}›
               {/if}BRANDING</a
-            ><br />
+            >
+            <br />
+            <br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral mt-9"
@@ -116,7 +117,7 @@ whitespace-nowrap
           </div>
           <div
             class="
-  grid grid-cols-subgrid row-span-2 col-span-2 text-xl mt-10
+  row-span-2 col-span-2 text-xl mt-10
   "
           >
             <a
@@ -125,21 +126,24 @@ whitespace-nowrap
               href="/grafica"
               >{#if $page.url.pathname === "/grafica"}›
               {/if}GRAFICA</a
-            ><br />
+            >
+            <br />
+            <br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
               href="/fotografia"
               >{#if $page.url.pathname === "/fotografia"}›
               {/if}FOTOGRAFIA</a
-            ><br />
+            >
+            <!--<br />
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
               href="/sounddesign"
               >{#if $page.url.pathname === "/sounddesign"}›
               {/if}SOUND DESIGN</a
-            >
+            >-->
           </div>
         </nav>
         <div class="absolute bottom-10">

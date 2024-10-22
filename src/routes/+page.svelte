@@ -30,21 +30,26 @@
             <VideoBtn title="Branding" videoSrc="/assets/video/branding.mp4" />
           </a>
         </div>
-        <a href="/grafica"
-          ><VideoBtn title="Grafica" videoSrc="/assets/video/grafica.mp4" /></a
-        >
+        <div class="lg:row-span-2">
+          <a href="/grafica"
+            ><VideoBtn
+              title="Grafica"
+              videoSrc="/assets/video/grafica.mp4"
+            /></a
+          >
+        </div>
         <a href="/uiuxdesign"
           ><VideoBtn
             title="UI/UX Design"
             videoSrc="/assets/video/grafica.mp4"
           /></a
         >
-        <a href="/sounddesign"
+        <!--<a href="/sounddesign"
           ><VideoBtn
             title="Sound Design"
             videoSrc="/assets/video/sounddesign2.mp4"
           /></a
-        >
+        >-->
         <a href="/fotografia"
           ><VideoBtn
             title="Fotografia"
@@ -60,7 +65,7 @@
       title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}
     >
       <div
-        class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5"
+        class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10"
       >
         {#each data.people as person}
           <Person

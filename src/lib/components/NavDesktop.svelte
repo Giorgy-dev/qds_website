@@ -56,11 +56,13 @@
     <a class="text-primary" href="/fotografia"
       >{#if $page.url.pathname === "/fotografia"}›
       {/if}FOTOGRAFIA</a
-    ><br />
+    >
+
+    <!--<br />
     <a class="text-primary" href="/sounddesign"
       >{#if $page.url.pathname === "/sounddesign"}›
       {/if}SOUND DESIGN</a
-    >
+    >-->
   </div>
 
   <div class="col-span-4 row-span-2 grid content-end">

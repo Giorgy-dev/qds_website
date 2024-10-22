@@ -6,7 +6,7 @@
   export let skills: string[];
 </script>
 
-<div class="rounded-lg border-2 overflow-hidden min-w-[300px] max-w-[420px]">
+<div class="rounded-lg border-2 overflow-hidden min-w-[380px] max-w-[420px]">
   <img
     src={imgsrc}
     alt=""

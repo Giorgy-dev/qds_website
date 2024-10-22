@@ -33,7 +33,7 @@ m-10
   <div
     class="flex flex-row flex-wrap lg:ml-[25vw] gap-2 lg:gap-5 relative z-0 w-full"
   >
-    <div class="flex-auto min-w-[30vw] w-full lg:ml-5 static">
+    <div class="flex-auto min-w-[30vw] w-full lg:max-w-[68vw] lg:ml-5 static">
       <slot />
       <Footer />
     </div>
