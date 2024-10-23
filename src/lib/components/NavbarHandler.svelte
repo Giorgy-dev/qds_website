@@ -15,11 +15,9 @@
 
   {#if isMobile}
     <!--nav mobile section-->
-    {#if isOpen}
-    <meta name="theme-color" content="#FD4912" />
-    {/if}
+
     <!--burger menu-->
-    <div class="{isOpen ? ' hide hidden invisible ' : ' show block '} ">
+    <div class="{isOpen ? ' hide hidden collapse ' : ' visible show block '} ">
       <div class="w-full flex justify-start fixed top-0 left-0 p-5 gap-2.5">
         <a href="/">
           <img src="/assets/logo/logo_partial.svg" alt="" class="h-[32px]" />
