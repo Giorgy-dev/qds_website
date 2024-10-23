@@ -11,8 +11,6 @@
   <title>Q Design Studios</title>
 </svelte:head>
 
-<meta name="theme-color" content="#f5f5f5" />
-
 <div
   class="
 h-screen
