@@ -5,7 +5,7 @@
                 "Design Studios",
                 "↙Our Works",
                 "Contact Us↘",
-                "Never Lorem"
+                "Never Lorem."
             ],
             "content": [
                 "Q Design Studios è una realtà dedicata alla creazione,",
@@ -15,7 +15,7 @@
                 "Design Studios",
                 "Our Works↗",
                 "Contact Us↓",
-                "Never Lorem"
+                "Never Lorem."
             ],
             "contentMobile": [
                 "Q Design Studios è una realtà dedicata alla creazione, di cosa? tutto."
@@ -23,13 +23,14 @@
         },
         "people": [
             {
-                "name": "Alessandro",
+                "name": "Marco",
                 "imgsrc": "assets/img/stock_portrait.webp",
                 "label": "co-founder",
-                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "paragraph": "Sono Marco, 21 anni, con una formazione tecnica mi approccio al design con un occhio attento al dettaglio e alla funzionalità. Nonostante questo amo il design concettuale",
                 "skills": [
-                    "Management",
-                    "Customer Care"
+                    "Design",
+                    "UI/UX",
+                    "Fotografia"
                 ]
             },
             {
@@ -43,23 +44,14 @@
                 ]
             },
             {
-                "name": "Alessandro",
+                "name": "Giovanni",
                 "imgsrc": "assets/img/stock_portrait.webp",
                 "label": "co-founder",
-                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
+                "paragraph": "Ciao, sono Giovanni, ho 21 anni e oltre a Virgo studio Informatica presso UniTN. La mia esperienza può essere breve, ma abbonda di passione e desiderio di innovazione.",
                 "skills": [
-                    "Management",
-                    "Customer Care"
-                ]
-            },
-            {
-                "name": "Alessandro",
-                "imgsrc": "assets/img/stock_portrait.webp",
-                "label": "co-founder",
-                "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
-                "skills": [
-                    "Management",
-                    "Customer Care"
+                    "R&D",
+                    "DevOps",
+                    "Marketing"
                 ]
             }
         ],

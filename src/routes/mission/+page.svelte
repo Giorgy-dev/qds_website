@@ -8,8 +8,8 @@
 </div>
 <div class="mt-5 lg:mt-0">
   <Hero
-    title={["Our Mission", "Never Lorem"]}
-    titleMobile={["Our Mission", "Never Lorem"]}
+    title={["Our Mission", "Never Lorem."]}
+    titleMobile={["Our Mission", "Never Lorem."]}
     content={[""]}
     contentMobile={[""]}
   />

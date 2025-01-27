@@ -1314,8 +1314,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.B7RCX7Bo.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.Bkwwxlmu.js", "_app/immutable/chunks/entry.Bqlcb8yX.js"];
-    stylesheets = ["_app/immutable/assets/0.Bm16LiI3.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports = ["_app/immutable/nodes/0.DSiAwOYk.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.DX2LahA5.js", "_app/immutable/chunks/entry.CsdPvztV.js"];
+    stylesheets = ["_app/immutable/assets/0.LryB5bzY.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts = [];
   }
 });
@@ -1353,7 +1353,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.RqqSusDJ.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.Bkwwxlmu.js", "_app/immutable/chunks/entry.Bqlcb8yX.js"];
+    imports2 = ["_app/immutable/nodes/1.Drz-TsDf.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.DX2LahA5.js", "_app/immutable/chunks/entry.CsdPvztV.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1379,7 +1379,7 @@ var init_page_ts = __esm({
             "Design Studios",
             "\u2199Our Works",
             "Contact Us\u2198",
-            "Never Lorem"
+            "Never Lorem."
           ],
           content: [
             "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione,",
@@ -1389,7 +1389,7 @@ var init_page_ts = __esm({
             "Design Studios",
             "Our Works\u2197",
             "Contact Us\u2193",
-            "Never Lorem"
+            "Never Lorem."
           ],
           contentMobile: [
             "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione, di cosa? tutto."
@@ -1397,13 +1397,14 @@ var init_page_ts = __esm({
         },
         people: [
           {
-            name: "Alessandro",
+            name: "Marco",
             imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
-            paragraph: "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.",
+            paragraph: "Sono Marco, 21 anni, con una formazione tecnica mi approccio al design con un occhio attento al dettaglio e alla funzionalit\xE0. Nonostante questo amo il design concettuale",
             skills: [
-              "Management",
-              "Customer Care"
+              "Design",
+              "UI/UX",
+              "Fotografia"
             ]
           },
           {
@@ -1417,23 +1418,14 @@ var init_page_ts = __esm({
             ]
           },
           {
-            name: "Alessandro",
+            name: "Giovanni",
             imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
-            paragraph: "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.",
+            paragraph: "Ciao, sono Giovanni, ho 21 anni e oltre a Virgo studio Informatica presso UniTN. La mia esperienza pu\xF2 essere breve, ma abbonda di passione e desiderio di innovazione.",
             skills: [
-              "Management",
-              "Customer Care"
-            ]
-          },
-          {
-            name: "Alessandro",
-            imgsrc: "assets/img/stock_portrait.webp",
-            label: "co-founder",
-            paragraph: "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.",
-            skills: [
-              "Management",
-              "Customer Care"
+              "R&D",
+              "DevOps",
+              "Marketing"
             ]
           }
         ],
@@ -1554,7 +1546,7 @@ var init_page_svelte = __esm({
       if ($$props.paragraph === void 0 && $$bindings.paragraph && paragraph !== void 0) $$bindings.paragraph(paragraph);
       if ($$props.label === void 0 && $$bindings.label && label !== void 0) $$bindings.label(label);
       if ($$props.skills === void 0 && $$bindings.skills && skills !== void 0) $$bindings.skills(skills);
-      return `<div class="rounded-lg border-2 overflow-hidden min-w-[380px] max-w-[420px]"><img${add_attribute("src", imgsrc, 0)} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"> <div class="grid p-5 gap-2.5"><div class="flex gap-0"><h2 class="text-2xl font-bold">${escape(name)}</h2> <div class="flex flex-wrap gap-2">${typeof label === "string" ? `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label)}</span>` : `${each(label, (label2) => {
+      return `<div class="rounded-lg border-2 overflow-hidden min-w-[315px] max-w-[420px]"><img${add_attribute("src", imgsrc, 0)} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"> <div class="grid p-5 gap-2.5"><div class="flex gap-0"><h2 class="text-2xl font-bold">${escape(name)}</h2> <div class="flex flex-wrap gap-2">${typeof label === "string" ? `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label)}</span>` : `${each(label, (label2) => {
         return `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label2)}</span>`;
       })}`}</div></div> <p class="text-m">${escape(paragraph)}</p> <div class="flex flex-wrap gap-2 pt-2.5">${each(skills, (skill) => {
         return `<span class="bg-gray-200 px-2 py-1 rounded-lg">${escape(skill)}</span>`;
@@ -1602,7 +1594,7 @@ var init_page_svelte = __esm({
               $$result,
               {
                 title: "UI/UX Design",
-                videoSrc: "/assets/video/grafica.mp4"
+                videoSrc: "/assets/video/uiux.mp4"
               },
               {},
               {}
@@ -1610,7 +1602,7 @@ var init_page_svelte = __esm({
               $$result,
               {
                 title: "Fotografia",
-                videoSrc: "/assets/video/grafica.mp4"
+                videoSrc: "/assets/video/fotografia.mp4"
               },
               {},
               {}
@@ -1625,7 +1617,7 @@ var init_page_svelte = __esm({
         {},
         {
           default: () => {
-            return `<div class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10">${each(data.people, (person) => {
+            return `<div class="w-full flex flex-wrap gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10">${each(data.people, (person) => {
               return `${validate_component(Person, "Person").$$render(
                 $$result,
                 {
@@ -1668,7 +1660,7 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
     universal_id = "src/routes/+page.ts";
-    imports3 = ["_app/immutable/nodes/2.fJR0JCfu.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
+    imports3 = ["_app/immutable/nodes/2.DIjvaYry.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
     stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts3 = [];
   }
@@ -1954,15 +1946,15 @@ var init_page_svelte5 = __esm({
     init_Scroll();
     css6 = {
       code: ".rotate-onscroll.svelte-sx6zvp{animation-name:svelte-sx6zvp-rotateAnimation;animation-duration:1ms;animation-direction:alternate;animation-timeline:scroll(block nearest)}.write.svelte-sx6zvp{animation:svelte-sx6zvp-writeAnimation 2s 0.4s infinite}@keyframes svelte-sx6zvp-rotateAnimation{from{transform:rotate(0deg)}90%{transform:rotate(360deg)}to{transform:rotate(360deg)}}@keyframes svelte-sx6zvp-writeAnimation{0%{transform:rotate(0deg)}25%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}100%{transform:rotate(0deg)}}.show-x-onscroll.svelte-sx6zvp{animation-name:svelte-sx6zvp-showXAnimation;animation-duration:1ms;animation-direction:alternate;animation-timeline:scroll(block nearest)}@keyframes svelte-sx6zvp-showXAnimation{50%{transform:translate(-150%, -10%);opacity:0}75%{transform:translate(0%);opacity:0.3}100%{transform:translate(150%, 10%);opacity:0}}",
-      map: '{"version":3,"file":"+page.svelte","sources":["+page.svelte"],"sourcesContent":["<script>\\n  import Hero from \\"$lib/components/Hero.svelte\\";\\n  import Scroll from \\"$lib/components/Scroll.svelte\\";\\n<\/script>\\n\\n<div class=\\"absolute bottom-16 w-[25vw]\\">\\n  <Scroll />\\n</div>\\n<div class=\\"mt-5 lg:mt-0\\">\\n  <Hero\\n    title={[\\"Our Mission\\", \\"Never Lorem\\"]}\\n    titleMobile={[\\"Our Mission\\", \\"Never Lorem\\"]}\\n    content={[\\"\\"]}\\n    contentMobile={[\\"\\"]}\\n  />\\n  <div class=\\"h-svh\\"></div>\\n\\n  <div class=\\"flex flex-col gap-5 mt-20\\">\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">OBIETTIVO</p>\\n        <h1 class=\\"text-2xl\\">Espandere gli orizzonti propri e altrui</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Definire, scoprire e progettare brand nuovi o gi\xE0 esistenti \xE8 solo una\\n          parte dell\u2019obiettivo di QDS, per espandere gli orizzonti altrui \xE8\\n          necessario creare persistenza e lasciare un segno nel tempo\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] z-0\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/espandi.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VISIONE</p>\\n        <h1 class=\\"text-2xl\\">Realizzabile.</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Pensare il contrario \xE8 penalizzante gi\xE0 dalla nascita: tutto \xE8\\n          realizzabile\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 translate-x-[25%] lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full write opacity-30\\"\\n          src=\\"/assets/graphics/pen.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">POSIZIONAMENTO</p>\\n        <h1 class=\\"text-2xl\\">Il passato come risorsa</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Utilizzare il pensiero per elaborare il passato ci permette di creare\\n          armonia o contrasto con esso e con ci\xF2 che ci circonda tuttora\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full show-x-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/connection.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VALORI</p>\\n        <h1 class=\\"text-2xl\\">Contrasto</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Il contrasto, insieme al pensiero, \xE8 ci\xF2 che permette di creare qualcosa\\n        di sempre nuovo, pi\xF9 o meno forte rimarr\xE0 sempre presente all\u2019interno\\n        delle creazioni\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/contrasto.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n  </div>\\n\\n  <div class=\\"flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-2 gap-5\\">\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      lg:even:pl-5 lg:odd:pr-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/chirale.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Chiralit\xE0</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS \xE8 una copia non sovrapponibile del passato per il futuro in quanto\\n        lo utilizza solamente come risorsa\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/determinazione.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Determinazione</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Aspirazioni, ambizioni e promesse sfociano in determinazione per il\\n        raggiungimento degli obiettivi\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/pulizia.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Pulizia</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Linee decise e nette aiutano a convogliare i nostri valori\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img class=\\"w-full lg:w-1/6\\" src=\\"/assets/graphics/sfondo.svg\\" alt=\\"\\" />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Sfondo</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS mantiene a pari passo ci\xF2 che \xE8 visibile all\u2019esterno e ci\xF2 che non\\n        lo \xE8\\n      </p>\\n    </div>\\n  </div>\\n</div>\\n\\n<style>\\n  .rotate-onscroll {\\n    animation-name: rotateAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  .write {\\n    animation: writeAnimation 2s 0.4s infinite;\\n  }\\n  @keyframes rotateAnimation {\\n    from {\\n      transform: rotate(0deg);\\n    }\\n    90% {\\n      transform: rotate(360deg);\\n    }\\n    to {\\n      transform: rotate(360deg);\\n    }\\n  }\\n  @keyframes writeAnimation {\\n    0% {\\n      transform: rotate(0deg);\\n    }\\n    25% {\\n      transform: rotate(5deg);\\n    }\\n    50% {\\n      transform: rotate(-5deg);\\n    }\\n    75% {\\n      transform: rotate(5deg);\\n    }\\n    100% {\\n      transform: rotate(0deg);\\n    }\\n  }\\n  .show-x-onscroll{\\n    animation-name: showXAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  @keyframes showXAnimation {\\n\\n    50% {\\n      transform: translate(-150%, -10%);\\n      opacity: 0;\\n    }\\n    75% {\\n      transform: translate(0%);\\n      opacity: 0.3;\\n    }\\n    100% {\\n      transform: translate(150%, 10%);\\n      opacity: 0;\\n    }\\n  }\\n</style>\\n"],"names":[],"mappings":"AAmLE,8BAAiB,CACf,cAAc,CAAE,6BAAe,CAC/B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,oBAAO,CACL,SAAS,CAAE,4BAAc,CAAC,EAAE,CAAC,IAAI,CAAC,QACpC,CACA,WAAW,6BAAgB,CACzB,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,MAAM,CAC1B,CACA,EAAG,CACD,SAAS,CAAE,OAAO,MAAM,CAC1B,CACF,CACA,WAAW,4BAAe,CACxB,EAAG,CACD,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,KAAK,CACzB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACF,CACA,8BAAgB,CACd,cAAc,CAAE,4BAAc,CAC9B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,WAAW,4BAAe,CAExB,GAAI,CACF,SAAS,CAAE,UAAU,KAAK,CAAC,CAAC,IAAI,CAAC,CACjC,OAAO,CAAE,CACX,CACA,GAAI,CACF,SAAS,CAAE,UAAU,EAAE,CAAC,CACxB,OAAO,CAAE,GACX,CACA,IAAK,CACH,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,GAAG,CAAC,CAC/B,OAAO,CAAE,CACX,CACF"}'
+      map: '{"version":3,"file":"+page.svelte","sources":["+page.svelte"],"sourcesContent":["<script>\\n  import Hero from \\"$lib/components/Hero.svelte\\";\\n  import Scroll from \\"$lib/components/Scroll.svelte\\";\\n<\/script>\\n\\n<div class=\\"absolute bottom-16 w-[25vw]\\">\\n  <Scroll />\\n</div>\\n<div class=\\"mt-5 lg:mt-0\\">\\n  <Hero\\n    title={[\\"Our Mission\\", \\"Never Lorem.\\"]}\\n    titleMobile={[\\"Our Mission\\", \\"Never Lorem.\\"]}\\n    content={[\\"\\"]}\\n    contentMobile={[\\"\\"]}\\n  />\\n  <div class=\\"h-svh\\"></div>\\n\\n  <div class=\\"flex flex-col gap-5 mt-20\\">\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">OBIETTIVO</p>\\n        <h1 class=\\"text-2xl\\">Espandere gli orizzonti propri e altrui</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Definire, scoprire e progettare brand nuovi o gi\xE0 esistenti \xE8 solo una\\n          parte dell\u2019obiettivo di QDS, per espandere gli orizzonti altrui \xE8\\n          necessario creare persistenza e lasciare un segno nel tempo\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] z-0\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/espandi.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VISIONE</p>\\n        <h1 class=\\"text-2xl\\">Realizzabile.</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Pensare il contrario \xE8 penalizzante gi\xE0 dalla nascita: tutto \xE8\\n          realizzabile\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 translate-x-[25%] lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full write opacity-30\\"\\n          src=\\"/assets/graphics/pen.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">POSIZIONAMENTO</p>\\n        <h1 class=\\"text-2xl\\">Il passato come risorsa</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Utilizzare il pensiero per elaborare il passato ci permette di creare\\n          armonia o contrasto con esso e con ci\xF2 che ci circonda tuttora\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full show-x-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/connection.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n    <div\\n      class=\\"gap-10 my-5 h-svh flex flex-col lg:flex-row overflow-hidden lg:overflow-visible\\"\\n    >\\n      <div class=\\"lg:w-1/2 z-10\\">\\n        <p class=\\"text-xs text-secondary mb-2\\">VALORI</p>\\n        <h1 class=\\"text-2xl\\">Contrasto</h1>\\n        <p class=\\"text-m lg:text-l mt-2.5\\">\\n          Il contrasto, insieme al pensiero, \xE8 ci\xF2 che permette di creare qualcosa\\n        di sempre nuovo, pi\xF9 o meno forte rimarr\xE0 sempre presente all\u2019interno\\n        delle creazioni\\n        </p>\\n      </div>\\n      <div\\n        class=\\"lg:w-1/2 flex place-content-center lg:scale-150 lg:-translate-x-[25%] -translate-y-[5%] z-0 lg:overflow-visible\\"\\n      >\\n        <img\\n          class=\\"w-full rotate-onscroll opacity-30\\"\\n          src=\\"/assets/graphics/contrasto.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n    </div>\\n  </div>\\n\\n  <div class=\\"flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-2 gap-5\\">\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      lg:even:pl-5 lg:odd:pr-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/chirale.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Chiralit\xE0</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS \xE8 una copia non sovrapponibile del passato per il futuro in quanto\\n        lo utilizza solamente come risorsa\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/determinazione.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Determinazione</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Aspirazioni, ambizioni e promesse sfociano in determinazione per il\\n        raggiungimento degli obiettivi\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n    \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img\\n          class=\\"w-full lg:w-1/6\\"\\n          src=\\"/assets/graphics/pulizia.svg\\"\\n          alt=\\"\\"\\n        />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Pulizia</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        Linee decise e nette aiutano a convogliare i nostri valori\\n      </p>\\n    </div>\\n    <div\\n      class=\\"\\n      my-2.5 lg:my-0 border-2 border-secondary rounded-lg p-5\\n      \\"\\n    >\\n      <div class=\\"mb-5 flex\\">\\n        <img class=\\"w-full lg:w-1/6\\" src=\\"/assets/graphics/sfondo.svg\\" alt=\\"\\" />\\n      </div>\\n      <h1 class=\\"text-2xl\\">Sfondo</h1>\\n      <p class=\\"text-m lg:text-l mt-2.5\\">\\n        QDS mantiene a pari passo ci\xF2 che \xE8 visibile all\u2019esterno e ci\xF2 che non\\n        lo \xE8\\n      </p>\\n    </div>\\n  </div>\\n</div>\\n\\n<style>\\n  .rotate-onscroll {\\n    animation-name: rotateAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  .write {\\n    animation: writeAnimation 2s 0.4s infinite;\\n  }\\n  @keyframes rotateAnimation {\\n    from {\\n      transform: rotate(0deg);\\n    }\\n    90% {\\n      transform: rotate(360deg);\\n    }\\n    to {\\n      transform: rotate(360deg);\\n    }\\n  }\\n  @keyframes writeAnimation {\\n    0% {\\n      transform: rotate(0deg);\\n    }\\n    25% {\\n      transform: rotate(5deg);\\n    }\\n    50% {\\n      transform: rotate(-5deg);\\n    }\\n    75% {\\n      transform: rotate(5deg);\\n    }\\n    100% {\\n      transform: rotate(0deg);\\n    }\\n  }\\n  .show-x-onscroll{\\n    animation-name: showXAnimation;\\n    animation-duration: 1ms; /* Firefox requires this to apply the animation */\\n    animation-direction: alternate;\\n    animation-timeline: scroll(block nearest);\\n  }\\n  @keyframes showXAnimation {\\n\\n    50% {\\n      transform: translate(-150%, -10%);\\n      opacity: 0;\\n    }\\n    75% {\\n      transform: translate(0%);\\n      opacity: 0.3;\\n    }\\n    100% {\\n      transform: translate(150%, 10%);\\n      opacity: 0;\\n    }\\n  }\\n</style>\\n"],"names":[],"mappings":"AAmLE,8BAAiB,CACf,cAAc,CAAE,6BAAe,CAC/B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,oBAAO,CACL,SAAS,CAAE,4BAAc,CAAC,EAAE,CAAC,IAAI,CAAC,QACpC,CACA,WAAW,6BAAgB,CACzB,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,MAAM,CAC1B,CACA,EAAG,CACD,SAAS,CAAE,OAAO,MAAM,CAC1B,CACF,CACA,WAAW,4BAAe,CACxB,EAAG,CACD,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,KAAK,CACzB,CACA,GAAI,CACF,SAAS,CAAE,OAAO,IAAI,CACxB,CACA,IAAK,CACH,SAAS,CAAE,OAAO,IAAI,CACxB,CACF,CACA,8BAAgB,CACd,cAAc,CAAE,4BAAc,CAC9B,kBAAkB,CAAE,GAAG,CACvB,mBAAmB,CAAE,SAAS,CAC9B,kBAAkB,CAAE,OAAO,KAAK,CAAC,OAAO,CAC1C,CACA,WAAW,4BAAe,CAExB,GAAI,CACF,SAAS,CAAE,UAAU,KAAK,CAAC,CAAC,IAAI,CAAC,CACjC,OAAO,CAAE,CACX,CACA,GAAI,CACF,SAAS,CAAE,UAAU,EAAE,CAAC,CACxB,OAAO,CAAE,GACX,CACA,IAAK,CACH,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,GAAG,CAAC,CAC/B,OAAO,CAAE,CACX,CACF"}'
     };
     Page5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css6);
       return `<div class="absolute bottom-16 w-[25vw]">${validate_component(Scroll, "Scroll").$$render($$result, {}, {}, {})}</div> <div class="mt-5 lg:mt-0">${validate_component(Hero, "Hero").$$render(
         $$result,
         {
-          title: ["Our Mission", "Never Lorem"],
-          titleMobile: ["Our Mission", "Never Lorem"],
+          title: ["Our Mission", "Never Lorem."],
+          titleMobile: ["Our Mission", "Never Lorem."],
           content: [""],
           contentMobile: [""]
         },
@@ -1996,7 +1988,7 @@ var init__7 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     index7 = 6;
     component7 = async () => component_cache7 ?? (component_cache7 = (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default);
-    imports7 = ["_app/immutable/nodes/6.CntuYHgl.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js"];
+    imports7 = ["_app/immutable/nodes/6.BTpWdx2d.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js"];
     stylesheets7 = ["_app/immutable/assets/6.D9zlDmlX.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css"];
     fonts7 = [];
   }
@@ -2250,7 +2242,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "ttp7cj"
+  version_hash: "1qlf6lw"
 };
 async function get_hooks() {
   return {};
@@ -5232,10 +5224,10 @@ var manifest = (() => {
   return {
     appDir: "_app",
     appPath: "_app",
-    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "favicon.png"]),
+    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.Bs2q4nQ-.js", "app": "_app/immutable/entry/app.ye-XMsYp.js", "imports": ["_app/immutable/entry/start.Bs2q4nQ-.js", "_app/immutable/chunks/entry.Bqlcb8yX.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.ye-XMsYp.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.4D6NwjgB.js", "app": "_app/immutable/entry/app.znb67TI6.js", "imports": ["_app/immutable/entry/start.4D6NwjgB.js", "_app/immutable/chunks/entry.CsdPvztV.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.znb67TI6.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

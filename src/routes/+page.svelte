@@ -41,7 +41,7 @@
         <a href="/uiuxdesign"
           ><VideoBtn
             title="UI/UX Design"
-            videoSrc="/assets/video/grafica.mp4"
+            videoSrc="/assets/video/uiux.mp4"
           /></a
         >
         <!--<a href="/sounddesign"
@@ -53,7 +53,7 @@
         <a href="/fotografia"
           ><VideoBtn
             title="Fotografia"
-            videoSrc="/assets/video/grafica.mp4"
+            videoSrc="/assets/video/fotografia.mp4"
           /></a
         >
       </div>
@@ -65,7 +65,7 @@
       title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}
     >
       <div
-        class="w-full flex flex-nowrap overflow-x-auto gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10"
+        class="w-full flex flex-wrap gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10"
       >
         {#each data.people as person}
           <Person
