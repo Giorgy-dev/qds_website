@@ -21,7 +21,7 @@
 >
   <div class="flex text-[4rem]">
     {#each { length: 10 } as _}
-      <h1 class="reverse-marquee pr-5 -mb-40">{banner}</h1>
+      <h1 class="reverse-marquee pr-5 -mb-40 text-primary">{banner}</h1>
     {/each}
   </div>
 
@@ -38,9 +38,9 @@
     src={videoSrc}
   />
 
-  <div class="flex text-[4rem] -mt-[6rem]">
+  <div class="flex text-[4rem] -mt-[6rem] ">
     {#each { length: 10 } as _}
-      <h1 class="marquee pr-5">{bottomBanner ?? banner}</h1>
+      <h1 class="marquee pr-5 text-primary">{bottomBanner ?? banner}</h1>
     {/each}
   </div>
 </div>

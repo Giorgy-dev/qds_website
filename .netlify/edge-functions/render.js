@@ -1314,7 +1314,7 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.DfyxRKgU.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.0Py7OsEy.js", "_app/immutable/chunks/entry.UH5c8Hfg.js"];
+    imports = ["_app/immutable/nodes/0.C-zgp9Xd.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.Bdei_Aua.js", "_app/immutable/chunks/entry.PHmaxYOm.js"];
     stylesheets = ["_app/immutable/assets/0.LryB5bzY.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts = [];
   }
@@ -1353,7 +1353,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.Do7YSIwT.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.0Py7OsEy.js", "_app/immutable/chunks/entry.UH5c8Hfg.js"];
+    imports2 = ["_app/immutable/nodes/1.CVw39jYH.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.Bdei_Aua.js", "_app/immutable/chunks/entry.PHmaxYOm.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1400,7 +1400,7 @@ var init_page_ts = __esm({
             name: "Marco",
             imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
-            paragraph: "Sono Marco, 21 anni, con una formazione tecnica mi approccio al design con un occhio attento al dettaglio e alla funzionalit\xE0. Nonostante questo amo il design concettuale",
+            paragraph: "Mi chiamo Marco, ho 21 anni e vengo da una formazione tecnica. Mi approccio al design con grande attenzione ai dettagli e alla funzionalit\xE0, senza mai rinunciare alla mia passione per il design concettuale.",
             skills: [
               "Design",
               "UI/UX",
@@ -1660,7 +1660,7 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
     universal_id = "src/routes/+page.ts";
-    imports3 = ["_app/immutable/nodes/2.DIjvaYry.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
+    imports3 = ["_app/immutable/nodes/2.umexMwSx.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
     stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts3 = [];
   }
@@ -1770,7 +1770,7 @@ var init_page_svelte2 = __esm({
     init_Section();
     css5 = {
       code: ".marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear infinite}.reverse-marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear reverse infinite}@keyframes svelte-58oqjv-marquee{0%{transform:translate3d(0, 0, 0)}100%{transform:translate3d(-100%, 0, 0)}}video.svelte-58oqjv::-webkit-media-controls{display:none !important;opacity:0}video.svelte-58oqjv::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\nimport { onMount } from \\"svelte\\";\\nonMount(() => {\\n  var videoElements = document.querySelectorAll(\\"video\\");\\n  videoElements.forEach((videoElement) => {\\n    videoElement.removeAttribute(\\"controls\\");\\n    videoElement.play();\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden\\n      border-grey-200 border-2 rounded-lg\\"\\n>\\n  <div class=\\"flex text-[4rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    autoplay\\n    muted\\n    loop\\n    playsinline\\n    preload=\\"none\\"\\n    controls={false}\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"w-full h-full object-cover pointer-events-none\\"\\n    src={videoSrc}\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA6CE,sBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,8BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,qBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF,CAEA,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\nimport { onMount } from \\"svelte\\";\\nonMount(() => {\\n  var videoElements = document.querySelectorAll(\\"video\\");\\n  videoElements.forEach((videoElement) => {\\n    videoElement.removeAttribute(\\"controls\\");\\n    videoElement.play();\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden\\n      border-grey-200 border-2 rounded-lg\\"\\n>\\n  <div class=\\"flex text-[4rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40 text-primary\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    autoplay\\n    muted\\n    loop\\n    playsinline\\n    preload=\\"none\\"\\n    controls={false}\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"w-full h-full object-cover pointer-events-none\\"\\n    src={videoSrc}\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem] \\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5 text-primary\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA6CE,sBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,8BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,qBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF,CAEA,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoSection = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { banner } = $$props;
@@ -1781,9 +1781,9 @@ var init_page_svelte2 = __esm({
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
       $$result.css.add(css5);
       return `<div class="flex flex-col w-full lg:max-h-[92svh] aspect-square mb-10 overflow-hidden border-grey-200 border-2 rounded-lg"><div class="flex text-[4rem]">${each({ length: 10 }, (_) => {
-        return `<h1 class="reverse-marquee pr-5 -mb-40 svelte-58oqjv">${escape(banner)}</h1>`;
-      })}</div> <video autoplay muted loop playsinline preload="none" ${""} disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="w-full h-full object-cover pointer-events-none svelte-58oqjv"${add_attribute("src", videoSrc, 0)}></video> <div class="flex text-[4rem] -mt-[6rem]">${each({ length: 10 }, (_) => {
-        return `<h1 class="marquee pr-5 svelte-58oqjv">${escape(bottomBanner ?? banner)}</h1>`;
+        return `<h1 class="reverse-marquee pr-5 -mb-40 text-primary svelte-58oqjv">${escape(banner)}</h1>`;
+      })}</div> <video autoplay muted loop playsinline preload="none" ${""} disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="w-full h-full object-cover pointer-events-none svelte-58oqjv"${add_attribute("src", videoSrc, 0)}></video> <div class="flex text-[4rem] -mt-[6rem] ">${each({ length: 10 }, (_) => {
+        return `<h1 class="marquee pr-5 text-primary svelte-58oqjv">${escape(bottomBanner ?? banner)}</h1>`;
       })}</div> </div>`;
     });
     HiddenText = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1819,15 +1819,16 @@ var init_page_svelte2 = __esm({
         {
           banner: "\u2192BRANDING",
           bottomBanner: "BRANDING\u2190",
-          videoSrc: "/assets/video/branding_stock.mp4"
+          videoSrc: "/assets/video/branding_venissa.mp4"
         },
         {},
         {}
       )} ${validate_component(VideoSection, "VideoSection").$$render(
         $$result,
         {
-          banner: "ALTRO VIDEO",
-          videoSrc: "/assets/video/branding_stock.mp4"
+          banner: "\u2192BRANDING",
+          bottomBanner: "BRANDING\u2190",
+          videoSrc: "/assets/video/branding_venissa.mp4"
         },
         {},
         {}
@@ -1858,7 +1859,7 @@ var init__4 = __esm({
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
     universal_id2 = "src/routes/branding/+page.ts";
-    imports4 = ["_app/immutable/nodes/3.-U8rHl9D.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js"];
+    imports4 = ["_app/immutable/nodes/3.CyBhWvvN.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js"];
     stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
     fonts4 = [];
   }
@@ -2242,7 +2243,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1lm6b4"
+  version_hash: "8yi7wb"
 };
 async function get_hooks() {
   return {};
@@ -5224,10 +5225,10 @@ var manifest = (() => {
   return {
     appDir: "_app",
     appPath: "_app",
-    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
+    assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/branding_venissa.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.CiS95esO.js", "app": "_app/immutable/entry/app.CG4FMODF.js", "imports": ["_app/immutable/entry/start.CiS95esO.js", "_app/immutable/chunks/entry.UH5c8Hfg.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.CG4FMODF.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { "start": "_app/immutable/entry/start.DnwuhOIm.js", "app": "_app/immutable/entry/app.DTytn7TN.js", "imports": ["_app/immutable/entry/start.DnwuhOIm.js", "_app/immutable/chunks/entry.PHmaxYOm.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.DTytn7TN.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),

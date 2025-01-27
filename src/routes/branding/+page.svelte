@@ -27,11 +27,12 @@
     <VideoSection
       banner="→BRANDING"
       bottomBanner="BRANDING←"
-      videoSrc="/assets/video/branding_stock.mp4"
+      videoSrc="/assets/video/branding_venissa.mp4"
     />
     <VideoSection
-      banner="ALTRO VIDEO"
-      videoSrc="/assets/video/branding_stock.mp4"
+      banner="→BRANDING"
+      bottomBanner="BRANDING←"
+      videoSrc="/assets/video/branding_venissa.mp4"
     />
 
     {#if data.trial}
