@@ -147,17 +147,6 @@ whitespace-nowrap
             >-->
           </div>
         </nav>
-        <div class="absolute bottom-10">
-          <p class="col-span-4 text-xs font-normal row-span-2 content-end">
-            Q Design Studio by The Hive S.r.l.
-            <br />
-            Viale dell'Industria, 19 - 35129 PADOVA - PD
-            <br />
-            P.IVA: 05260180285
-            <br />
-            Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
-          </p>
-        </div>
       </div>
     </div>
   {/if}
