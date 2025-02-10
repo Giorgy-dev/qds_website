@@ -72,3 +72,13 @@ p {
         format("svg");
   }
 }
+
+.zoom-in-inview {
+  animation: zoom-in-inview ease-out;
+  animation-timeline: view();
+  animation-range-end: 800px;
+}
+@keyframes zoom-in-inview {
+  from {scale: 0.98;}
+  to {scale: 1;}
+}

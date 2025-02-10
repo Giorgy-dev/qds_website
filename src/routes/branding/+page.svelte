@@ -29,20 +29,14 @@
       bottomBanner="BRANDING←"
       videoSrc="/assets/video/branding_venissa.mp4"
     />
-    <VideoSection
-      banner="→BRANDING"
-      bottomBanner="BRANDING←"
-      videoSrc="/assets/video/branding_venissa.mp4"
-    />
-
     {#if data.trial}
       <div class="my-20">
         <Section title={data.trial.section.title}>
           <div>
-            <p class="mb-5">
+            <p class="mb-2">
               {data.trial.section.paragraph}
             </p>
-            <div class="w-full">
+            <div class="w-full mb-5">
               <Grid items={data.trial.content}></Grid>
             </div>
           </div>

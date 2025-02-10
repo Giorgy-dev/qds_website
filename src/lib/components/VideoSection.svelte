@@ -16,12 +16,13 @@
 
 <div
   class="flex flex-col w-full
-      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden
-      border-grey-200 border-2 rounded-lg"
+      lg:max-h-[92svh] aspect-square mb-10
+      border-grey-200 border-2 rounded-lg
+      zoom-in-inview overflow-hidden"
 >
-  <div class="flex text-[4rem]">
+  <div class="flex text-[4rem] z-10">
     {#each { length: 10 } as _}
-      <h1 class="reverse-marquee pr-5 -mb-40 text-primary">{banner}</h1>
+      <h1 class="reverse-marquee pr-5 -mb-40 text-neutral">{banner}</h1>
     {/each}
   </div>
 
@@ -34,13 +35,13 @@
     controls={false}
     disablepictureinpicture
     controlslist="nofullscreen nodownload noremoteplayback"
-    class="w-full h-full object-cover pointer-events-none"
+    class="h-full w-full object-cover pointer-events-none"
     src={videoSrc}
   />
 
-  <div class="flex text-[4rem] -mt-[6rem] ">
+  <div class="flex text-[4rem] -mt-[6rem]">
     {#each { length: 10 } as _}
-      <h1 class="marquee pr-5 text-primary">{bottomBanner ?? banner}</h1>
+      <h1 class="marquee pr-5 text-neutral">{bottomBanner ?? banner}</h1>
     {/each}
   </div>
 </div>
