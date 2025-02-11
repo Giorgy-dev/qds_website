@@ -5,7 +5,7 @@
   import Grid from "$lib/components/Grid.svelte";
   import VideoBtn from "$lib/components/VideoBtn.svelte";
   import Person from "$lib/components/Person.svelte";
-
+  
   export let data;
   let trial = data.trial;
 </script>
@@ -21,7 +21,6 @@
     contentMobile={data.hero.contentMobile}
   ></Hero>
   <div class="h-svh"></div>
-
   <div class="mb-10 relative w-full">
     <Section title={["↓ SERVIZI", "↘ SERVIZI", "• SERVIZI", "SERVIZI"]}>
       <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-2.5">

@@ -1,7 +1,7 @@
 /*Aktiv Grotesk*/
 @import url("https://use.typekit.net/hhf6trd.css");
 /*Handjet (Acid Grotesk Fallback)*/
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght,ELGR,ELSH@800,1..2,0..16&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Handjet:wght,ELGR,ELSH@800,1..2,0..16&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -79,6 +79,10 @@ p {
   animation-range-end: 800px;
 }
 @keyframes zoom-in-inview {
-  from {scale: 0.98;}
-  to {scale: 1;}
+  from {
+    scale: 0.98;
+  }
+  to {
+    scale: 1;
+  }
 }
