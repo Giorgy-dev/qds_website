@@ -2,10 +2,19 @@
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
+    mode: "jit",
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          use: ["style-loader", "css-loader", "sass-loader"],
+        },
+      ],
+    },
     fontFamily: {
       sans: ['"FFF Acid Grotesk Bold"', "aktiv-grotesk", "sans-serif"],
-      'display': ['"FFF Acid Grotesk Bold"'],
-      'body': ['aktiv-grotesk'],
+      display: ['"FFF Acid Grotesk Bold"'],
+      body: ["aktiv-grotesk"],
     },
     extend: {
       colors: {

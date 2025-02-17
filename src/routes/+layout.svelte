@@ -3,7 +3,7 @@
   import Footer from "$lib/components/Footer.svelte";
   import Navbar from "../lib/components/NavbarHandler.svelte";
   
-  import "$lib/styles/app.css";
+  import "$lib/styles/app.scss";
 </script>
 
 <svelte:head>

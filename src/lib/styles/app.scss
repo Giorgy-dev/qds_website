@@ -1,11 +1,11 @@
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
 /*Aktiv Grotesk*/
 @import url("https://use.typekit.net/hhf6trd.css");
 /*Handjet (Acid Grotesk Fallback)*/
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght,ELGR,ELSH@800,1..2,0..16&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 * {
   @apply text-filled;
@@ -85,4 +85,9 @@ p {
   to {
     scale: 1;
   }
+}
+
+.pulse-on {
+  background-color: rgb(253 73 18 / var(--tw-bg-opacity)) /* #fd4912 */;
+  color: rgb(245 245 245 / var(--tw-text-opacity)) /* #f5f5f5 */;
 }
