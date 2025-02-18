@@ -72,12 +72,11 @@
       title={["• LO STUDIO", "LO STUDIO", "↓ LO STUDIO", "↘ LO STUDIO"]}
     >
       <p>
-        Abbiamo teste diverse, ognuna con personalità e abilità differenti. Ma
+        Abbiamo teste diverse, ognuna con personalità e abilità differenti ma
         siamo anche un insieme di persone che condividono non solo gli stessi
-        obiettivi, ma anche la stessa attitudine e gli stessi interessi: quelli
-        dei nostri clienti. Qui la creatività incontra il metodo, la strategia
+        obiettivi, ma anche la stessa attitudine. Qui la creatività incontra il metodo, la strategia
         si fonde con la fantasia. Ci piace piuttosto raccontare che siamo uno
-        Studio creativo orizzontale dall’anima artigianale: crediamo che solo
+        studio creativo orizzontale dall’anima artigianale: crediamo che solo
         attraverso l’attenzione al dettaglio, l’esperienza, la passione e la
         cura tipica degli artigiani possano nascere progetti di marketing e
         comunicazione realmente tailor-made.
