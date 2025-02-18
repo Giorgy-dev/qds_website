@@ -32,17 +32,11 @@
         <div class="lg:row-span-2">
           <!--<a href="/grafica"
           </a>-->
-            <Video
-              title="Grafica"
-              videoSrc="/assets/video/grafica.mp4"
-            />
+          <Video title="Grafica" videoSrc="/assets/video/grafica.mp4" />
         </div>
         <!--<a href="/uiuxdesign">
         </a>-->
-          <Video
-            title="UI/UX Design"
-            videoSrc="/assets/video/uiux.mp4"
-          />
+        <Video title="UI/UX Design" videoSrc="/assets/video/uiux.mp4" />
         <!--<a href="/sounddesign"
           ><VideoBtn
             title="Sound Design"
@@ -51,15 +45,12 @@
         >-->
         <!--<a href="/fotografia">
         </a>-->
-          <Video
-            title="Fotografia"
-            videoSrc="/assets/video/fotografia.mp4"
-          />
+        <Video title="Fotografia" videoSrc="/assets/video/fotografia.mp4" />
       </div>
     </Section>
 
     <div class="my-20"></div>
-
+    <!-- CHI SIAMO
     <Section
       title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}
     >
@@ -74,6 +65,23 @@
           />
         {/each}
       </div>
+    </Section>
+    -->
+
+    <Section
+      title={["• LO STUDIO", "LO STUDIO", "↓ LO STUDIO", "↘ LO STUDIO"]}
+    >
+      <p>
+        Abbiamo teste diverse, ognuna con personalità e abilità differenti. Ma
+        siamo anche un insieme di persone che condividono non solo gli stessi
+        obiettivi, ma anche la stessa attitudine e gli stessi interessi: quelli
+        dei nostri clienti. Qui la creatività incontra il metodo, la strategia
+        si fonde con la fantasia. Ci piace piuttosto raccontare che siamo uno
+        Studio creativo orizzontale dall’anima artigianale: crediamo che solo
+        attraverso l’attenzione al dettaglio, l’esperienza, la passione e la
+        cura tipica degli artigiani possano nascere progetti di marketing e
+        comunicazione realmente tailor-made.
+      </p>
     </Section>
 
     <div class="my-20"></div>

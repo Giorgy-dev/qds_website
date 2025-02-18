@@ -168,6 +168,16 @@ var init_ssr = __esm({
   }
 });
 
+// .svelte-kit/output/server/chunks/ssr2.js
+function onMount() {
+}
+function afterUpdate() {
+}
+var init_ssr2 = __esm({
+  ".svelte-kit/output/server/chunks/ssr2.js"() {
+  }
+});
+
 // .svelte-kit/output/server/chunks/exports.js
 function resolve(base2, path) {
   if (path[0] === "/" && path[1] === "/") return path;
@@ -193,7 +203,7 @@ function decode_params(params) {
   }
   return params;
 }
-function make_trackable(url, callback, search_params_callback) {
+function make_trackable(url, callback, search_params_callback, allow_hash = false) {
   const tracked = new URL(url);
   Object.defineProperty(tracked, "searchParams", {
     value: new Proxy(tracked.searchParams, {
@@ -212,6 +222,8 @@ function make_trackable(url, callback, search_params_callback) {
     enumerable: true,
     configurable: true
   });
+  const tracked_url_properties = ["href", "pathname", "search", "toString", "toJSON"];
+  if (allow_hash) tracked_url_properties.push("hash");
   for (const property of tracked_url_properties) {
     Object.defineProperty(tracked, property, {
       get() {
@@ -226,8 +238,11 @@ function make_trackable(url, callback, search_params_callback) {
     tracked[Symbol.for("nodejs.util.inspect.custom")] = (depth, opts, inspect) => {
       return inspect(url, opts);
     };
+    tracked.searchParams[Symbol.for("nodejs.util.inspect.custom")] = (depth, opts, inspect) => {
+      return inspect(url.searchParams, opts);
+    };
   }
-  {
+  if (!allow_hash) {
     disable_hash(tracked);
   }
   return tracked;
@@ -237,7 +252,7 @@ function disable_hash(url) {
   Object.defineProperty(url, "hash", {
     get() {
       throw new Error(
-        "Cannot access event.url.hash. Consider using `$page.url.hash` inside a component instead"
+        "Cannot access event.url.hash. Consider using `page.url.hash` inside a component instead"
       );
     }
   });
@@ -258,19 +273,6 @@ function allow_nodejs_console_log(url) {
       return inspect(new URL(url), opts);
     };
   }
-}
-function has_data_suffix(pathname) {
-  return pathname.endsWith(DATA_SUFFIX) || pathname.endsWith(HTML_DATA_SUFFIX);
-}
-function add_data_suffix(pathname) {
-  if (pathname.endsWith(".html")) return pathname.replace(/\.html$/, HTML_DATA_SUFFIX);
-  return pathname.replace(/\/$/, "") + DATA_SUFFIX;
-}
-function strip_data_suffix(pathname) {
-  if (pathname.endsWith(HTML_DATA_SUFFIX)) {
-    return pathname.slice(0, -HTML_DATA_SUFFIX.length) + ".html";
-  }
-  return pathname.slice(0, -DATA_SUFFIX.length);
 }
 function validator(expected) {
   function validate(module, file) {
@@ -305,20 +307,10 @@ function hint_for_supported_files(key2, ext = ".js") {
     return `'${key2}' is a valid export in ${supported_files.slice(0, -1).join(", ")}${supported_files.length > 1 ? " or " : ""}${supported_files.at(-1)}`;
   }
 }
-var internal, tracked_url_properties, DATA_SUFFIX, HTML_DATA_SUFFIX, valid_layout_exports, valid_page_exports, valid_layout_server_exports, valid_page_server_exports, valid_server_exports, validate_layout_exports, validate_page_exports, validate_layout_server_exports, validate_page_server_exports, validate_server_exports;
+var internal, valid_layout_exports, valid_page_exports, valid_layout_server_exports, valid_page_server_exports, valid_server_exports, validate_layout_exports, validate_page_exports, validate_layout_server_exports, validate_page_server_exports, validate_server_exports;
 var init_exports = __esm({
   ".svelte-kit/output/server/chunks/exports.js"() {
     internal = new URL("sveltekit-internal://");
-    tracked_url_properties = /** @type {const} */
-    [
-      "href",
-      "pathname",
-      "search",
-      "toString",
-      "toJSON"
-    ];
-    DATA_SUFFIX = "/__data.json";
-    HTML_DATA_SUFFIX = ".html__data.json";
     valid_layout_exports = /* @__PURE__ */ new Set([
       "load",
       "prerender",
@@ -352,496 +344,15 @@ var init_exports = __esm({
   }
 });
 
-// node_modules/devalue/src/utils.js
-function is_primitive(thing) {
-  return Object(thing) !== thing;
-}
-function is_plain_object(thing) {
-  const proto = Object.getPrototypeOf(thing);
-  return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === object_proto_names;
-}
-function get_type(thing) {
-  return Object.prototype.toString.call(thing).slice(8, -1);
-}
-function get_escaped_char(char) {
-  switch (char) {
-    case '"':
-      return '\\"';
-    case "<":
-      return "\\u003C";
-    case "\\":
-      return "\\\\";
-    case "\n":
-      return "\\n";
-    case "\r":
-      return "\\r";
-    case "	":
-      return "\\t";
-    case "\b":
-      return "\\b";
-    case "\f":
-      return "\\f";
-    case "\u2028":
-      return "\\u2028";
-    case "\u2029":
-      return "\\u2029";
-    default:
-      return char < " " ? `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}` : "";
-  }
-}
-function stringify_string(str) {
-  let result = "";
-  let last_pos = 0;
-  const len = str.length;
-  for (let i = 0; i < len; i += 1) {
-    const char = str[i];
-    const replacement = get_escaped_char(char);
-    if (replacement) {
-      result += str.slice(last_pos, i) + replacement;
-      last_pos = i + 1;
-    }
-  }
-  return `"${last_pos === 0 ? str : result + str.slice(last_pos)}"`;
-}
-function enumerable_symbols(object) {
-  return Object.getOwnPropertySymbols(object).filter(
-    (symbol) => Object.getOwnPropertyDescriptor(object, symbol).enumerable
-  );
-}
-var escaped, DevalueError, object_proto_names;
-var init_utils = __esm({
-  "node_modules/devalue/src/utils.js"() {
-    escaped = {
-      "<": "\\u003C",
-      "\\": "\\\\",
-      "\b": "\\b",
-      "\f": "\\f",
-      "\n": "\\n",
-      "\r": "\\r",
-      "	": "\\t",
-      "\u2028": "\\u2028",
-      "\u2029": "\\u2029"
-    };
-    DevalueError = class extends Error {
-      /**
-       * @param {string} message
-       * @param {string[]} keys
-       */
-      constructor(message, keys) {
-        super(message);
-        this.name = "DevalueError";
-        this.path = keys.join("");
-      }
-    };
-    object_proto_names = /* @__PURE__ */ Object.getOwnPropertyNames(
-      Object.prototype
-    ).sort().join("\0");
-  }
-});
-
-// node_modules/devalue/src/uneval.js
-function uneval(value, replacer) {
-  const counts = /* @__PURE__ */ new Map();
-  const keys = [];
-  const custom = /* @__PURE__ */ new Map();
-  function walk(thing) {
-    if (typeof thing === "function") {
-      throw new DevalueError(`Cannot stringify a function`, keys);
-    }
-    if (!is_primitive(thing)) {
-      if (counts.has(thing)) {
-        counts.set(thing, counts.get(thing) + 1);
-        return;
-      }
-      counts.set(thing, 1);
-      if (replacer) {
-        const str2 = replacer(thing);
-        if (typeof str2 === "string") {
-          custom.set(thing, str2);
-          return;
-        }
-      }
-      const type = get_type(thing);
-      switch (type) {
-        case "Number":
-        case "BigInt":
-        case "String":
-        case "Boolean":
-        case "Date":
-        case "RegExp":
-          return;
-        case "Array":
-          thing.forEach((value2, i) => {
-            keys.push(`[${i}]`);
-            walk(value2);
-            keys.pop();
-          });
-          break;
-        case "Set":
-          Array.from(thing).forEach(walk);
-          break;
-        case "Map":
-          for (const [key2, value2] of thing) {
-            keys.push(
-              `.get(${is_primitive(key2) ? stringify_primitive(key2) : "..."})`
-            );
-            walk(value2);
-            keys.pop();
-          }
-          break;
-        default:
-          if (!is_plain_object(thing)) {
-            throw new DevalueError(
-              `Cannot stringify arbitrary non-POJOs`,
-              keys
-            );
-          }
-          if (enumerable_symbols(thing).length > 0) {
-            throw new DevalueError(
-              `Cannot stringify POJOs with symbolic keys`,
-              keys
-            );
-          }
-          for (const key2 in thing) {
-            keys.push(`.${key2}`);
-            walk(thing[key2]);
-            keys.pop();
-          }
-      }
-    }
-  }
-  walk(value);
-  const names = /* @__PURE__ */ new Map();
-  Array.from(counts).filter((entry) => entry[1] > 1).sort((a, b) => b[1] - a[1]).forEach((entry, i) => {
-    names.set(entry[0], get_name(i));
-  });
-  function stringify2(thing) {
-    if (names.has(thing)) {
-      return names.get(thing);
-    }
-    if (is_primitive(thing)) {
-      return stringify_primitive(thing);
-    }
-    if (custom.has(thing)) {
-      return custom.get(thing);
-    }
-    const type = get_type(thing);
-    switch (type) {
-      case "Number":
-      case "String":
-      case "Boolean":
-        return `Object(${stringify2(thing.valueOf())})`;
-      case "RegExp":
-        return `new RegExp(${stringify_string(thing.source)}, "${thing.flags}")`;
-      case "Date":
-        return `new Date(${thing.getTime()})`;
-      case "Array":
-        const members = (
-          /** @type {any[]} */
-          thing.map(
-            (v, i) => i in thing ? stringify2(v) : ""
-          )
-        );
-        const tail = thing.length === 0 || thing.length - 1 in thing ? "" : ",";
-        return `[${members.join(",")}${tail}]`;
-      case "Set":
-      case "Map":
-        return `new ${type}([${Array.from(thing).map(stringify2).join(",")}])`;
-      default:
-        const obj = `{${Object.keys(thing).map((key2) => `${safe_key(key2)}:${stringify2(thing[key2])}`).join(",")}}`;
-        const proto = Object.getPrototypeOf(thing);
-        if (proto === null) {
-          return Object.keys(thing).length > 0 ? `Object.assign(Object.create(null),${obj})` : `Object.create(null)`;
-        }
-        return obj;
-    }
-  }
-  const str = stringify2(value);
-  if (names.size) {
-    const params = [];
-    const statements = [];
-    const values = [];
-    names.forEach((name, thing) => {
-      params.push(name);
-      if (custom.has(thing)) {
-        values.push(
-          /** @type {string} */
-          custom.get(thing)
-        );
-        return;
-      }
-      if (is_primitive(thing)) {
-        values.push(stringify_primitive(thing));
-        return;
-      }
-      const type = get_type(thing);
-      switch (type) {
-        case "Number":
-        case "String":
-        case "Boolean":
-          values.push(`Object(${stringify2(thing.valueOf())})`);
-          break;
-        case "RegExp":
-          values.push(thing.toString());
-          break;
-        case "Date":
-          values.push(`new Date(${thing.getTime()})`);
-          break;
-        case "Array":
-          values.push(`Array(${thing.length})`);
-          thing.forEach((v, i) => {
-            statements.push(`${name}[${i}]=${stringify2(v)}`);
-          });
-          break;
-        case "Set":
-          values.push(`new Set`);
-          statements.push(
-            `${name}.${Array.from(thing).map((v) => `add(${stringify2(v)})`).join(".")}`
-          );
-          break;
-        case "Map":
-          values.push(`new Map`);
-          statements.push(
-            `${name}.${Array.from(thing).map(([k, v]) => `set(${stringify2(k)}, ${stringify2(v)})`).join(".")}`
-          );
-          break;
-        default:
-          values.push(
-            Object.getPrototypeOf(thing) === null ? "Object.create(null)" : "{}"
-          );
-          Object.keys(thing).forEach((key2) => {
-            statements.push(
-              `${name}${safe_prop(key2)}=${stringify2(thing[key2])}`
-            );
-          });
-      }
-    });
-    statements.push(`return ${str}`);
-    return `(function(${params.join(",")}){${statements.join(
-      ";"
-    )}}(${values.join(",")}))`;
-  } else {
-    return str;
-  }
-}
-function get_name(num) {
-  let name = "";
-  do {
-    name = chars[num % chars.length] + name;
-    num = ~~(num / chars.length) - 1;
-  } while (num >= 0);
-  return reserved.test(name) ? `${name}0` : name;
-}
-function escape_unsafe_char(c) {
-  return escaped[c] || c;
-}
-function escape_unsafe_chars(str) {
-  return str.replace(unsafe_chars, escape_unsafe_char);
-}
-function safe_key(key2) {
-  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key2) ? key2 : escape_unsafe_chars(JSON.stringify(key2));
-}
-function safe_prop(key2) {
-  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key2) ? `.${key2}` : `[${escape_unsafe_chars(JSON.stringify(key2))}]`;
-}
-function stringify_primitive(thing) {
-  if (typeof thing === "string") return stringify_string(thing);
-  if (thing === void 0) return "void 0";
-  if (thing === 0 && 1 / thing < 0) return "-0";
-  const str = String(thing);
-  if (typeof thing === "number") return str.replace(/^(-)?0\./, "$1.");
-  if (typeof thing === "bigint") return thing + "n";
-  return str;
-}
-var chars, unsafe_chars, reserved;
-var init_uneval = __esm({
-  "node_modules/devalue/src/uneval.js"() {
-    init_utils();
-    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$";
-    unsafe_chars = /[<\b\f\n\r\t\0\u2028\u2029]/g;
-    reserved = /^(?:do|if|in|for|int|let|new|try|var|byte|case|char|else|enum|goto|long|this|void|with|await|break|catch|class|const|final|float|short|super|throw|while|yield|delete|double|export|import|native|return|switch|throws|typeof|boolean|default|extends|finally|package|private|abstract|continue|debugger|function|volatile|interface|protected|transient|implements|instanceof|synchronized)$/;
-  }
-});
-
-// node_modules/devalue/src/constants.js
-var UNDEFINED, HOLE, NAN, POSITIVE_INFINITY, NEGATIVE_INFINITY, NEGATIVE_ZERO;
-var init_constants = __esm({
-  "node_modules/devalue/src/constants.js"() {
-    UNDEFINED = -1;
-    HOLE = -2;
-    NAN = -3;
-    POSITIVE_INFINITY = -4;
-    NEGATIVE_INFINITY = -5;
-    NEGATIVE_ZERO = -6;
-  }
-});
-
-// node_modules/devalue/src/parse.js
-var init_parse = __esm({
-  "node_modules/devalue/src/parse.js"() {
-    init_constants();
-  }
-});
-
-// node_modules/devalue/src/stringify.js
-function stringify(value, reducers) {
-  const stringified = [];
-  const indexes = /* @__PURE__ */ new Map();
-  const custom = [];
-  for (const key2 in reducers) {
-    custom.push({ key: key2, fn: reducers[key2] });
-  }
-  const keys = [];
-  let p = 0;
-  function flatten(thing) {
-    if (typeof thing === "function") {
-      throw new DevalueError(`Cannot stringify a function`, keys);
-    }
-    if (indexes.has(thing)) return indexes.get(thing);
-    if (thing === void 0) return UNDEFINED;
-    if (Number.isNaN(thing)) return NAN;
-    if (thing === Infinity) return POSITIVE_INFINITY;
-    if (thing === -Infinity) return NEGATIVE_INFINITY;
-    if (thing === 0 && 1 / thing < 0) return NEGATIVE_ZERO;
-    const index11 = p++;
-    indexes.set(thing, index11);
-    for (const { key: key2, fn } of custom) {
-      const value2 = fn(thing);
-      if (value2) {
-        stringified[index11] = `["${key2}",${flatten(value2)}]`;
-        return index11;
-      }
-    }
-    let str = "";
-    if (is_primitive(thing)) {
-      str = stringify_primitive2(thing);
-    } else {
-      const type = get_type(thing);
-      switch (type) {
-        case "Number":
-        case "String":
-        case "Boolean":
-          str = `["Object",${stringify_primitive2(thing)}]`;
-          break;
-        case "BigInt":
-          str = `["BigInt",${thing}]`;
-          break;
-        case "Date":
-          const valid = !isNaN(thing.getDate());
-          str = `["Date","${valid ? thing.toISOString() : ""}"]`;
-          break;
-        case "RegExp":
-          const { source, flags } = thing;
-          str = flags ? `["RegExp",${stringify_string(source)},"${flags}"]` : `["RegExp",${stringify_string(source)}]`;
-          break;
-        case "Array":
-          str = "[";
-          for (let i = 0; i < thing.length; i += 1) {
-            if (i > 0) str += ",";
-            if (i in thing) {
-              keys.push(`[${i}]`);
-              str += flatten(thing[i]);
-              keys.pop();
-            } else {
-              str += HOLE;
-            }
-          }
-          str += "]";
-          break;
-        case "Set":
-          str = '["Set"';
-          for (const value2 of thing) {
-            str += `,${flatten(value2)}`;
-          }
-          str += "]";
-          break;
-        case "Map":
-          str = '["Map"';
-          for (const [key2, value2] of thing) {
-            keys.push(
-              `.get(${is_primitive(key2) ? stringify_primitive2(key2) : "..."})`
-            );
-            str += `,${flatten(key2)},${flatten(value2)}`;
-            keys.pop();
-          }
-          str += "]";
-          break;
-        default:
-          if (!is_plain_object(thing)) {
-            throw new DevalueError(
-              `Cannot stringify arbitrary non-POJOs`,
-              keys
-            );
-          }
-          if (enumerable_symbols(thing).length > 0) {
-            throw new DevalueError(
-              `Cannot stringify POJOs with symbolic keys`,
-              keys
-            );
-          }
-          if (Object.getPrototypeOf(thing) === null) {
-            str = '["null"';
-            for (const key2 in thing) {
-              keys.push(`.${key2}`);
-              str += `,${stringify_string(key2)},${flatten(thing[key2])}`;
-              keys.pop();
-            }
-            str += "]";
-          } else {
-            str = "{";
-            let started = false;
-            for (const key2 in thing) {
-              if (started) str += ",";
-              started = true;
-              keys.push(`.${key2}`);
-              str += `${stringify_string(key2)}:${flatten(thing[key2])}`;
-              keys.pop();
-            }
-            str += "}";
-          }
-      }
-    }
-    stringified[index11] = str;
-    return index11;
-  }
-  const index10 = flatten(value);
-  if (index10 < 0) return `${index10}`;
-  return `[${stringified.join(",")}]`;
-}
-function stringify_primitive2(thing) {
-  const type = typeof thing;
-  if (type === "string") return stringify_string(thing);
-  if (thing instanceof String) return stringify_string(thing.toString());
-  if (thing === void 0) return UNDEFINED.toString();
-  if (thing === 0 && 1 / thing < 0) return NEGATIVE_ZERO.toString();
-  if (type === "bigint") return `["BigInt","${thing}"]`;
-  return String(thing);
-}
-var init_stringify = __esm({
-  "node_modules/devalue/src/stringify.js"() {
-    init_utils();
-    init_constants();
-  }
-});
-
-// node_modules/devalue/index.js
-var init_devalue = __esm({
-  "node_modules/devalue/index.js"() {
-    init_uneval();
-    init_parse();
-    init_stringify();
-  }
-});
-
 // node_modules/cookie/index.js
 var require_cookie = __commonJS({
   "node_modules/cookie/index.js"(exports) {
     "use strict";
-    exports.parse = parse3;
+    exports.parse = parse2;
     exports.serialize = serialize2;
     var __toString = Object.prototype.toString;
     var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-    function parse3(str, options2) {
+    function parse2(str, options2) {
       if (typeof str !== "string") {
         throw new TypeError("argument str must be a string");
       }
@@ -1043,7 +554,7 @@ var require_set_cookie = __commonJS({
       }
       return { name, value };
     }
-    function parse3(input, options2) {
+    function parse2(input, options2) {
       options2 = options2 ? Object.assign({}, defaultParseOptions, options2) : defaultParseOptions;
       if (!input) {
         if (!options2.map) {
@@ -1141,8 +652,8 @@ var require_set_cookie = __commonJS({
       }
       return cookiesStrings;
     }
-    module.exports = parse3;
-    module.exports.parse = parse3;
+    module.exports = parse2;
+    module.exports.parse = parse2;
     module.exports.parseString = parseString2;
     module.exports.splitCookiesString = splitCookiesString2;
   }
@@ -1167,20 +678,33 @@ var init_Section = __esm({
 });
 
 // .svelte-kit/output/server/chunks/stores.js
-function get(key2, parse3 = JSON.parse) {
+function get(key2, parse2 = JSON.parse) {
   try {
-    return parse3(sessionStorage[key2]);
+    return parse2(sessionStorage[key2]);
   } catch {
   }
 }
-var SNAPSHOT_KEY, SCROLL_KEY, getStores, page;
+var SNAPSHOT_KEY, SCROLL_KEY, is_legacy, getStores, page;
 var init_stores = __esm({
   ".svelte-kit/output/server/chunks/stores.js"() {
     init_ssr();
     init_exports();
-    init_devalue();
+    init_ssr2();
     SNAPSHOT_KEY = "sveltekit:snapshot";
     SCROLL_KEY = "sveltekit:scroll";
+    is_legacy = onMount.toString().includes("$$") || /function \w+\(\) \{\}/.test(onMount.toString());
+    if (is_legacy) {
+      ({
+        data: {},
+        form: null,
+        error: null,
+        params: {},
+        route: { id: null },
+        state: {},
+        status: -1,
+        url: new URL("https://example.com")
+      });
+    }
     get(SCROLL_KEY) ?? {};
     get(SNAPSHOT_KEY) ?? {};
     getStores = () => {
@@ -1227,23 +751,32 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `<div class="flex flex-rows justify-between text-nowrap text-sm gap-10 " data-svelte-h="svelte-1yhmcp2"><p>ig: <br>
+            return `<div class="flex flex-rows justify-between text-nowrap text-sm gap-10 " data-svelte-h="svelte-1e2nmhs"><p>ig: <br>
       mail: <br>
       LinkedIn: <br>
-      tel: <br></p> <p>@qdstudios <br>
-      qstudiospadova@gmail.com <br>
-      Non lo abbiamo ancora <br>
+      tel: <br></p> <p><a href="https://www.instagram.com/qdstudios?igsh=bWV6N2VoYmRwdTRq" class="underline underline-offset-2">@qdstudios</a><br>
+      qstudiospadova@gmail.com <br> <a href="https://www.linkedin.com/company/q-studios-padova/" class="underline underline-offset-2">Q Design Studios</a><br>
       +39 333 3218804 <br></p></div>`;
           }
         }
       )}`;
     });
     Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `<div class="flex flex-wrap lg:flex-nowrap w-full gap-5 mb-10 mt-48"><div class="flex-auto w-full lg:max-w-[20vw]">${validate_component(Contatti, "Contatti").$$render($$result, {}, {}, {})}</div></div>`;
+      return `<div class="flex flex-wrap lg:flex-nowrap w-full gap-5 mb-10 mt-48"><div class="flex-auto w-full lg:max-w-[20vw]">${validate_component(Contatti, "Contatti").$$render($$result, {}, {}, {})}</div> <div class="flex-auto w-full lg:max-w-[20vw]">${validate_component(Section, "Section").$$render($$result, { title: ["LEGAL", "\u2193 LEGAL", "\u2198 LEGAL"] }, {}, {
+        default: () => {
+          return `<p class="col-span-4 text-xs font-normal row-span-2 content-end" data-svelte-h="svelte-ixvopk">Q Design Studio by The Hive S.r.l.
+        <br>
+        Viale dell&#39;Industria, 19 - 35129 PADOVA - PD
+        <br>
+        P.IVA: 05260180285
+        <br>
+        Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.</p>`;
+        }
+      })}</div></div>`;
     });
     css$1 = {
       code: "a.svelte-1n2ai7o{font-family:Acid Grotesk;font-weight:200}",
-      map: `{"version":3,"file":"NavDesktop.svelte","sources":["NavDesktop.svelte"],"sourcesContent":["<script>\\n  import { page } from \\"$app/stores\\";\\n<\/script>\\n\\n<nav\\n  class=\\"\\n    h-svh\\n    grid grid-cols-4 grid-rows-12 gap-5\\n    whitespace-nowrap\\n    font-bold\\n    \\"\\n>\\n  <div class=\\"row-span-5 col-span-4\\">\\n    <img src=\\"/assets/logo/logo_partial.svg\\" alt=\\"\\" srcset=\\"\\" />\\n  </div>\\n\\n  <div class=\\"row-span-1 col-span-5 grid grid-rows-1 grid-cols-2 mt-5\\">\\n    <div class=\\"content-end text-xl mix-blend-exclusion\\">\\n      <a class=\\"text-primary\\" href=\\"/\\"\\n        >{#if $page.url.pathname === \\"/\\"}\u203A\\n        {/if}HOME</a\\n      >\\n    </div>\\n    <div class=\\"content-end text-xl mix-blend-exclusion\\">\\n      <a class=\\"text-primary\\" href=\\"/mission\\"\\n        >{#if $page.url.pathname === \\"/mission\\"}\u203A\\n        {/if}MISSION</a\\n      >\\n    </div>\\n  </div>\\n  <div class=\\"col-span-4\\"></div>\\n\\n  <div\\n    class=\\"\\n        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion\\n        \\"\\n  >\\n    <a class=\\"text-primary\\" href=\\"/branding\\">\\n      {#if $page.url.pathname === \\"/branding\\"}\u203A\\n      {/if}BRANDING</a\\n    ><br />\\n    <a class=\\"text-primary\\" href=\\"/uiuxdesign\\">\\n      {#if $page.url.pathname === \\"/uiuxdesign\\"}\u203A\\n      {/if}UI/UX DESIGN</a\\n    >\\n  </div>\\n  <div\\n    class=\\"\\n        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion\\n        \\"\\n  >\\n    <a class=\\"text-primary\\" href=\\"/grafica\\"\\n      >{#if $page.url.pathname === \\"/grafica\\"}\u203A\\n      {/if}GRAFICA</a\\n    ><br />\\n    <a class=\\"text-primary\\" href=\\"/fotografia\\"\\n      >{#if $page.url.pathname === \\"/fotografia\\"}\u203A\\n      {/if}FOTOGRAFIA</a\\n    >\\n\\n    <!--<br />\\n    <a class=\\"text-primary\\" href=\\"/sounddesign\\"\\n      >{#if $page.url.pathname === \\"/sounddesign\\"}\u203A\\n      {/if}SOUND DESIGN</a\\n    >-->\\n  </div>\\n\\n  <div class=\\"col-span-4 row-span-2 grid content-end\\">\\n    <p class=\\"text-xs font-normal w-full\\">\\n      Q Design Studio by The Hive S.r.l.\\n      <br />\\n      Viale dell'Industria, 19 - 35129 PADOVA - PD\\n      <br />\\n      P.IVA: 05260180285\\n      <br />\\n      Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.\\n    </p>\\n  </div>\\n</nav>\\n\\n<style lang=\\"css\\">\\n  a {\\n    font-family: Acid Grotesk;\\n    font-weight: 200;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAiFE,gBAAE,CACA,WAAW,CAAE,IAAI,CAAC,OAAO,CACzB,WAAW,CAAE,GACf"}`
+      map: `{"version":3,"file":"NavDesktop.svelte","sources":["NavDesktop.svelte"],"sourcesContent":["<script>\\n  import { page } from \\"$app/stores\\";\\n<\/script>\\n\\n<nav\\n  class=\\"\\n    h-svh\\n    grid grid-cols-4 grid-rows-12 gap-5\\n    whitespace-nowrap\\n    font-bold\\n    \\"\\n>\\n  <div class=\\"row-span-5 col-span-4\\">\\n    <img src=\\"/assets/logo/logo_partial.svg\\" alt=\\"\\" srcset=\\"\\" />\\n  </div>\\n\\n  <div class=\\"row-span-1 col-span-5 grid grid-rows-1 grid-cols-2 mt-5\\">\\n    <div class=\\"content-end text-xl mix-blend-exclusion\\">\\n      <a class=\\"text-primary\\" href=\\"/\\"\\n        >{#if $page.url.pathname === \\"/\\"}\u203A\\n        {/if}HOME</a\\n      >\\n    </div>\\n    <div class=\\"content-end text-xl mix-blend-exclusion\\">\\n      <a class=\\"text-primary\\" href=\\"/mission\\"\\n        >{#if $page.url.pathname === \\"/mission\\"}\u203A\\n        {/if}MISSION</a\\n      >\\n    </div>\\n  </div>\\n  <div class=\\"col-span-4\\"></div>\\n\\n  <div\\n    class=\\"\\n        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion\\n        \\"\\n  >\\n\\n  <!--\\n    <a class=\\"text-primary\\" href=\\"/branding\\">\\n      {#if $page.url.pathname === \\"/branding\\"}\u203A\\n      {/if}BRANDING</a\\n    ><br />\\n    <a class=\\"text-primary\\" href=\\"/uiuxdesign\\">\\n      {#if $page.url.pathname === \\"/uiuxdesign\\"}\u203A\\n      {/if}UI/UX DESIGN</a\\n    >\\n  </div>\\n  <div\\n    class=\\"\\n        grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion\\n        \\"\\n  >\\n    <a class=\\"text-primary\\" href=\\"/grafica\\"\\n      >{#if $page.url.pathname === \\"/grafica\\"}\u203A\\n      {/if}GRAFICA</a\\n    ><br />\\n    <a class=\\"text-primary\\" href=\\"/fotografia\\"\\n      >{#if $page.url.pathname === \\"/fotografia\\"}\u203A\\n      {/if}FOTOGRAFIA</a\\n    >\\n    -->\\n\\n\\n    <!--<br />\\n    <a class=\\"text-primary\\" href=\\"/sounddesign\\"\\n      >{#if $page.url.pathname === \\"/sounddesign\\"}\u203A\\n      {/if}SOUND DESIGN</a\\n    >-->\\n  </div>\\n\\n  <div class=\\"col-span-4 row-span-2 grid content-end\\">\\n    <p class=\\"text-xs font-normal w-full\\">\\n      Q Design Studio by The Hive S.r.l.\\n      <br />\\n      Viale dell'Industria, 19 - 35129 PADOVA - PD\\n      <br />\\n      P.IVA: 05260180285\\n      <br />\\n      Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.\\n    </p>\\n  </div>\\n</nav>\\n\\n<style lang=\\"css\\">\\n  a {\\n    font-family: Acid Grotesk;\\n    font-weight: 200;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAqFE,gBAAE,CACA,WAAW,CAAE,IAAI,CAAC,OAAO,CACzB,WAAW,CAAE,GACf"}`
     };
     NavDesktop = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $page, $$unsubscribe_page;
@@ -1252,11 +785,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe_page();
       return `<nav class="h-svh grid grid-cols-4 grid-rows-12 gap-5 whitespace-nowrap font-bold "><div class="row-span-5 col-span-4" data-svelte-h="svelte-cul7xi"><img src="/assets/logo/logo_partial.svg" alt="" srcset=""></div> <div class="row-span-1 col-span-5 grid grid-rows-1 grid-cols-2 mt-5"><div class="content-end text-xl mix-blend-exclusion"><a class="text-primary svelte-1n2ai7o" href="/">${$page.url.pathname === "/" ? `\u203A
         ` : ``}HOME</a></div> <div class="content-end text-xl mix-blend-exclusion"><a class="text-primary svelte-1n2ai7o" href="/mission">${$page.url.pathname === "/mission" ? `\u203A
-        ` : ``}MISSION</a></div></div> <div class="col-span-4"></div> <div class="grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion "><a class="text-primary svelte-1n2ai7o" href="/branding">${$page.url.pathname === "/branding" ? `\u203A
-      ` : ``}BRANDING</a><br> <a class="text-primary svelte-1n2ai7o" href="/uiuxdesign">${$page.url.pathname === "/uiuxdesign" ? `\u203A
-      ` : ``}UI/UX DESIGN</a></div> <div class="grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion "><a class="text-primary svelte-1n2ai7o" href="/grafica">${$page.url.pathname === "/grafica" ? `\u203A
-      ` : ``}GRAFICA</a><br> <a class="text-primary svelte-1n2ai7o" href="/fotografia">${$page.url.pathname === "/fotografia" ? `\u203A
-      ` : ``}FOTOGRAFIA</a> </div> <div class="col-span-4 row-span-2 grid content-end" data-svelte-h="svelte-117opyj"><p class="text-xs font-normal w-full">Q Design Studio by The Hive S.r.l.
+        ` : ``}MISSION</a></div></div> <div class="col-span-4"></div> <div class="grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion " data-svelte-h="svelte-q9ax4o"> </div> <div class="col-span-4 row-span-2 grid content-end" data-svelte-h="svelte-117opyj"><p class="text-xs font-normal w-full">Q Design Studio by The Hive S.r.l.
       <br>
       Viale dell&#39;Industria, 19 - 35129 PADOVA - PD
       <br>
@@ -1266,7 +795,7 @@ var init_layout_svelte = __esm({
     });
     css2 = {
       code: ".hide.svelte-1a2iyse{animation:svelte-1a2iyse-disappear 0.2s forwards ease-in-out}.show.svelte-1a2iyse{animation:svelte-1a2iyse-appear 0.2s forwards ease-in-out}@keyframes svelte-1a2iyse-appear{from{opacity:0}to{opacity:1}}@keyframes svelte-1a2iyse-disappear{from{opacity:1;display:block}to{opacity:0;display:none}}a.svelte-1a2iyse{font-family:Acid Grotesk;font-weight:200}hr.svelte-1a2iyse{border:2px solid;color:#0a0a0a}",
-      map: `{"version":3,"file":"NavbarHandler.svelte","sources":["NavbarHandler.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { page } from \\"$app/stores\\";\\nimport NavDesktop from \\"./NavDesktop.svelte\\";\\nexport let isMobile = true;\\nexport let isOpen = false;\\n<\/script>\\n\\n<div>\\n  <meta name=\\"theme-color\\" content=\\"#f5f5f5\\" />\\n  <!--nav desktop section-->\\n  {#if !isMobile}\\n    <NavDesktop />\\n  {/if}\\n\\n  {#if isMobile}\\n    <!--nav mobile section-->\\n\\n    <!--burger menu-->\\n    <div class=\\"{isOpen ? ' hide hidden collapse ' : ' visible show block '} \\">\\n      <div class=\\"w-full flex justify-start fixed top-0 left-0 p-5 gap-2.5\\">\\n        <a href=\\"/\\">\\n          <img src=\\"/assets/logo/logo_partial.svg\\" alt=\\"\\" class=\\"h-[32px]\\" />\\n        </a>\\n        <div class=\\"flex w-full\\"></div>\\n        <button\\n          on:click={() => {\\n            isOpen = true;\\n          }}\\n        >\\n          <svg\\n            width=\\"22\\"\\n            height=\\"20\\"\\n            viewBox=\\"0 0 22 20\\"\\n            fill=\\"none\\"\\n            xmlns=\\"http://www.w3.org/2000/svg\\"\\n          >\\n            <path d=\\"M0 2H22M0 10H22M0 18H22\\" stroke=\\"black\\" stroke-width=\\"4\\" />\\n          </svg>\\n        </button>\\n      </div>\\n    </div>\\n\\n    <!--nav mobile-->\\n    <div class={isOpen ? \\" show block \\" : \\" hide \\"}>\\n      <div\\n        class=\\"\\nfixed top-0 left-0 w-auto p-5 h-screen bg-primary\\n\\"\\n      >\\n        <nav\\n          class=\\"\\ngrid grid-cols-4 grid-rows-12 gap-5\\nwhitespace-nowrap\\n\\"\\n        >\\n          <div class=\\"row-span-5 col-span-4\\">\\n            <img src=\\"/assets/logo/logo_partial_white.svg\\" alt=\\"\\" srcset=\\"\\" />\\n          </div>\\n\\n          <div class=\\"col-span-4 w-full grid grid-cols-4 grid-rows-1 gap-2\\">\\n            <div class=\\"w-full flex gap-5 col-span-4\\">\\n              <hr class=\\"w-full\\" />\\n              <button on:click={() => (isOpen = false)}>\\n                <svg\\n                  width=\\"24\\"\\n                  height=\\"24\\"\\n                  viewBox=\\"0 0 24 24\\"\\n                  fill=\\"none\\"\\n                  xmlns=\\"http://www.w3.org/2000/svg\\"\\n                >\\n                  <path\\n                    d=\\"M2.13153 22.0002L12.0459 12.0859M12.0459 12.0859L22.1315 2.00024M12.0459 12.0859L1.95996 2M12.0459 12.0859L21.96 22\\"\\n                    stroke=\\"#0A0A0A\\"\\n                    stroke-width=\\"4\\"\\n                  />\\n                </svg>\\n              </button>\\n            </div>\\n            <div class=\\"col-span-2 content-end text-xl\\">\\n              <a on:click={() => (isOpen = false)} class=\\"text-neutral\\" href=\\"/\\"\\n                >{#if $page.url.pathname === \\"/\\"}\u203A\\n                {/if}HOME</a\\n              >\\n            </div>\\n            <div class=\\"col-span-2 content-end text-xl ml-1.5\\">\\n              <a\\n                on:click={() => (isOpen = false)}\\n                class=\\"text-neutral\\"\\n                href=\\"/mission\\"\\n                >{#if $page.url.pathname === \\"/mission\\"}\u203A\\n                {/if}MISSION</a\\n              >\\n            </div>\\n          </div>\\n\\n          <div\\n            class=\\"\\n  row-span-2 col-span-2 text-xl mt-10\\n  \\"\\n          >\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/branding\\"\\n              >{#if $page.url.pathname === \\"/branding\\"}\u203A\\n              {/if}BRANDING</a\\n            >\\n            <br />\\n            <br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral mt-9\\"\\n              href=\\"/uiuxdesign\\"\\n              >{#if $page.url.pathname === \\"/uiuxdesign\\"}\u203A\\n              {/if}UI/UX DESIGN</a\\n            >\\n          </div>\\n          <div\\n            class=\\"\\n  row-span-2 col-span-2 text-xl mt-10\\n  \\"\\n          >\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/grafica\\"\\n              >{#if $page.url.pathname === \\"/grafica\\"}\u203A\\n              {/if}GRAFICA</a\\n            >\\n            <br />\\n            <br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/fotografia\\"\\n              >{#if $page.url.pathname === \\"/fotografia\\"}\u203A\\n              {/if}FOTOGRAFIA</a\\n            >\\n            <!--<br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/sounddesign\\"\\n              >{#if $page.url.pathname === \\"/sounddesign\\"}\u203A\\n              {/if}SOUND DESIGN</a\\n            >-->\\n          </div>\\n        </nav>\\n        <div class=\\"absolute bottom-10\\">\\n          <p class=\\"col-span-4 text-xs font-normal row-span-2 content-end\\">\\n            Q Design Studio by The Hive S.r.l.\\n            <br />\\n            Viale dell'Industria, 19 - 35129 PADOVA - PD\\n            <br />\\n            P.IVA: 05260180285\\n            <br />\\n            Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.\\n          </p>\\n        </div>\\n      </div>\\n    </div>\\n  {/if}\\n</div>\\n\\n<style lang=\\"css\\">\\n  .hide {\\n    animation: disappear 0.2s forwards ease-in-out;\\n  }\\n  .show {\\n    animation: appear 0.2s forwards ease-in-out;\\n  }\\n  @keyframes appear {\\n    from {\\n      opacity: 0;\\n    }\\n    to {\\n      opacity: 1;\\n    }\\n  }\\n  @keyframes disappear {\\n    from {\\n      opacity: 1;\\n      display: block;\\n    }\\n    to {\\n      opacity: 0;\\n      display: none;\\n    }\\n  }\\n  a {\\n    font-family: Acid Grotesk;\\n    font-weight: 200;\\n  }\\n  hr {\\n    border: 2px solid;\\n    color: #0a0a0a;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAoKE,oBAAM,CACJ,SAAS,CAAE,wBAAS,CAAC,IAAI,CAAC,QAAQ,CAAC,WACrC,CACA,oBAAM,CACJ,SAAS,CAAE,qBAAM,CAAC,IAAI,CAAC,QAAQ,CAAC,WAClC,CACA,WAAW,qBAAO,CAChB,IAAK,CACH,OAAO,CAAE,CACX,CACA,EAAG,CACD,OAAO,CAAE,CACX,CACF,CACA,WAAW,wBAAU,CACnB,IAAK,CACH,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,KACX,CACA,EAAG,CACD,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,IACX,CACF,CACA,gBAAE,CACA,WAAW,CAAE,IAAI,CAAC,OAAO,CACzB,WAAW,CAAE,GACf,CACA,iBAAG,CACD,MAAM,CAAE,GAAG,CAAC,KAAK,CACjB,KAAK,CAAE,OACT"}`
+      map: `{"version":3,"file":"NavbarHandler.svelte","sources":["NavbarHandler.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { page } from \\"$app/stores\\";\\nimport NavDesktop from \\"./NavDesktop.svelte\\";\\nexport let isMobile = true;\\nexport let isOpen = false;\\n<\/script>\\n\\n<div>\\n  <meta name=\\"theme-color\\" content=\\"#f5f5f5\\" />\\n  <!--nav desktop section-->\\n  {#if !isMobile}\\n    <NavDesktop />\\n  {/if}\\n\\n  {#if isMobile}\\n    <!--nav mobile section-->\\n\\n    <!--burger menu-->\\n    <div class=\\"{isOpen ? ' hide hidden collapse ' : ' visible show block '} \\">\\n      <div class=\\"w-full flex justify-start fixed top-0 left-0 p-5 gap-2.5\\">\\n        <a href=\\"/\\">\\n          <img src=\\"/assets/logo/logo_partial.svg\\" alt=\\"\\" class=\\"h-[32px]\\" />\\n        </a>\\n        <div class=\\"flex w-full\\"></div>\\n        <button\\n          on:click={() => {\\n            isOpen = true;\\n          }}\\n        >\\n          <svg\\n            width=\\"22\\"\\n            height=\\"20\\"\\n            viewBox=\\"0 0 22 20\\"\\n            fill=\\"none\\"\\n            xmlns=\\"http://www.w3.org/2000/svg\\"\\n          >\\n            <path d=\\"M0 2H22M0 10H22M0 18H22\\" stroke=\\"black\\" stroke-width=\\"4\\" />\\n          </svg>\\n        </button>\\n      </div>\\n    </div>\\n\\n    <!--nav mobile-->\\n    <div class={isOpen ? \\" show block \\" : \\" hide \\"}>\\n      <div\\n        class=\\"\\nfixed top-0 left-0 w-auto p-5 h-screen bg-primary\\n\\"\\n      >\\n        <nav\\n          class=\\"\\ngrid grid-cols-4 grid-rows-12 gap-5\\nwhitespace-nowrap\\n\\"\\n        >\\n          <div class=\\"row-span-5 col-span-4\\">\\n            <img src=\\"/assets/logo/logo_partial_white.svg\\" alt=\\"\\" srcset=\\"\\" />\\n          </div>\\n\\n          <div class=\\"col-span-4 w-full grid grid-cols-4 grid-rows-1 gap-2\\">\\n            <div class=\\"w-full flex gap-5 col-span-4\\">\\n              <hr class=\\"w-full\\" />\\n              <button on:click={() => (isOpen = false)}>\\n                <svg\\n                  width=\\"24\\"\\n                  height=\\"24\\"\\n                  viewBox=\\"0 0 24 24\\"\\n                  fill=\\"none\\"\\n                  xmlns=\\"http://www.w3.org/2000/svg\\"\\n                >\\n                  <path\\n                    d=\\"M2.13153 22.0002L12.0459 12.0859M12.0459 12.0859L22.1315 2.00024M12.0459 12.0859L1.95996 2M12.0459 12.0859L21.96 22\\"\\n                    stroke=\\"#0A0A0A\\"\\n                    stroke-width=\\"4\\"\\n                  />\\n                </svg>\\n              </button>\\n            </div>\\n            <div class=\\"col-span-2 content-end text-xl\\">\\n              <a on:click={() => (isOpen = false)} class=\\"text-neutral\\" href=\\"/\\"\\n                >{#if $page.url.pathname === \\"/\\"}\u203A\\n                {/if}HOME</a\\n              >\\n            </div>\\n            <div class=\\"col-span-2 content-end text-xl ml-1.5\\">\\n              <a\\n                on:click={() => (isOpen = false)}\\n                class=\\"text-neutral\\"\\n                href=\\"/mission\\"\\n                >{#if $page.url.pathname === \\"/mission\\"}\u203A\\n                {/if}MISSION</a\\n              >\\n            </div>\\n          </div>\\n\\n          <div\\n            class=\\"\\n  row-span-2 col-span-2 text-xl mt-10\\n  \\"\\n          >\\n\\n          <!--\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/branding\\"\\n              >{#if $page.url.pathname === \\"/branding\\"}\u203A\\n              {/if}BRANDING</a\\n            >\\n            <br />\\n            <br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral mt-9\\"\\n              href=\\"/uiuxdesign\\"\\n              >{#if $page.url.pathname === \\"/uiuxdesign\\"}\u203A\\n              {/if}UI/UX DESIGN</a\\n            >\\n          </div>\\n          <div\\n            class=\\"\\n  row-span-2 col-span-2 text-xl mt-10\\n  \\"\\n          >\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/grafica\\"\\n              >{#if $page.url.pathname === \\"/grafica\\"}\u203A\\n              {/if}GRAFICA</a\\n            >\\n            <br />\\n            <br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/fotografia\\"\\n              >{#if $page.url.pathname === \\"/fotografia\\"}\u203A\\n              {/if}FOTOGRAFIA</a\\n            >\\n\\n            -->\\n\\n\\n            <!--<br />\\n            <a\\n              on:click={() => (isOpen = false)}\\n              class=\\"text-neutral\\"\\n              href=\\"/sounddesign\\"\\n              >{#if $page.url.pathname === \\"/sounddesign\\"}\u203A\\n              {/if}SOUND DESIGN</a\\n            >-->\\n          </div>\\n          <div class=\\"col-span-4 row-span-2 grid content-end\\">\\n            <p class=\\"text-xs font-normal w-full\\">\\n              Q Design Studio by The Hive S.r.l.\\n              <br />\\n              Viale dell'Industria, 19 - 35129 PADOVA - PD\\n              <br />\\n              P.IVA: 05260180285\\n              <br />\\n              Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.\\n            </p>\\n          </div>\\n        </nav>\\n      </div>\\n    </div>\\n  {/if}\\n</div>\\n\\n<style lang=\\"css\\">\\n  .hide {\\n    animation: disappear 0.2s forwards ease-in-out;\\n  }\\n  .show {\\n    animation: appear 0.2s forwards ease-in-out;\\n  }\\n  @keyframes appear {\\n    from {\\n      opacity: 0;\\n    }\\n    to {\\n      opacity: 1;\\n    }\\n  }\\n  @keyframes disappear {\\n    from {\\n      opacity: 1;\\n      display: block;\\n    }\\n    to {\\n      opacity: 0;\\n      display: none;\\n    }\\n  }\\n  a {\\n    font-family: Acid Grotesk;\\n    font-weight: 200;\\n  }\\n  hr {\\n    border: 2px solid;\\n    color: #0a0a0a;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA0KE,oBAAM,CACJ,SAAS,CAAE,wBAAS,CAAC,IAAI,CAAC,QAAQ,CAAC,WACrC,CACA,oBAAM,CACJ,SAAS,CAAE,qBAAM,CAAC,IAAI,CAAC,QAAQ,CAAC,WAClC,CACA,WAAW,qBAAO,CAChB,IAAK,CACH,OAAO,CAAE,CACX,CACA,EAAG,CACD,OAAO,CAAE,CACX,CACF,CACA,WAAW,wBAAU,CACnB,IAAK,CACH,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,KACX,CACA,EAAG,CACD,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,IACX,CACF,CACA,gBAAE,CACA,WAAW,CAAE,IAAI,CAAC,OAAO,CACzB,WAAW,CAAE,GACf,CACA,iBAAG,CACD,MAAM,CAAE,GAAG,CAAC,KAAK,CACjB,KAAK,CAAE,OACT"}`
     };
     NavbarHandler = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $page, $$unsubscribe_page;
@@ -1282,17 +811,13 @@ var init_layout_svelte = __esm({
         true
       ) + " svelte-1a2iyse"}"><div class="w-full flex justify-start fixed top-0 left-0 p-5 gap-2.5"><a href="/" class="svelte-1a2iyse" data-svelte-h="svelte-1vxwdnl"><img src="/assets/logo/logo_partial.svg" alt="" class="h-[32px]"></a> <div class="flex w-full"></div> <button data-svelte-h="svelte-88ujgd"><svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2H22M0 10H22M0 18H22" stroke="black" stroke-width="4"></path></svg></button></div></div>  <div class="${escape(null_to_empty(isOpen ? " show block " : " hide "), true) + " svelte-1a2iyse"}"><div class="fixed top-0 left-0 w-auto p-5 h-screen bg-primary "><nav class="grid grid-cols-4 grid-rows-12 gap-5 whitespace-nowrap "><div class="row-span-5 col-span-4" data-svelte-h="svelte-1od592g"><img src="/assets/logo/logo_partial_white.svg" alt="" srcset=""></div> <div class="col-span-4 w-full grid grid-cols-4 grid-rows-1 gap-2"><div class="w-full flex gap-5 col-span-4"><hr class="w-full svelte-1a2iyse"> <button data-svelte-h="svelte-8z67k6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.13153 22.0002L12.0459 12.0859M12.0459 12.0859L22.1315 2.00024M12.0459 12.0859L1.95996 2M12.0459 12.0859L21.96 22" stroke="#0A0A0A" stroke-width="4"></path></svg></button></div> <div class="col-span-2 content-end text-xl"><a class="text-neutral svelte-1a2iyse" href="/">${$page.url.pathname === "/" ? `\u203A
                 ` : ``}HOME</a></div> <div class="col-span-2 content-end text-xl ml-1.5"><a class="text-neutral svelte-1a2iyse" href="/mission">${$page.url.pathname === "/mission" ? `\u203A
-                ` : ``}MISSION</a></div></div> <div class="row-span-2 col-span-2 text-xl mt-10 "><a class="text-neutral svelte-1a2iyse" href="/branding">${$page.url.pathname === "/branding" ? `\u203A
-              ` : ``}BRANDING</a> <br> <br> <a class="text-neutral mt-9 svelte-1a2iyse" href="/uiuxdesign">${$page.url.pathname === "/uiuxdesign" ? `\u203A
-              ` : ``}UI/UX DESIGN</a></div> <div class="row-span-2 col-span-2 text-xl mt-10 "><a class="text-neutral svelte-1a2iyse" href="/grafica">${$page.url.pathname === "/grafica" ? `\u203A
-              ` : ``}GRAFICA</a> <br> <br> <a class="text-neutral svelte-1a2iyse" href="/fotografia">${$page.url.pathname === "/fotografia" ? `\u203A
-              ` : ``}FOTOGRAFIA</a> </div></nav> <div class="absolute bottom-10" data-svelte-h="svelte-1v5bnye"><p class="col-span-4 text-xs font-normal row-span-2 content-end">Q Design Studio by The Hive S.r.l.
-            <br>
-            Viale dell&#39;Industria, 19 - 35129 PADOVA - PD
-            <br>
-            P.IVA: 05260180285
-            <br>
-            Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.</p></div></div></div>` : ``} </div>`;
+                ` : ``}MISSION</a></div></div> <div class="row-span-2 col-span-2 text-xl mt-10 " data-svelte-h="svelte-fzy0iz"> </div> <div class="col-span-4 row-span-2 grid content-end" data-svelte-h="svelte-2vc86j"><p class="text-xs font-normal w-full">Q Design Studio by The Hive S.r.l.
+              <br>
+              Viale dell&#39;Industria, 19 - 35129 PADOVA - PD
+              <br>
+              P.IVA: 05260180285
+              <br>
+              Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.</p></div></nav></div></div>` : ``} </div>`;
     });
     Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${$$result.head += `<!-- HEAD_svelte-n2zcnk_START --><link rel="icon" type="image/svg"${add_attribute("href", "/assets/logo/logo.svg", 0)}>${$$result.title = `<title>Q Design Studios</title>`, ""}<!-- HEAD_svelte-n2zcnk_END -->`, ""} <div class="h-screen flex m-10 "> <div class="flex-none fixed w-full lg:hidden z-50">${validate_component(NavbarHandler, "Navbar").$$render($$result, {}, {}, {})}</div>  <div class="fixed flex-none max-w-[25vw] top-10 hidden lg:block z-50">${validate_component(NavbarHandler, "Navbar").$$render($$result, { isMobile: false }, {}, {})}</div> <div class="flex flex-row flex-wrap lg:ml-[25vw] gap-2 lg:gap-5 relative z-0 w-full"><div class="flex-auto min-w-[30vw] w-full lg:max-w-[68vw] lg:ml-5 static">${slots.default ? slots.default({}) : ``} ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}</div></div></div> <div class="absolute bottom-10 lg:right-10 lg:w-[25vw] w-full"><div class="hidden lg:block sticky h-fit w-full">${validate_component(Contatti, "Contatti").$$render($$result, {}, {}, {})}</div></div>`;
@@ -1314,8 +839,8 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.C-zgp9Xd.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/stores.Bdei_Aua.js", "_app/immutable/chunks/entry.PHmaxYOm.js"];
-    stylesheets = ["_app/immutable/assets/0.LryB5bzY.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports = ["_app/immutable/nodes/0.CBpMS5Cf.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/Dv0-OGaL.js", "_app/immutable/chunks/C5zODcJA.js"];
+    stylesheets = ["_app/immutable/assets/0.C-j9JqEi.css", "_app/immutable/assets/Section.q3_R_wNJ.css"];
     fonts = [];
   }
 });
@@ -1353,7 +878,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.CVw39jYH.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/stores.Bdei_Aua.js", "_app/immutable/chunks/entry.PHmaxYOm.js"];
+    imports2 = ["_app/immutable/nodes/1.VB4QUy61.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/Dv0-OGaL.js", "_app/immutable/chunks/C5zODcJA.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1377,17 +902,15 @@ var init_page_ts = __esm({
         hero: {
           title: [
             "Design Studios",
-            "\u2199Our Works",
             "Contact Us\u2198",
             "Never Lorem."
           ],
           content: [
-            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione,",
-            "di cosa? tutto."
+            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione.",
+            "Di cosa? Tutto."
           ],
           titleMobile: [
             "Design Studios",
-            "Our Works\u2197",
             "Contact Us\u2193",
             "Never Lorem."
           ],
@@ -1398,9 +921,8 @@ var init_page_ts = __esm({
         people: [
           {
             name: "Marco",
-            imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
-            paragraph: "Mi chiamo Marco, ho 21 anni e vengo da una formazione tecnica. Mi approccio al design con grande attenzione ai dettagli e alla funzionalit\xE0, senza mai rinunciare alla mia passione per il design concettuale.",
+            paragraph: "Mi chiamo Marco, ho 21 anni, mi approccio al design con grande attenzione ai dettagli e alla funzionalit\xE0, senza mai rinunciare alla mia passione per il design concettuale.",
             skills: [
               "Design",
               "UI/UX",
@@ -1409,7 +931,6 @@ var init_page_ts = __esm({
           },
           {
             name: "Alessandro",
-            imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
             paragraph: "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarit\xE0 mi ha portato alla fondazione di Virgo.",
             skills: [
@@ -1419,7 +940,6 @@ var init_page_ts = __esm({
           },
           {
             name: "Giovanni",
-            imgsrc: "assets/img/stock_portrait.webp",
             label: "co-founder",
             paragraph: "Ciao, sono Giovanni, ho 21 anni e oltre a Virgo studio Informatica presso UniTN. La mia esperienza pu\xF2 essere breve, ma abbonda di passione e desiderio di innovazione.",
             skills: [
@@ -1504,8 +1024,8 @@ var init_Grid = __esm({
     Grid = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { items } = $$props;
       if ($$props.items === void 0 && $$bindings.items && items !== void 0) $$bindings.items(items);
-      return `<div class="grid gap-5 lg:gap-2.5 w-full grid-cols-1 lg:grid-cols-3">${each(items, (item) => {
-        return `<div class="w-full h-full border-grey-200 border-2 p-5 pt-8 rounded-lg text-filled transition-all duration-300 hover:text-neutral bg-branding hover:bg-primary ">${item.icon ? `<div class="flex mb-5 w-full lg:w-1/2"><img${add_attribute("src", item.icon, 0)} alt="" srcset=""> </div>` : `${item.char ? `<h1 class="text-inherit text-[10rem] -translate-y-[22%]">${escape(item.char)} </h1>` : ``}`} <h1 class="text-[2rem] text-inherit">${escape(item.title)}</h1> <p class="text-m lg:text-l text-inherit">${escape(item.description)}</p> </div>`;
+      return `<div class="grid gap-5 lg:gap-2.5 w-full grid-cols-1 lg:grid-cols-3 animate-pulse-block-progression">${each(items, (item) => {
+        return `<div class="w-full h-full border-grey-200 border-2 p-5 pt-8 rounded-lg text-filled transition-all duration-300 bg-branding ">${item.icon ? `<div class="flex mb-5 w-full lg:w-1/2"><img${add_attribute("src", item.icon, 0)} alt="" srcset=""> </div>` : `${item.char ? `<h1 class="text-inherit text-[10rem] -translate-y-[22%]">${escape(item.char)} </h1>` : ``}`} <h1 class="text-[2rem] text-inherit">${escape(item.title)}</h1> <p class="text-m lg:text-l text-inherit">${escape(item.description)}</p> </div>`;
       })}</div>`;
     });
   }
@@ -1516,7 +1036,7 @@ var page_svelte_exports = {};
 __export(page_svelte_exports, {
   default: () => Page
 });
-var css4, VideoBtn, Person, Page;
+var css4, Video, Page;
 var init_page_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_page.svelte.js"() {
     init_ssr();
@@ -1525,32 +1045,15 @@ var init_page_svelte = __esm({
     init_Grid();
     css4 = {
       code: "video.svelte-f9jhf5::-webkit-media-controls{display:none !important;opacity:0}video.svelte-f9jhf5::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoBtn.svelte","sources":["VideoBtn.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n      video.addEventListener(\\"mouseover\\", function() {\\n        video.currentTime = 0;\\n        this.play();\\n      });\\n      video.addEventListener(\\"touchstart\\", function() {\\n        this.play();\\n        video.currentTime = 0;\\n      });\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n  border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary\\n  transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral\\n  min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    disablepictureinpicture\\n    playsinline\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400\\n    h-full lg:w-full overflow-hidden object-cover block scale-110\\"\\n  />\\n\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit lg:pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAkDE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"Video.svelte","sources":["Video.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount } from \\"svelte\\";\\nexport let title;\\nexport let videoSrc;\\nonMount(() => {\\n  const videos = document.querySelectorAll(\\"video\\");\\n  videos.forEach((video) => {\\n    if (window.innerWidth > 1400) {\\n      video.playsInline = true;\\n      video.play();\\n      video.controls = false;\\n    }\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"relative flex items-center justify-center overflow-hidden\\n    border-grey-200 border-4 rounded-lg text-filled\\n    transition-all duration-100 bg-primary\\n    min-h-[40vh] h-full aspect-auto sm:aspect-square lg:aspect-auto\\"\\n>\\n  <video\\n    src={videoSrc}\\n    preload=\\"none\\"\\n    autoplay\\n    loop\\n    muted\\n    disablepictureinpicture\\n    playsinline\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"absolute z-10 transition-all duration-400\\n      h-full lg:w-full overflow-hidden object-cover block scale-110\\"\\n  />\\n\\n  <div\\n    class=\\"w-full h-full z-30 text-inherit lg:pointer-events-none p-5 grid content-end\\"\\n  >\\n    <h1 class=\\"text-4xl text-inherit\\">{title}</h1>\\n  </div>\\n</div>\\n\\n<style>\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA0CE,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
-    VideoBtn = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Video = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
       let { videoSrc } = $$props;
       if ($$props.title === void 0 && $$bindings.title && title !== void 0) $$bindings.title(title);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
       $$result.css.add(css4);
-      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-2 lg:hover:border-4 rounded-lg text-filled lg:text-primary transition-all duration-100 lg:hover:text-filled bg-primary lg:bg-neutral min-h-[40vh] h-full lg:hover:border-primary aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted disablepictureinpicture playsinline controlslist="nofullscreen nodownload noremoteplayback" class="absolute z-10 lg:opacity-0 lg:hover:opacity-100 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 svelte-f9jhf5"></video> <div class="w-full h-full z-30 text-inherit lg:pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
-    });
-    Person = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { imgsrc } = $$props;
-      let { name } = $$props;
-      let { paragraph } = $$props;
-      let { label } = $$props;
-      let { skills } = $$props;
-      if ($$props.imgsrc === void 0 && $$bindings.imgsrc && imgsrc !== void 0) $$bindings.imgsrc(imgsrc);
-      if ($$props.name === void 0 && $$bindings.name && name !== void 0) $$bindings.name(name);
-      if ($$props.paragraph === void 0 && $$bindings.paragraph && paragraph !== void 0) $$bindings.paragraph(paragraph);
-      if ($$props.label === void 0 && $$bindings.label && label !== void 0) $$bindings.label(label);
-      if ($$props.skills === void 0 && $$bindings.skills && skills !== void 0) $$bindings.skills(skills);
-      return `<div class="rounded-lg border-2 overflow-hidden min-w-[315px] max-w-[420px]"><img${add_attribute("src", imgsrc, 0)} alt="" class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"> <div class="grid p-5 gap-2.5"><div class="flex gap-0"><h2 class="text-2xl font-bold">${escape(name)}</h2> <div class="flex flex-wrap gap-2">${typeof label === "string" ? `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label)}</span>` : `${each(label, (label2) => {
-        return `<span class="bg-primary px-2 py-2 rounded-lg uppercase text-xs scale-75 text-neutral font-bold">${escape(label2)}</span>`;
-      })}`}</div></div> <p class="text-m">${escape(paragraph)}</p> <div class="flex flex-wrap gap-2 pt-2.5">${each(skills, (skill) => {
-        return `<span class="bg-gray-200 px-2 py-1 rounded-lg">${escape(skill)}</span>`;
-      })}</div></div></div>`;
+      return `<div class="relative flex items-center justify-center overflow-hidden border-grey-200 border-4 rounded-lg text-filled transition-all duration-100 bg-primary min-h-[40vh] h-full aspect-auto sm:aspect-square lg:aspect-auto"><video${add_attribute("src", videoSrc, 0)} preload="none" autoplay loop muted disablepictureinpicture playsinline controlslist="nofullscreen nodownload noremoteplayback" class="absolute z-10 transition-all duration-400 h-full lg:w-full overflow-hidden object-cover block scale-110 svelte-f9jhf5"></video> <div class="w-full h-full z-30 text-inherit lg:pointer-events-none p-5 grid content-end"><h1 class="text-4xl text-inherit">${escape(title)}</h1></div> </div>`;
     });
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
@@ -1574,7 +1077,7 @@ var init_page_svelte = __esm({
         {},
         {
           default: () => {
-            return `<div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-2.5"><div class="lg:col-span-2"><a href="/branding">${validate_component(VideoBtn, "VideoBtn").$$render(
+            return `<div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-2.5"><div class="lg:col-span-2">${validate_component(Video, "Video").$$render(
               $$result,
               {
                 title: "Branding",
@@ -1582,7 +1085,7 @@ var init_page_svelte = __esm({
               },
               {},
               {}
-            )}</a></div> <div class="lg:row-span-2"><a href="/grafica">${validate_component(VideoBtn, "VideoBtn").$$render(
+            )} </div> <div class="lg:row-span-2"> ${validate_component(Video, "Video").$$render(
               $$result,
               {
                 title: "Grafica",
@@ -1590,7 +1093,7 @@ var init_page_svelte = __esm({
               },
               {},
               {}
-            )}</a></div> <a href="/uiuxdesign">${validate_component(VideoBtn, "VideoBtn").$$render(
+            )}</div>  ${validate_component(Video, "Video").$$render(
               $$result,
               {
                 title: "UI/UX Design",
@@ -1598,7 +1101,7 @@ var init_page_svelte = __esm({
               },
               {},
               {}
-            )}</a>  <a href="/fotografia">${validate_component(VideoBtn, "VideoBtn").$$render(
+            )}   ${validate_component(Video, "Video").$$render(
               $$result,
               {
                 title: "Fotografia",
@@ -1606,31 +1109,26 @@ var init_page_svelte = __esm({
               },
               {},
               {}
-            )}</a></div>`;
+            )}</div>`;
           }
         }
-      )} <div class="my-20"></div> ${validate_component(Section, "Section").$$render(
+      )} <div class="my-20"></div>  ${validate_component(Section, "Section").$$render(
         $$result,
         {
-          title: ["\u2193 CHI SIAMO", "\u2198 CHI SIAMO", "\u2022 CHI SIAMO", "CHI SIAMO"]
+          title: ["\u2022 LO STUDIO", "LO STUDIO", "\u2193 LO STUDIO", "\u2198 LO STUDIO"]
         },
         {},
         {
           default: () => {
-            return `<div class="w-full flex flex-wrap gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10">${each(data.people, (person) => {
-              return `${validate_component(Person, "Person").$$render(
-                $$result,
-                {
-                  imgsrc: person.imgsrc,
-                  name: person.name,
-                  paragraph: person.paragraph,
-                  label: person.label,
-                  skills: person.skills
-                },
-                {},
-                {}
-              )}`;
-            })}</div>`;
+            return `<p data-svelte-h="svelte-zsw5f8">Abbiamo teste diverse, ognuna con personalit\xE0 e abilit\xE0 differenti. Ma
+        siamo anche un insieme di persone che condividono non solo gli stessi
+        obiettivi, ma anche la stessa attitudine e gli stessi interessi: quelli
+        dei nostri clienti. Qui la creativit\xE0 incontra il metodo, la strategia
+        si fonde con la fantasia. Ci piace piuttosto raccontare che siamo uno
+        Studio creativo orizzontale dall\u2019anima artigianale: crediamo che solo
+        attraverso l\u2019attenzione al dettaglio, l\u2019esperienza, la passione e la
+        cura tipica degli artigiani possano nascere progetti di marketing e
+        comunicazione realmente tailor-made.</p>`;
           }
         }
       )} <div class="my-20"></div> ${validate_component(Section, "Section").$$render($$result, { title: data.trial.title }, {}, {
@@ -1660,8 +1158,8 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
     universal_id = "src/routes/+page.ts";
-    imports3 = ["_app/immutable/nodes/2.umexMwSx.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js"];
-    stylesheets3 = ["_app/immutable/assets/2.C_MFEbNm.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports3 = ["_app/immutable/nodes/2.CN6q_l5d.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/CZmLfITG.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/O-8aVFcb.js"];
+    stylesheets3 = ["_app/immutable/assets/2.CAntiSs9.css", "_app/immutable/assets/Scroll.CJVTxp8z.css", "_app/immutable/assets/Section.q3_R_wNJ.css"];
     fonts3 = [];
   }
 });
@@ -1686,7 +1184,7 @@ var init_page_ts2 = __esm({
             "\xABBrand Boom\xBB",
             "Contact Us\u2198",
             "\u2199Other Works",
-            "Never Lorem"
+            "Never Lorem."
           ],
           content: [
             "Branding \xE8 conoscere ci\xF2 che rende unico e differente un'azienda, un",
@@ -1756,21 +1254,14 @@ var init_page_ts2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/pages/branding/_page.svelte.js
-var page_svelte_exports2 = {};
-__export(page_svelte_exports2, {
-  default: () => Page2
-});
-var css5, VideoSection, HiddenText, Quote, Page2;
-var init_page_svelte2 = __esm({
-  ".svelte-kit/output/server/entries/pages/branding/_page.svelte.js"() {
+// .svelte-kit/output/server/chunks/Quote.js
+var css5, VideoSection, HiddenText, Quote;
+var init_Quote = __esm({
+  ".svelte-kit/output/server/chunks/Quote.js"() {
     init_ssr();
-    init_Grid();
-    init_Scroll();
-    init_Section();
     css5 = {
       code: ".marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear infinite}.reverse-marquee.svelte-58oqjv{white-space:nowrap;animation:svelte-58oqjv-marquee 5s linear reverse infinite}@keyframes svelte-58oqjv-marquee{0%{transform:translate3d(0, 0, 0)}100%{transform:translate3d(-100%, 0, 0)}}video.svelte-58oqjv::-webkit-media-controls{display:none !important;opacity:0}video.svelte-58oqjv::-webkit-media-controls-start-playback-button{display:none !important}",
-      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\nimport { onMount } from \\"svelte\\";\\nonMount(() => {\\n  var videoElements = document.querySelectorAll(\\"video\\");\\n  videoElements.forEach((videoElement) => {\\n    videoElement.removeAttribute(\\"controls\\");\\n    videoElement.play();\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10 overflow-hidden\\n      border-grey-200 border-2 rounded-lg\\"\\n>\\n  <div class=\\"flex text-[4rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40 text-primary\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    autoplay\\n    muted\\n    loop\\n    playsinline\\n    preload=\\"none\\"\\n    controls={false}\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"w-full h-full object-cover pointer-events-none\\"\\n    src={videoSrc}\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem] \\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5 text-primary\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA6CE,sBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,8BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,qBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF,CAEA,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
+      map: '{"version":3,"file":"VideoSection.svelte","sources":["VideoSection.svelte"],"sourcesContent":["<script lang=\\"ts\\">export let banner;\\nexport let bottomBanner = void 0;\\nexport let videoSrc;\\nimport { onMount } from \\"svelte\\";\\nonMount(() => {\\n  var videoElements = document.querySelectorAll(\\"video\\");\\n  videoElements.forEach((videoElement) => {\\n    videoElement.removeAttribute(\\"controls\\");\\n    videoElement.play();\\n  });\\n});\\n<\/script>\\n\\n<div\\n  class=\\"flex flex-col w-full\\n      lg:max-h-[92svh] aspect-square mb-10\\n      border-grey-200 border-2 rounded-lg\\n      zoom-in-inview overflow-hidden\\"\\n>\\n  <div class=\\"flex text-[4rem] z-10\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"reverse-marquee pr-5 -mb-40 text-neutral\\">{banner}</h1>\\n    {/each}\\n  </div>\\n\\n  <video\\n    autoplay\\n    muted\\n    loop\\n    playsinline\\n    preload=\\"none\\"\\n    controls={false}\\n    disablepictureinpicture\\n    controlslist=\\"nofullscreen nodownload noremoteplayback\\"\\n    class=\\"h-full w-full object-cover pointer-events-none\\"\\n    src={videoSrc}\\n  />\\n\\n  <div class=\\"flex text-[4rem] -mt-[6rem]\\">\\n    {#each { length: 10 } as _}\\n      <h1 class=\\"marquee pr-5 text-neutral\\">{bottomBanner ?? banner}</h1>\\n    {/each}\\n  </div>\\n</div>\\n\\n<style>\\n  .marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear infinite;\\n  }\\n\\n  .reverse-marquee {\\n    white-space: nowrap;\\n    animation: marquee 5s linear reverse infinite;\\n  }\\n\\n  @keyframes marquee {\\n    0% {\\n      transform: translate3d(0, 0, 0);\\n    }\\n    100% {\\n      transform: translate3d(-100%, 0, 0);\\n    }\\n  }\\n\\n  video::-webkit-media-controls {\\n    display: none !important;\\n    opacity: 0;\\n  }\\n  video::-webkit-media-controls-start-playback-button {\\n    display: none !important;\\n  }\\n</style>\\n"],"names":[],"mappings":"AA8CE,sBAAS,CACP,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,QAC/B,CAEA,8BAAiB,CACf,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,qBAAO,CAAC,EAAE,CAAC,MAAM,CAAC,OAAO,CAAC,QACvC,CAEA,WAAW,qBAAQ,CACjB,EAAG,CACD,SAAS,CAAE,YAAY,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAChC,CACA,IAAK,CACH,SAAS,CAAE,YAAY,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACpC,CACF,CAEA,mBAAK,wBAAyB,CAC5B,OAAO,CAAE,IAAI,CAAC,UAAU,CACxB,OAAO,CAAE,CACX,CACA,mBAAK,8CAA+C,CAClD,OAAO,CAAE,IAAI,CAAC,UAChB"}'
     };
     VideoSection = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { banner } = $$props;
@@ -1780,10 +1271,10 @@ var init_page_svelte2 = __esm({
       if ($$props.bottomBanner === void 0 && $$bindings.bottomBanner && bottomBanner !== void 0) $$bindings.bottomBanner(bottomBanner);
       if ($$props.videoSrc === void 0 && $$bindings.videoSrc && videoSrc !== void 0) $$bindings.videoSrc(videoSrc);
       $$result.css.add(css5);
-      return `<div class="flex flex-col w-full lg:max-h-[92svh] aspect-square mb-10 overflow-hidden border-grey-200 border-2 rounded-lg"><div class="flex text-[4rem]">${each({ length: 10 }, (_) => {
-        return `<h1 class="reverse-marquee pr-5 -mb-40 text-primary svelte-58oqjv">${escape(banner)}</h1>`;
-      })}</div> <video autoplay muted loop playsinline preload="none" ${""} disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="w-full h-full object-cover pointer-events-none svelte-58oqjv"${add_attribute("src", videoSrc, 0)}></video> <div class="flex text-[4rem] -mt-[6rem] ">${each({ length: 10 }, (_) => {
-        return `<h1 class="marquee pr-5 text-primary svelte-58oqjv">${escape(bottomBanner ?? banner)}</h1>`;
+      return `<div class="flex flex-col w-full lg:max-h-[92svh] aspect-square mb-10 border-grey-200 border-2 rounded-lg zoom-in-inview overflow-hidden"><div class="flex text-[4rem] z-10">${each({ length: 10 }, (_) => {
+        return `<h1 class="reverse-marquee pr-5 -mb-40 text-neutral svelte-58oqjv">${escape(banner)}</h1>`;
+      })}</div> <video autoplay muted loop playsinline preload="none" ${""} disablepictureinpicture controlslist="nofullscreen nodownload noremoteplayback" class="h-full w-full object-cover pointer-events-none svelte-58oqjv"${add_attribute("src", videoSrc, 0)}></video> <div class="flex text-[4rem] -mt-[6rem]">${each({ length: 10 }, (_) => {
+        return `<h1 class="marquee pr-5 text-neutral svelte-58oqjv">${escape(bottomBanner ?? banner)}</h1>`;
       })}</div> </div>`;
     });
     HiddenText = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1800,6 +1291,22 @@ var init_page_svelte2 = __esm({
       if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0) $$bindings.quote(quote);
       return `<div class="flex flex-col w-full min-h-[92svh] mb-[10rem] mt-20"><h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] translate-y-[3.2rem] lg:translate-y-[4.6rem] flex-none" data-svelte-h="svelte-9mr80d">\xAB</h1> <div class="flex-grow grid place-content-center pt-10"><blockquote><p class="text-xl">${escape(quote.content)}</p></blockquote> ${quote.author ? `<p class="text-right mt-10 w-full pr-0 lg:pr-20">${escape(quote.author)}</p>` : ``}</div> <h1 class="text-[15rem] lg:text-[30rem] leading-[0rem] text-right -translate-y-[5rem] lg:-translate-y-[7.4rem] flex-none" data-svelte-h="svelte-18eeen0">\xBB</h1></div>`;
     });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/branding/_page.svelte.js
+var page_svelte_exports2 = {};
+__export(page_svelte_exports2, {
+  default: () => Page2
+});
+var Page2;
+var init_page_svelte2 = __esm({
+  ".svelte-kit/output/server/entries/pages/branding/_page.svelte.js"() {
+    init_ssr();
+    init_Grid();
+    init_Scroll();
+    init_Section();
+    init_Quote();
     Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       data.trial;
@@ -1823,18 +1330,9 @@ var init_page_svelte2 = __esm({
         },
         {},
         {}
-      )} ${validate_component(VideoSection, "VideoSection").$$render(
-        $$result,
-        {
-          banner: "\u2192BRANDING",
-          bottomBanner: "BRANDING\u2190",
-          videoSrc: "/assets/video/branding_venissa.mp4"
-        },
-        {},
-        {}
       )} ${data.trial ? `<div class="my-20">${validate_component(Section, "Section").$$render($$result, { title: data.trial.section.title }, {}, {
         default: () => {
-          return `<div><p class="mb-5">${escape(data.trial.section.paragraph)}</p> <div class="w-full">${validate_component(Grid, "Grid").$$render($$result, { items: data.trial.content }, {}, {})}</div></div>`;
+          return `<div><p class="mb-2">${escape(data.trial.section.paragraph)}</p> <div class="w-full mb-5">${validate_component(Grid, "Grid").$$render($$result, { items: data.trial.content }, {}, {})}</div></div>`;
         }
       })}</div>` : ``} <div class="my-[15rem]"></div> ${data.quote ? `${validate_component(Quote, "Quote").$$render($$result, { quote: data.quote }, {}, {})}` : ``} ${data.hiddenText ? `<div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg"><h6 class="text-xl" data-svelte-h="svelte-je895n">Se vuoi leggere altro</h6> <div class="lg:max-w-[80%] max-w-[90%]">${validate_component(HiddenText, "HiddenText").$$render($$result, { texts: data.hiddenText }, {}, {})}</div></div>` : ``}</div></div>`;
     });
@@ -1859,8 +1357,8 @@ var init__4 = __esm({
     index4 = 3;
     component4 = async () => component_cache4 ?? (component_cache4 = (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default);
     universal_id2 = "src/routes/branding/+page.ts";
-    imports4 = ["_app/immutable/nodes/3.CyBhWvvN.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Grid.Cuf3gzMM.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js", "_app/immutable/chunks/Section.VqIItiC4.js"];
-    stylesheets4 = ["_app/immutable/assets/3.B14vldbw.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css", "_app/immutable/assets/Section._ZdJInvP.css"];
+    imports4 = ["_app/immutable/nodes/3.BlMQFkS4.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/O-8aVFcb.js", "_app/immutable/chunks/CZmLfITG.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/BKT5cWKk.js"];
+    stylesheets4 = ["_app/immutable/assets/Scroll.CJVTxp8z.css", "_app/immutable/assets/Section.q3_R_wNJ.css", "_app/immutable/assets/Quote.BNnoJQcK.css"];
     fonts4 = [];
   }
 });
@@ -1894,9 +1392,99 @@ var init__5 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     index5 = 4;
     component5 = async () => component_cache5 ?? (component_cache5 = (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default);
-    imports5 = ["_app/immutable/nodes/4.CuBHTm-f.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"];
+    imports5 = ["_app/immutable/nodes/4.CFag3NLV.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"];
     stylesheets5 = [];
     fonts5 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/grafica/_page.ts.js
+var page_ts_exports3 = {};
+__export(page_ts_exports3, {
+  load: () => load3
+});
+function load3({ params }) {
+  const temp = cases3.find((o) => o.name == params.nome);
+  if (!temp) throw new Error("Contenuto non disponibile");
+  return temp;
+}
+var cases3;
+var init_page_ts3 = __esm({
+  ".svelte-kit/output/server/entries/pages/grafica/_page.ts.js"() {
+    cases3 = [
+      {
+        hero: {
+          title: [
+            "Vedere oltre",
+            "Contact Us\u2198",
+            "\u2199Other Works",
+            "Never Lorem."
+          ],
+          content: [
+            "Grafica \xE8 ",
+            "prodotto, un servizio o una persona e renderlo evidente agli occhi di tutti.",
+            "\xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva,",
+            "verbale e sensoriale che tocca il tuo pubblico."
+          ],
+          titleMobile: [
+            "\xABBrand Boom\xBB",
+            "Contact Us\u2198",
+            "\u2199Other Works",
+            "Never Lorem"
+          ],
+          contentMobile: [
+            "Branding \xE8 conoscere ci\xF2 che rende unici e differenti. \xC8 un processo articolato e continuo: il brand \xE8 l'espressione visiva, verbale e sensoriale che tocca il tuo pubblico."
+          ]
+        },
+        video: [
+          {
+            banner: "\u2192BRANDING",
+            bottomBanner: "BRANDING\u2190",
+            src: "/assets/video/branding_stock.mp4"
+          }
+        ],
+        trial: {
+          section: {
+            title: [
+              "\u2193 PERCORSO",
+              "\u2198 PERCORSO",
+              "\u2022 PERCORSO",
+              "PERCORSO"
+            ],
+            paragraph: "Vuoi capire come funziona? Questo \xE8 il percorso di branding che intraprenderemo."
+          },
+          content: [
+            {
+              char: ".1",
+              title: "Ambiente",
+              description: "Ci conosciamo e valutiamo lo scenario competitivo e l'ambiente in cui si muove il brand"
+            },
+            {
+              char: ".2",
+              title: "Identit\xE0",
+              description: "Definiamo i valori, visione, obiettivi e posizionamento del brand: tutto \xE8 specchio del cliente"
+            },
+            {
+              char: ".3",
+              title: "\xABBoom\xBB",
+              description: "Tutto viene tradotto visivamente e strutturato in un libro dedicato volto a guidare chiunque lavori con il brand"
+            }
+          ]
+        },
+        hiddenText: [
+          {
+            title: "Il branding riguarda solo grandi aziende?",
+            content: [
+              "Spesso si pensa al branding come un\u2019attivit\xE0 svolta solo da grandi aziende con ingenti budget, ti far\xE0 piacere sapere che non \xE8 strettamente necessario. Il mercato italiano \xE8 composto maggiormente da piccole e micro imprese spesso sconosciute. Il loro approccio \xE8 prettamente commerciale con focalizzazione sul prodotto o servizio ma \xE8 inevitabile che miglioramenti di qualit\xE0 o introduzione di innovazioni vengano adottati anche dalla concorrenza. Il risultato \xE8 che la clientela segue il prodotto a loro pi\xF9 conveniente, e gi\xE0 domani potrebbe non essere pi\xF9 il tuo. Fornire loro un legame visivo (e non solo) con un brand li porter\xE0 a sceglierti nuovamente qualora il tuo prodotto gli sia piaciuto in passato."
+            ]
+          }
+        ],
+        quote: {
+          content: "In questa societ\xE0 in continua evoluzione, i marchi pi\xF9 potenti e duraturi sono costruiti col cuore. Sono reali e sostenibili. Le loro basi sono solide perch\xE9 sono costruite con la forza dello spirito umano e non su una campagna pubblicitaria. Le societ\xE0 pi\xF9 durature sono quelle autentiche",
+          author: "Howard Schultz"
+        }
+      }
+    ];
   }
 });
 
@@ -1909,8 +1497,38 @@ var Page4;
 var init_page_svelte4 = __esm({
   ".svelte-kit/output/server/entries/pages/grafica/_page.svelte.js"() {
     init_ssr();
+    init_Grid();
+    init_Scroll();
+    init_Section();
+    init_Quote();
     Page4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `sei in grafica`;
+      let { data } = $$props;
+      data.trial;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0) $$bindings.data(data);
+      return `<div class="absolute bottom-16 w-[25vw]">${validate_component(Scroll, "Scroll").$$render($$result, {}, {}, {})}</div> <div class="mt-5 lg:mt-0">${validate_component(Hero, "Hero").$$render(
+        $$result,
+        {
+          title: data.hero.title,
+          titleMobile: data.hero.titleMobile,
+          content: data.hero.content,
+          contentMobile: data.hero.contentMobile
+        },
+        {},
+        {}
+      )} <div class="h-svh"></div> <div class="mb-10 relative w-full">${validate_component(VideoSection, "VideoSection").$$render(
+        $$result,
+        {
+          banner: "\u2192BRANDING",
+          bottomBanner: "BRANDING\u2190",
+          videoSrc: "/assets/video/branding_venissa.mp4"
+        },
+        {},
+        {}
+      )} ${data.trial ? `<div class="my-20">${validate_component(Section, "Section").$$render($$result, { title: data.trial.section.title }, {}, {
+        default: () => {
+          return `<div><p class="mb-2">${escape(data.trial.section.paragraph)}</p> <div class="w-full mb-5">${validate_component(Grid, "Grid").$$render($$result, { items: data.trial.content }, {}, {})}</div></div>`;
+        }
+      })}</div>` : ``} <div class="my-[15rem]"></div> ${data.quote ? `${validate_component(Quote, "Quote").$$render($$result, { quote: data.quote }, {}, {})}` : ``} ${data.hiddenText ? `<div class="my-20 p-5 border-2 border-grey-200 w-full rounded-lg"><h6 class="text-xl" data-svelte-h="svelte-je895n">Se vuoi leggere altro</h6> <div class="lg:max-w-[80%] max-w-[90%]">${validate_component(HiddenText, "HiddenText").$$render($$result, { texts: data.hiddenText }, {}, {})}</div></div>` : ``}</div></div>`;
     });
   }
 });
@@ -1922,15 +1540,19 @@ __export(__exports6, {
   fonts: () => fonts6,
   imports: () => imports6,
   index: () => index6,
-  stylesheets: () => stylesheets6
+  stylesheets: () => stylesheets6,
+  universal: () => page_ts_exports3,
+  universal_id: () => universal_id3
 });
-var index6, component_cache6, component6, imports6, stylesheets6, fonts6;
+var index6, component_cache6, component6, universal_id3, imports6, stylesheets6, fonts6;
 var init__6 = __esm({
   ".svelte-kit/output/server/nodes/5.js"() {
+    init_page_ts3();
     index6 = 5;
     component6 = async () => component_cache6 ?? (component_cache6 = (await Promise.resolve().then(() => (init_page_svelte4(), page_svelte_exports4))).default);
-    imports6 = ["_app/immutable/nodes/5.BJrc5YBv.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"];
-    stylesheets6 = [];
+    universal_id3 = "src/routes/grafica/+page.ts";
+    imports6 = ["_app/immutable/nodes/5.jWMmDY2c.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/O-8aVFcb.js", "_app/immutable/chunks/CZmLfITG.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/BKT5cWKk.js"];
+    stylesheets6 = ["_app/immutable/assets/Scroll.CJVTxp8z.css", "_app/immutable/assets/Section.q3_R_wNJ.css", "_app/immutable/assets/Quote.BNnoJQcK.css"];
     fonts6 = [];
   }
 });
@@ -1989,8 +1611,8 @@ var init__7 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     index7 = 6;
     component7 = async () => component_cache7 ?? (component_cache7 = (await Promise.resolve().then(() => (init_page_svelte5(), page_svelte_exports5))).default);
-    imports7 = ["_app/immutable/nodes/6.BTpWdx2d.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js", "_app/immutable/chunks/Scroll.BNvD8d3E.js", "_app/immutable/chunks/Typewriter.oItSYdui.js"];
-    stylesheets7 = ["_app/immutable/assets/6.D9zlDmlX.css", "_app/immutable/assets/Scroll.BZ8v3Oqf.css"];
+    imports7 = ["_app/immutable/nodes/6.CbLwcEvw.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/CZmLfITG.js", "_app/immutable/chunks/oItSYdui.js"];
+    stylesheets7 = ["_app/immutable/assets/6.8QD4hOGa.css", "_app/immutable/assets/Scroll.CJVTxp8z.css"];
     fonts7 = [];
   }
 });
@@ -2024,7 +1646,7 @@ var init__8 = __esm({
   ".svelte-kit/output/server/nodes/7.js"() {
     index8 = 7;
     component8 = async () => component_cache8 ?? (component_cache8 = (await Promise.resolve().then(() => (init_page_svelte6(), page_svelte_exports6))).default);
-    imports8 = ["_app/immutable/nodes/7.DsNcv7SE.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"];
+    imports8 = ["_app/immutable/nodes/7.Dwtci0tt.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"];
     stylesheets8 = [];
     fonts8 = [];
   }
@@ -2059,7 +1681,7 @@ var init__9 = __esm({
   ".svelte-kit/output/server/nodes/8.js"() {
     index9 = 8;
     component9 = async () => component_cache9 ?? (component_cache9 = (await Promise.resolve().then(() => (init_page_svelte7(), page_svelte_exports7))).default);
-    imports9 = ["_app/immutable/nodes/8.BsSwGaQO.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"];
+    imports9 = ["_app/immutable/nodes/8.BwYunuZu.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"];
     stylesheets9 = [];
     fonts9 = [];
   }
@@ -2067,8 +1689,10 @@ var init__9 = __esm({
 
 // .svelte-kit/output/server/chunks/internal.js
 init_ssr();
+init_ssr2();
 var base = "";
 var assets = base;
+var app_dir = "_app";
 var initial = { base, assets };
 function override(paths) {
   base = paths.base;
@@ -2088,7 +1712,9 @@ function set_public_env(environment) {
 function set_safe_public_env(environment) {
   safe_public_env = environment;
 }
-function afterUpdate() {
+var read_implementation = null;
+function set_read_implementation(fn) {
+  read_implementation = fn;
 }
 var prerendering = false;
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2158,13 +1784,13 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return $$rendered;
 });
 var options = {
-  app_dir: "_app",
   app_template_contains_nonce: false,
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
   embedded: false,
   env_public_prefix: "PUBLIC_",
   env_private_prefix: "",
+  hash_routing: false,
   hooks: null,
   // added lazily, via `get_hooks`
   preload_strategy: "modulepreload",
@@ -2243,19 +1869,569 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "8yi7wb"
+  version_hash: "16i1chk"
 };
 async function get_hooks() {
-  return {};
+  let handle;
+  let handleFetch;
+  let handleError;
+  let init2;
+  let reroute;
+  let transport;
+  return {
+    handle,
+    handleFetch,
+    handleError,
+    init: init2,
+    reroute,
+    transport
+  };
+}
+
+// node_modules/devalue/src/utils.js
+var escaped = {
+  "<": "\\u003C",
+  "\\": "\\\\",
+  "\b": "\\b",
+  "\f": "\\f",
+  "\n": "\\n",
+  "\r": "\\r",
+  "	": "\\t",
+  "\u2028": "\\u2028",
+  "\u2029": "\\u2029"
+};
+var DevalueError = class extends Error {
+  /**
+   * @param {string} message
+   * @param {string[]} keys
+   */
+  constructor(message, keys) {
+    super(message);
+    this.name = "DevalueError";
+    this.path = keys.join("");
+  }
+};
+function is_primitive(thing) {
+  return Object(thing) !== thing;
+}
+var object_proto_names = /* @__PURE__ */ Object.getOwnPropertyNames(
+  Object.prototype
+).sort().join("\0");
+function is_plain_object(thing) {
+  const proto = Object.getPrototypeOf(thing);
+  return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === object_proto_names;
+}
+function get_type(thing) {
+  return Object.prototype.toString.call(thing).slice(8, -1);
+}
+function get_escaped_char(char) {
+  switch (char) {
+    case '"':
+      return '\\"';
+    case "<":
+      return "\\u003C";
+    case "\\":
+      return "\\\\";
+    case "\n":
+      return "\\n";
+    case "\r":
+      return "\\r";
+    case "	":
+      return "\\t";
+    case "\b":
+      return "\\b";
+    case "\f":
+      return "\\f";
+    case "\u2028":
+      return "\\u2028";
+    case "\u2029":
+      return "\\u2029";
+    default:
+      return char < " " ? `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}` : "";
+  }
+}
+function stringify_string(str) {
+  let result = "";
+  let last_pos = 0;
+  const len = str.length;
+  for (let i = 0; i < len; i += 1) {
+    const char = str[i];
+    const replacement = get_escaped_char(char);
+    if (replacement) {
+      result += str.slice(last_pos, i) + replacement;
+      last_pos = i + 1;
+    }
+  }
+  return `"${last_pos === 0 ? str : result + str.slice(last_pos)}"`;
+}
+function enumerable_symbols(object) {
+  return Object.getOwnPropertySymbols(object).filter(
+    (symbol) => Object.getOwnPropertyDescriptor(object, symbol).enumerable
+  );
+}
+var is_identifier = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
+function stringify_key(key2) {
+  return is_identifier.test(key2) ? "." + key2 : "[" + JSON.stringify(key2) + "]";
+}
+
+// node_modules/devalue/src/uneval.js
+var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$";
+var unsafe_chars = /[<\b\f\n\r\t\0\u2028\u2029]/g;
+var reserved = /^(?:do|if|in|for|int|let|new|try|var|byte|case|char|else|enum|goto|long|this|void|with|await|break|catch|class|const|final|float|short|super|throw|while|yield|delete|double|export|import|native|return|switch|throws|typeof|boolean|default|extends|finally|package|private|abstract|continue|debugger|function|volatile|interface|protected|transient|implements|instanceof|synchronized)$/;
+function uneval(value, replacer) {
+  const counts = /* @__PURE__ */ new Map();
+  const keys = [];
+  const custom = /* @__PURE__ */ new Map();
+  function walk(thing) {
+    if (typeof thing === "function") {
+      throw new DevalueError(`Cannot stringify a function`, keys);
+    }
+    if (!is_primitive(thing)) {
+      if (counts.has(thing)) {
+        counts.set(thing, counts.get(thing) + 1);
+        return;
+      }
+      counts.set(thing, 1);
+      if (replacer) {
+        const str2 = replacer(thing);
+        if (typeof str2 === "string") {
+          custom.set(thing, str2);
+          return;
+        }
+      }
+      const type = get_type(thing);
+      switch (type) {
+        case "Number":
+        case "BigInt":
+        case "String":
+        case "Boolean":
+        case "Date":
+        case "RegExp":
+          return;
+        case "Array":
+          thing.forEach((value2, i) => {
+            keys.push(`[${i}]`);
+            walk(value2);
+            keys.pop();
+          });
+          break;
+        case "Set":
+          Array.from(thing).forEach(walk);
+          break;
+        case "Map":
+          for (const [key2, value2] of thing) {
+            keys.push(
+              `.get(${is_primitive(key2) ? stringify_primitive(key2) : "..."})`
+            );
+            walk(value2);
+            keys.pop();
+          }
+          break;
+        case "Int8Array":
+        case "Uint8Array":
+        case "Uint8ClampedArray":
+        case "Int16Array":
+        case "Uint16Array":
+        case "Int32Array":
+        case "Uint32Array":
+        case "Float32Array":
+        case "Float64Array":
+        case "BigInt64Array":
+        case "BigUint64Array":
+          return;
+        case "ArrayBuffer":
+          return;
+        default:
+          if (!is_plain_object(thing)) {
+            throw new DevalueError(
+              `Cannot stringify arbitrary non-POJOs`,
+              keys
+            );
+          }
+          if (enumerable_symbols(thing).length > 0) {
+            throw new DevalueError(
+              `Cannot stringify POJOs with symbolic keys`,
+              keys
+            );
+          }
+          for (const key2 in thing) {
+            keys.push(stringify_key(key2));
+            walk(thing[key2]);
+            keys.pop();
+          }
+      }
+    }
+  }
+  walk(value);
+  const names = /* @__PURE__ */ new Map();
+  Array.from(counts).filter((entry) => entry[1] > 1).sort((a, b) => b[1] - a[1]).forEach((entry, i) => {
+    names.set(entry[0], get_name(i));
+  });
+  function stringify2(thing) {
+    if (names.has(thing)) {
+      return names.get(thing);
+    }
+    if (is_primitive(thing)) {
+      return stringify_primitive(thing);
+    }
+    if (custom.has(thing)) {
+      return custom.get(thing);
+    }
+    const type = get_type(thing);
+    switch (type) {
+      case "Number":
+      case "String":
+      case "Boolean":
+        return `Object(${stringify2(thing.valueOf())})`;
+      case "RegExp":
+        return `new RegExp(${stringify_string(thing.source)}, "${thing.flags}")`;
+      case "Date":
+        return `new Date(${thing.getTime()})`;
+      case "Array":
+        const members = (
+          /** @type {any[]} */
+          thing.map(
+            (v, i) => i in thing ? stringify2(v) : ""
+          )
+        );
+        const tail = thing.length === 0 || thing.length - 1 in thing ? "" : ",";
+        return `[${members.join(",")}${tail}]`;
+      case "Set":
+      case "Map":
+        return `new ${type}([${Array.from(thing).map(stringify2).join(",")}])`;
+      case "Int8Array":
+      case "Uint8Array":
+      case "Uint8ClampedArray":
+      case "Int16Array":
+      case "Uint16Array":
+      case "Int32Array":
+      case "Uint32Array":
+      case "Float32Array":
+      case "Float64Array":
+      case "BigInt64Array":
+      case "BigUint64Array": {
+        const typedArray = thing;
+        return `new ${type}([${typedArray.toString()}])`;
+      }
+      case "ArrayBuffer": {
+        const ui8 = new Uint8Array(thing);
+        return `new Uint8Array([${ui8.toString()}]).buffer`;
+      }
+      default:
+        const obj = `{${Object.keys(thing).map((key2) => `${safe_key(key2)}:${stringify2(thing[key2])}`).join(",")}}`;
+        const proto = Object.getPrototypeOf(thing);
+        if (proto === null) {
+          return Object.keys(thing).length > 0 ? `Object.assign(Object.create(null),${obj})` : `Object.create(null)`;
+        }
+        return obj;
+    }
+  }
+  const str = stringify2(value);
+  if (names.size) {
+    const params = [];
+    const statements = [];
+    const values = [];
+    names.forEach((name, thing) => {
+      params.push(name);
+      if (custom.has(thing)) {
+        values.push(
+          /** @type {string} */
+          custom.get(thing)
+        );
+        return;
+      }
+      if (is_primitive(thing)) {
+        values.push(stringify_primitive(thing));
+        return;
+      }
+      const type = get_type(thing);
+      switch (type) {
+        case "Number":
+        case "String":
+        case "Boolean":
+          values.push(`Object(${stringify2(thing.valueOf())})`);
+          break;
+        case "RegExp":
+          values.push(thing.toString());
+          break;
+        case "Date":
+          values.push(`new Date(${thing.getTime()})`);
+          break;
+        case "Array":
+          values.push(`Array(${thing.length})`);
+          thing.forEach((v, i) => {
+            statements.push(`${name}[${i}]=${stringify2(v)}`);
+          });
+          break;
+        case "Set":
+          values.push(`new Set`);
+          statements.push(
+            `${name}.${Array.from(thing).map((v) => `add(${stringify2(v)})`).join(".")}`
+          );
+          break;
+        case "Map":
+          values.push(`new Map`);
+          statements.push(
+            `${name}.${Array.from(thing).map(([k, v]) => `set(${stringify2(k)}, ${stringify2(v)})`).join(".")}`
+          );
+          break;
+        default:
+          values.push(
+            Object.getPrototypeOf(thing) === null ? "Object.create(null)" : "{}"
+          );
+          Object.keys(thing).forEach((key2) => {
+            statements.push(
+              `${name}${safe_prop(key2)}=${stringify2(thing[key2])}`
+            );
+          });
+      }
+    });
+    statements.push(`return ${str}`);
+    return `(function(${params.join(",")}){${statements.join(
+      ";"
+    )}}(${values.join(",")}))`;
+  } else {
+    return str;
+  }
+}
+function get_name(num) {
+  let name = "";
+  do {
+    name = chars[num % chars.length] + name;
+    num = ~~(num / chars.length) - 1;
+  } while (num >= 0);
+  return reserved.test(name) ? `${name}0` : name;
+}
+function escape_unsafe_char(c) {
+  return escaped[c] || c;
+}
+function escape_unsafe_chars(str) {
+  return str.replace(unsafe_chars, escape_unsafe_char);
+}
+function safe_key(key2) {
+  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key2) ? key2 : escape_unsafe_chars(JSON.stringify(key2));
+}
+function safe_prop(key2) {
+  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key2) ? `.${key2}` : `[${escape_unsafe_chars(JSON.stringify(key2))}]`;
+}
+function stringify_primitive(thing) {
+  if (typeof thing === "string") return stringify_string(thing);
+  if (thing === void 0) return "void 0";
+  if (thing === 0 && 1 / thing < 0) return "-0";
+  const str = String(thing);
+  if (typeof thing === "number") return str.replace(/^(-)?0\./, "$1.");
+  if (typeof thing === "bigint") return thing + "n";
+  return str;
+}
+
+// node_modules/devalue/src/base64.js
+function encode64(arraybuffer) {
+  const dv = new DataView(arraybuffer);
+  let binaryString = "";
+  for (let i = 0; i < arraybuffer.byteLength; i++) {
+    binaryString += String.fromCharCode(dv.getUint8(i));
+  }
+  return binaryToAscii(binaryString);
+}
+var KEY_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+function binaryToAscii(str) {
+  let out = "";
+  for (let i = 0; i < str.length; i += 3) {
+    const groupsOfSix = [void 0, void 0, void 0, void 0];
+    groupsOfSix[0] = str.charCodeAt(i) >> 2;
+    groupsOfSix[1] = (str.charCodeAt(i) & 3) << 4;
+    if (str.length > i + 1) {
+      groupsOfSix[1] |= str.charCodeAt(i + 1) >> 4;
+      groupsOfSix[2] = (str.charCodeAt(i + 1) & 15) << 2;
+    }
+    if (str.length > i + 2) {
+      groupsOfSix[2] |= str.charCodeAt(i + 2) >> 6;
+      groupsOfSix[3] = str.charCodeAt(i + 2) & 63;
+    }
+    for (let j = 0; j < groupsOfSix.length; j++) {
+      if (typeof groupsOfSix[j] === "undefined") {
+        out += "=";
+      } else {
+        out += KEY_STRING[groupsOfSix[j]];
+      }
+    }
+  }
+  return out;
+}
+
+// node_modules/devalue/src/constants.js
+var UNDEFINED = -1;
+var HOLE = -2;
+var NAN = -3;
+var POSITIVE_INFINITY = -4;
+var NEGATIVE_INFINITY = -5;
+var NEGATIVE_ZERO = -6;
+
+// node_modules/devalue/src/stringify.js
+function stringify(value, reducers) {
+  const stringified = [];
+  const indexes = /* @__PURE__ */ new Map();
+  const custom = [];
+  if (reducers) {
+    for (const key2 of Object.getOwnPropertyNames(reducers)) {
+      custom.push({ key: key2, fn: reducers[key2] });
+    }
+  }
+  const keys = [];
+  let p = 0;
+  function flatten(thing) {
+    if (typeof thing === "function") {
+      throw new DevalueError(`Cannot stringify a function`, keys);
+    }
+    if (indexes.has(thing)) return indexes.get(thing);
+    if (thing === void 0) return UNDEFINED;
+    if (Number.isNaN(thing)) return NAN;
+    if (thing === Infinity) return POSITIVE_INFINITY;
+    if (thing === -Infinity) return NEGATIVE_INFINITY;
+    if (thing === 0 && 1 / thing < 0) return NEGATIVE_ZERO;
+    const index11 = p++;
+    indexes.set(thing, index11);
+    for (const { key: key2, fn } of custom) {
+      const value2 = fn(thing);
+      if (value2) {
+        stringified[index11] = `["${key2}",${flatten(value2)}]`;
+        return index11;
+      }
+    }
+    let str = "";
+    if (is_primitive(thing)) {
+      str = stringify_primitive2(thing);
+    } else {
+      const type = get_type(thing);
+      switch (type) {
+        case "Number":
+        case "String":
+        case "Boolean":
+          str = `["Object",${stringify_primitive2(thing)}]`;
+          break;
+        case "BigInt":
+          str = `["BigInt",${thing}]`;
+          break;
+        case "Date":
+          const valid = !isNaN(thing.getDate());
+          str = `["Date","${valid ? thing.toISOString() : ""}"]`;
+          break;
+        case "RegExp":
+          const { source, flags } = thing;
+          str = flags ? `["RegExp",${stringify_string(source)},"${flags}"]` : `["RegExp",${stringify_string(source)}]`;
+          break;
+        case "Array":
+          str = "[";
+          for (let i = 0; i < thing.length; i += 1) {
+            if (i > 0) str += ",";
+            if (i in thing) {
+              keys.push(`[${i}]`);
+              str += flatten(thing[i]);
+              keys.pop();
+            } else {
+              str += HOLE;
+            }
+          }
+          str += "]";
+          break;
+        case "Set":
+          str = '["Set"';
+          for (const value2 of thing) {
+            str += `,${flatten(value2)}`;
+          }
+          str += "]";
+          break;
+        case "Map":
+          str = '["Map"';
+          for (const [key2, value2] of thing) {
+            keys.push(
+              `.get(${is_primitive(key2) ? stringify_primitive2(key2) : "..."})`
+            );
+            str += `,${flatten(key2)},${flatten(value2)}`;
+            keys.pop();
+          }
+          str += "]";
+          break;
+        case "Int8Array":
+        case "Uint8Array":
+        case "Uint8ClampedArray":
+        case "Int16Array":
+        case "Uint16Array":
+        case "Int32Array":
+        case "Uint32Array":
+        case "Float32Array":
+        case "Float64Array":
+        case "BigInt64Array":
+        case "BigUint64Array": {
+          const typedArray = thing;
+          const base642 = encode64(typedArray.buffer);
+          str = '["' + type + '","' + base642 + '"]';
+          break;
+        }
+        case "ArrayBuffer": {
+          const arraybuffer = thing;
+          const base642 = encode64(arraybuffer);
+          str = `["ArrayBuffer","${base642}"]`;
+          break;
+        }
+        default:
+          if (!is_plain_object(thing)) {
+            throw new DevalueError(
+              `Cannot stringify arbitrary non-POJOs`,
+              keys
+            );
+          }
+          if (enumerable_symbols(thing).length > 0) {
+            throw new DevalueError(
+              `Cannot stringify POJOs with symbolic keys`,
+              keys
+            );
+          }
+          if (Object.getPrototypeOf(thing) === null) {
+            str = '["null"';
+            for (const key2 in thing) {
+              keys.push(stringify_key(key2));
+              str += `,${stringify_string(key2)},${flatten(thing[key2])}`;
+              keys.pop();
+            }
+            str += "]";
+          } else {
+            str = "{";
+            let started = false;
+            for (const key2 in thing) {
+              if (started) str += ",";
+              started = true;
+              keys.push(stringify_key(key2));
+              str += `${stringify_string(key2)}:${flatten(thing[key2])}`;
+              keys.pop();
+            }
+            str += "}";
+          }
+      }
+    }
+    stringified[index11] = str;
+    return index11;
+  }
+  const index10 = flatten(value);
+  if (index10 < 0) return `${index10}`;
+  return `[${stringified.join(",")}]`;
+}
+function stringify_primitive2(thing) {
+  const type = typeof thing;
+  if (type === "string") return stringify_string(thing);
+  if (thing instanceof String) return stringify_string(thing.toString());
+  if (thing === void 0) return UNDEFINED.toString();
+  if (thing === 0 && 1 / thing < 0) return NEGATIVE_ZERO.toString();
+  if (type === "bigint") return `["BigInt","${thing}"]`;
+  return String(thing);
 }
 
 // .svelte-kit/output/server/index.js
 init_exports();
-init_devalue();
 init_ssr();
 var import_cookie = __toESM(require_cookie(), 1);
 var set_cookie_parser = __toESM(require_set_cookie(), 1);
-var DEV = false;
+var BROWSER = false;
 var SVELTE_KIT_ASSETS = "/_svelte_kit_assets";
 var ENDPOINT_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"];
 var PAGE_METHODS = ["GET", "POST", "HEAD"];
@@ -2407,6 +2583,39 @@ function get_status(error) {
 function get_message(error) {
   return error instanceof SvelteKitError ? error.text : "Internal Error";
 }
+var escape_html_attr_dict = {
+  "&": "&amp;",
+  '"': "&quot;"
+  // Svelte also escapes < because the escape function could be called inside a `noscript` there
+  // https://github.com/sveltejs/svelte/security/advisories/GHSA-8266-84wp-wv5c
+  // However, that doesn't apply in SvelteKit
+};
+var escape_html_dict = {
+  "&": "&amp;",
+  "<": "&lt;"
+};
+var surrogates = (
+  // high surrogate without paired low surrogate
+  "[\\ud800-\\udbff](?![\\udc00-\\udfff])|[\\ud800-\\udbff][\\udc00-\\udfff]|[\\udc00-\\udfff]"
+);
+var escape_html_attr_regex = new RegExp(
+  `[${Object.keys(escape_html_attr_dict).join("")}]|` + surrogates,
+  "g"
+);
+var escape_html_regex = new RegExp(
+  `[${Object.keys(escape_html_dict).join("")}]|` + surrogates,
+  "g"
+);
+function escape_html(str, is_attr) {
+  const dict = is_attr ? escape_html_attr_dict : escape_html_dict;
+  const escaped_str = str.replace(is_attr ? escape_html_attr_regex : escape_html_regex, (match) => {
+    if (match.length === 2) {
+      return match;
+    }
+    return dict[match] ?? `&#${match.charCodeAt(0)};`;
+  });
+  return escaped_str;
+}
 function method_not_allowed(mod, method) {
   return text(`${method} method not allowed`, {
     status: 405,
@@ -2423,7 +2632,7 @@ function allowed_methods(mod) {
   return allowed;
 }
 function static_error_page(options2, status, message) {
-  let page2 = options2.templates.error({ status, message });
+  let page2 = options2.templates.error({ status, message: escape_html(message) });
   return text(page2, {
     headers: { "content-type": "text/html; charset=utf-8" },
     status
@@ -2551,6 +2760,31 @@ function compact(arr) {
     (val) => val != null
   );
 }
+var DATA_SUFFIX = "/__data.json";
+var HTML_DATA_SUFFIX = ".html__data.json";
+function has_data_suffix(pathname) {
+  return pathname.endsWith(DATA_SUFFIX) || pathname.endsWith(HTML_DATA_SUFFIX);
+}
+function add_data_suffix(pathname) {
+  if (pathname.endsWith(".html")) return pathname.replace(/\.html$/, HTML_DATA_SUFFIX);
+  return pathname.replace(/\/$/, "") + DATA_SUFFIX;
+}
+function strip_data_suffix(pathname) {
+  if (pathname.endsWith(HTML_DATA_SUFFIX)) {
+    return pathname.slice(0, -HTML_DATA_SUFFIX.length) + ".html";
+  }
+  return pathname.slice(0, -DATA_SUFFIX.length);
+}
+var ROUTE_SUFFIX = "/__route.js";
+function has_resolution_suffix(pathname) {
+  return pathname.endsWith(ROUTE_SUFFIX);
+}
+function add_resolution_suffix(pathname) {
+  return pathname.replace(/\/$/, "") + ROUTE_SUFFIX;
+}
+function strip_resolution_suffix(pathname) {
+  return pathname.slice(0, -ROUTE_SUFFIX.length);
+}
 function is_action_json_request(event) {
   const accept = negotiate(event.request.headers.get("accept") ?? "*/*", [
     "application/json",
@@ -2564,7 +2798,7 @@ async function handle_action_json_request(event, options2, server2) {
     const no_actions_error = new SvelteKitError(
       405,
       "Method Not Allowed",
-      "POST method not allowed. No actions exist for this page"
+      `POST method not allowed. No form actions exist for ${"this page"}`
     );
     return action_json(
       {
@@ -2595,7 +2829,8 @@ async function handle_action_json_request(event, options2, server2) {
         data: stringify_action_response(
           data.data,
           /** @type {string} */
-          event.route.id
+          event.route.id,
+          options2.hooks.transport
         )
       });
     } else {
@@ -2606,7 +2841,8 @@ async function handle_action_json_request(event, options2, server2) {
         data: stringify_action_response(
           data,
           /** @type {string} */
-          event.route.id
+          event.route.id,
+          options2.hooks.transport
         )
       });
     }
@@ -2655,7 +2891,7 @@ async function handle_action_request(event, server2) {
       error: new SvelteKitError(
         405,
         "Method Not Allowed",
-        "POST method not allowed. No actions exist for this page"
+        `POST method not allowed. No form actions exist for ${"this page"}`
       )
     };
   }
@@ -2695,7 +2931,7 @@ async function handle_action_request(event, server2) {
 function check_named_default_separate(actions) {
   if (actions.default && Object.keys(actions).length > 1) {
     throw new Error(
-      "When using named actions, the default action cannot be used. See the docs for more info: https://kit.svelte.dev/docs/form-actions#named-actions"
+      "When using named actions, the default action cannot be used. See the docs for more info: https://svelte.dev/docs/kit/form-actions#named-actions"
     );
   }
 }
@@ -2726,13 +2962,24 @@ async function call_action(event, actions) {
   }
   return action(event);
 }
-function uneval_action_response(data, route_id) {
-  return try_deserialize(data, uneval, route_id);
+function uneval_action_response(data, route_id, transport) {
+  const replacer = (thing) => {
+    for (const key2 in transport) {
+      const encoded = transport[key2].encode(thing);
+      if (encoded) {
+        return `app.decode('${key2}', ${uneval(encoded, replacer)})`;
+      }
+    }
+  };
+  return try_serialize(data, (value) => uneval(value, replacer), route_id);
 }
-function stringify_action_response(data, route_id) {
-  return try_deserialize(data, stringify, route_id);
+function stringify_action_response(data, route_id, transport) {
+  const encoders = Object.fromEntries(
+    Object.entries(transport).map(([key2, value]) => [key2, value.encode])
+  );
+  return try_serialize(data, (value) => stringify(value, encoders), route_id);
 }
-function try_deserialize(data, fn, route_id) {
+function try_serialize(data, fn, route_id) {
   try {
     return fn(data);
   } catch (e) {
@@ -2740,6 +2987,11 @@ function try_deserialize(data, fn, route_id) {
       /** @type {any} */
       e
     );
+    if (data instanceof Response) {
+      throw new Error(
+        `Data returned from action inside ${route_id} is not serializable. Form actions need to return plain objects or fail(). E.g. return { success: true } or return fail(400, { message: "invalid" });`
+      );
+    }
     if ("path" in error) {
       let message = `Data returned from action inside ${route_id} is not serializable: ${error.message}`;
       if (error.path !== "") message += ` (data.${error.path})`;
@@ -2760,6 +3012,18 @@ function b64_encode(buffer) {
       new Uint16Array(new Uint8Array(buffer))
     )
   );
+}
+function get_relative_path(from, to) {
+  const from_parts = from.split(/[/\\]/);
+  const to_parts = to.split(/[/\\]/);
+  from_parts.pop();
+  while (from_parts[0] === to_parts[0]) {
+    from_parts.shift();
+    to_parts.shift();
+  }
+  let i = from_parts.length;
+  while (i--) from_parts[i] = "..";
+  return from_parts.concat(to_parts).join("/");
 }
 async function load_server_data({ event, state, node, parent }) {
   if (!node?.server) return null;
@@ -2968,7 +3232,7 @@ function create_universal_fetch(event, state, fetched, csr, resolve_opts) {
           const included = resolve_opts.filterSerializedResponseHeaders(lower, value);
           if (!included) {
             throw new Error(
-              `Failed to get response header "${lower}" \u2014 it must be included by the \`filterSerializedResponseHeaders\` option: https://kit.svelte.dev/docs/hooks#server-hooks-handle (at ${event.route.id})`
+              `Failed to get response header "${lower}" \u2014 it must be included by the \`filterSerializedResponseHeaders\` option: https://svelte.dev/docs/kit/hooks#Server-hooks-handle (at ${event.route.id})`
             );
           }
         }
@@ -3060,24 +3324,6 @@ function hash(...values) {
   }
   return (hash2 >>> 0).toString(36);
 }
-var escape_html_attr_dict = {
-  "&": "&amp;",
-  '"': "&quot;"
-};
-var escape_html_attr_regex = new RegExp(
-  // special characters
-  `[${Object.keys(escape_html_attr_dict).join("")}]|[\\ud800-\\udbff](?![\\udc00-\\udfff])|[\\ud800-\\udbff][\\udc00-\\udfff]|[\\udc00-\\udfff]`,
-  "g"
-);
-function escape_html_attr(str) {
-  const escaped_str = str.replace(escape_html_attr_regex, (match) => {
-    if (match.length === 2) {
-      return match;
-    }
-    return escape_html_attr_dict[match] ?? `&#${match.charCodeAt(0)};`;
-  });
-  return `"${escaped_str}"`;
-}
 var replacements = {
   "<": "\\u003C",
   "\u2028": "\\u2028",
@@ -3107,7 +3353,7 @@ function serialize_data(fetched, filter, prerendering2 = false) {
   const attrs = [
     'type="application/json"',
     "data-sveltekit-fetched",
-    `data-url=${escape_html_attr(fetched.url)}`
+    `data-url="${escape_html(fetched.url, true)}"`
   ];
   if (fetched.is_b64) {
     attrs.push("data-b64");
@@ -3271,7 +3517,7 @@ var quoted = /* @__PURE__ */ new Set([
   "script"
 ]);
 var crypto_pattern = /^(nonce|sha\d\d\d)-/;
-var _use_hashes, _script_needs_csp, _style_needs_csp, _directives, _script_src, _script_src_elem, _style_src, _style_src_attr, _style_src_elem, _nonce;
+var _use_hashes, _script_needs_csp, _script_src_needs_csp, _script_src_elem_needs_csp, _style_needs_csp, _style_src_needs_csp, _style_src_attr_needs_csp, _style_src_elem_needs_csp, _directives, _script_src, _script_src_elem, _style_src, _style_src_attr, _style_src_elem, _nonce;
 var BaseProvider = class {
   /**
    * @param {boolean} use_hashes
@@ -3284,7 +3530,17 @@ var BaseProvider = class {
     /** @type {boolean} */
     __privateAdd(this, _script_needs_csp);
     /** @type {boolean} */
+    __privateAdd(this, _script_src_needs_csp);
+    /** @type {boolean} */
+    __privateAdd(this, _script_src_elem_needs_csp);
+    /** @type {boolean} */
     __privateAdd(this, _style_needs_csp);
+    /** @type {boolean} */
+    __privateAdd(this, _style_src_needs_csp);
+    /** @type {boolean} */
+    __privateAdd(this, _style_src_attr_needs_csp);
+    /** @type {boolean} */
+    __privateAdd(this, _style_src_elem_needs_csp);
     /** @type {import('types').CspDirectives} */
     __privateAdd(this, _directives);
     /** @type {import('types').Csp.Source[]} */
@@ -3312,62 +3568,47 @@ var BaseProvider = class {
     const effective_style_src = d["style-src"] || d["default-src"];
     const style_src_attr = d["style-src-attr"];
     const style_src_elem = d["style-src-elem"];
-    __privateSet(this, _script_needs_csp, !!effective_script_src && effective_script_src.filter((value) => value !== "unsafe-inline").length > 0 || !!script_src_elem && script_src_elem.filter((value) => value !== "unsafe-inline").length > 0);
-    __privateSet(this, _style_needs_csp, !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0 || !!style_src_attr && style_src_attr.filter((value) => value !== "unsafe-inline").length > 0 || !!style_src_elem && style_src_elem.filter((value) => value !== "unsafe-inline").length > 0);
+    const needs_csp = (directive) => !!directive && !directive.some((value) => value === "unsafe-inline");
+    __privateSet(this, _script_src_needs_csp, needs_csp(effective_script_src));
+    __privateSet(this, _script_src_elem_needs_csp, needs_csp(script_src_elem));
+    __privateSet(this, _style_src_needs_csp, needs_csp(effective_style_src));
+    __privateSet(this, _style_src_attr_needs_csp, needs_csp(style_src_attr));
+    __privateSet(this, _style_src_elem_needs_csp, needs_csp(style_src_elem));
+    __privateSet(this, _script_needs_csp, __privateGet(this, _script_src_needs_csp) || __privateGet(this, _script_src_elem_needs_csp));
+    __privateSet(this, _style_needs_csp, __privateGet(this, _style_src_needs_csp) || __privateGet(this, _style_src_attr_needs_csp) || __privateGet(this, _style_src_elem_needs_csp));
     this.script_needs_nonce = __privateGet(this, _script_needs_csp) && !__privateGet(this, _use_hashes);
     this.style_needs_nonce = __privateGet(this, _style_needs_csp) && !__privateGet(this, _use_hashes);
     __privateSet(this, _nonce, nonce);
   }
   /** @param {string} content */
   add_script(content) {
-    if (__privateGet(this, _script_needs_csp)) {
-      const d = __privateGet(this, _directives);
-      if (__privateGet(this, _use_hashes)) {
-        const hash2 = sha256(content);
-        __privateGet(this, _script_src).push(`sha256-${hash2}`);
-        if (d["script-src-elem"]?.length) {
-          __privateGet(this, _script_src_elem).push(`sha256-${hash2}`);
-        }
-      } else {
-        if (__privateGet(this, _script_src).length === 0) {
-          __privateGet(this, _script_src).push(`nonce-${__privateGet(this, _nonce)}`);
-        }
-        if (d["script-src-elem"]?.length) {
-          __privateGet(this, _script_src_elem).push(`nonce-${__privateGet(this, _nonce)}`);
-        }
-      }
+    if (!__privateGet(this, _script_needs_csp)) return;
+    const source = __privateGet(this, _use_hashes) ? `sha256-${sha256(content)}` : `nonce-${__privateGet(this, _nonce)}`;
+    if (__privateGet(this, _script_src_needs_csp)) {
+      __privateGet(this, _script_src).push(source);
+    }
+    if (__privateGet(this, _script_src_elem_needs_csp)) {
+      __privateGet(this, _script_src_elem).push(source);
     }
   }
   /** @param {string} content */
   add_style(content) {
-    if (__privateGet(this, _style_needs_csp)) {
-      const empty_comment_hash = "9OlNO0DNEeaVzHL4RZwCLsBHA8WBQ8toBp/4F5XV2nc=";
+    if (!__privateGet(this, _style_needs_csp)) return;
+    const source = __privateGet(this, _use_hashes) ? `sha256-${sha256(content)}` : `nonce-${__privateGet(this, _nonce)}`;
+    if (__privateGet(this, _style_src_needs_csp)) {
+      __privateGet(this, _style_src).push(source);
+    }
+    if (__privateGet(this, _style_src_attr_needs_csp)) {
+      __privateGet(this, _style_src_attr).push(source);
+    }
+    if (__privateGet(this, _style_src_elem_needs_csp)) {
+      const sha256_empty_comment_hash = "sha256-9OlNO0DNEeaVzHL4RZwCLsBHA8WBQ8toBp/4F5XV2nc=";
       const d = __privateGet(this, _directives);
-      if (__privateGet(this, _use_hashes)) {
-        const hash2 = sha256(content);
-        __privateGet(this, _style_src).push(`sha256-${hash2}`);
-        if (d["style-src-attr"]?.length) {
-          __privateGet(this, _style_src_attr).push(`sha256-${hash2}`);
-        }
-        if (d["style-src-elem"]?.length) {
-          if (hash2 !== empty_comment_hash && !d["style-src-elem"].includes(`sha256-${empty_comment_hash}`)) {
-            __privateGet(this, _style_src_elem).push(`sha256-${empty_comment_hash}`);
-          }
-          __privateGet(this, _style_src_elem).push(`sha256-${hash2}`);
-        }
-      } else {
-        if (__privateGet(this, _style_src).length === 0 && !d["style-src"]?.includes("unsafe-inline")) {
-          __privateGet(this, _style_src).push(`nonce-${__privateGet(this, _nonce)}`);
-        }
-        if (d["style-src-attr"]?.length) {
-          __privateGet(this, _style_src_attr).push(`nonce-${__privateGet(this, _nonce)}`);
-        }
-        if (d["style-src-elem"]?.length) {
-          if (!d["style-src-elem"].includes(`sha256-${empty_comment_hash}`)) {
-            __privateGet(this, _style_src_elem).push(`sha256-${empty_comment_hash}`);
-          }
-          __privateGet(this, _style_src_elem).push(`nonce-${__privateGet(this, _nonce)}`);
-        }
+      if (d["style-src-elem"] && !d["style-src-elem"].includes(sha256_empty_comment_hash) && !__privateGet(this, _style_src_elem).includes(sha256_empty_comment_hash)) {
+        __privateGet(this, _style_src_elem).push(sha256_empty_comment_hash);
+      }
+      if (source !== sha256_empty_comment_hash) {
+        __privateGet(this, _style_src_elem).push(source);
       }
     }
   }
@@ -3433,7 +3674,12 @@ var BaseProvider = class {
 };
 _use_hashes = new WeakMap();
 _script_needs_csp = new WeakMap();
+_script_src_needs_csp = new WeakMap();
+_script_src_elem_needs_csp = new WeakMap();
 _style_needs_csp = new WeakMap();
+_style_src_needs_csp = new WeakMap();
+_style_src_attr_needs_csp = new WeakMap();
+_style_src_elem_needs_csp = new WeakMap();
 _directives = new WeakMap();
 _script_src = new WeakMap();
 _script_src_elem = new WeakMap();
@@ -3447,7 +3693,7 @@ var CspProvider = class extends BaseProvider {
     if (!content) {
       return;
     }
-    return `<meta http-equiv="content-security-policy" content=${escape_html_attr(content)}>`;
+    return `<meta http-equiv="content-security-policy" content="${escape_html(content, true)}">`;
   }
 };
 var CspReportOnlyProvider = class extends BaseProvider {
@@ -3537,6 +3783,101 @@ function create_async_iterator() {
     }
   };
 }
+function exec(match, params, matchers) {
+  const result = {};
+  const values = match.slice(1);
+  const values_needing_match = values.filter((value) => value !== void 0);
+  let buffered = 0;
+  for (let i = 0; i < params.length; i += 1) {
+    const param = params[i];
+    let value = values[i - buffered];
+    if (param.chained && param.rest && buffered) {
+      value = values.slice(i - buffered, i + 1).filter((s2) => s2).join("/");
+      buffered = 0;
+    }
+    if (value === void 0) {
+      if (param.rest) result[param.name] = "";
+      continue;
+    }
+    if (!param.matcher || matchers[param.matcher](value)) {
+      result[param.name] = value;
+      const next_param = params[i + 1];
+      const next_value = values[i + 1];
+      if (next_param && !next_param.rest && next_param.optional && next_value && param.chained) {
+        buffered = 0;
+      }
+      if (!next_param && !next_value && Object.keys(result).length === values_needing_match.length) {
+        buffered = 0;
+      }
+      continue;
+    }
+    if (param.optional && param.chained) {
+      buffered++;
+      continue;
+    }
+    return;
+  }
+  if (buffered) return;
+  return result;
+}
+function generate_route_object(route, url, manifest2) {
+  const { errors, layouts, leaf } = route;
+  const nodes = [...errors, ...layouts.map((l) => l?.[1]), leaf[1]].filter((n) => typeof n === "number").map((n) => `'${n}': () => ${create_client_import(manifest2._.client.nodes?.[n], url)}`).join(",\n		");
+  return [
+    `{
+	id: ${s(route.id)}`,
+    `errors: ${s(route.errors)}`,
+    `layouts: ${s(route.layouts)}`,
+    `leaf: ${s(route.leaf)}`,
+    `nodes: {
+		${nodes}
+	}
+}`
+  ].join(",\n	");
+}
+function create_client_import(import_path, url) {
+  if (!import_path) return "Promise.resolve({})";
+  if (import_path[0] === "/") {
+    return `import('${import_path}')`;
+  }
+  if (assets !== "") {
+    return `import('${assets}/${import_path}')`;
+  }
+  let path = get_relative_path(url.pathname, `${base}/${import_path}`);
+  if (path[0] !== ".") path = `./${path}`;
+  return `import('${path}')`;
+}
+async function resolve_route(resolved_path, url, manifest2) {
+  if (!manifest2._.client.routes) {
+    return text("Server-side route resolution disabled", { status: 400 });
+  }
+  let route = null;
+  let params = {};
+  const matchers = await manifest2._.matchers();
+  for (const candidate of manifest2._.client.routes) {
+    const match = candidate.pattern.exec(resolved_path);
+    if (!match) continue;
+    const matched = exec(match, candidate.params, matchers);
+    if (matched) {
+      route = candidate;
+      params = decode_params(matched);
+      break;
+    }
+  }
+  return create_server_routing_response(route, params, url, manifest2).response;
+}
+function create_server_routing_response(route, params, url, manifest2) {
+  const headers2 = new Headers({
+    "content-type": "application/javascript; charset=utf-8"
+  });
+  if (route) {
+    const csr_route = generate_route_object(route, url, manifest2);
+    const body2 = `export const route = ${csr_route}; export const params = ${JSON.stringify(params)};`;
+    return { response: text(body2, { headers: headers2 }), body: body2 };
+  } else {
+    return { response: text("", { headers: headers2 }), body: "" };
+  }
+}
 var updated = {
   ...readable(false),
   check: () => false
@@ -3574,12 +3915,16 @@ async function render_response({
   let base$1 = base;
   let assets$1 = assets;
   let base_expression = s(base);
-  if (!state.prerendering?.fallback) {
-    const segments = event.url.pathname.slice(base.length).split("/").slice(2);
-    base$1 = segments.map(() => "..").join("/") || ".";
-    base_expression = `new URL(${s(base$1)}, location).pathname.slice(0, -1)`;
-    if (!assets || assets[0] === "/" && assets !== SVELTE_KIT_ASSETS) {
-      assets$1 = base$1;
+  {
+    if (!state.prerendering?.fallback) {
+      const segments = event.url.pathname.slice(base.length).split("/").slice(2);
+      base$1 = segments.map(() => "..").join("/") || ".";
+      base_expression = `new URL(${s(base$1)}, location).pathname.slice(0, -1)`;
+      if (!assets || assets[0] === "/" && assets !== SVELTE_KIT_ASSETS) {
+        assets$1 = base$1;
+      }
+    } else if (options2.hash_routing) {
+      base_expression = "new URL('.', location).pathname.slice(0, -1)";
     }
   }
   if (page_config.ssr) {
@@ -3611,9 +3956,19 @@ async function render_response({
       state: {}
     };
     override({ base: base$1, assets: assets$1 });
+    const render_opts = {
+      context: /* @__PURE__ */ new Map([
+        [
+          "__request__",
+          {
+            page: props.page
+          }
+        ]
+      ])
+    };
     {
       try {
-        rendered = options2.root.render(props);
+        rendered = options2.root.render(props, render_opts);
       } finally {
         reset();
       }
@@ -3622,7 +3977,7 @@ async function render_response({
       for (const url of node.imports) modulepreloads.add(url);
       for (const url of node.stylesheets) stylesheets10.add(url);
       for (const url of node.fonts) fonts10.add(url);
-      if (node.inline_styles) {
+      if (node.inline_styles && !client.inline) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
       }
     }
@@ -3640,13 +3995,13 @@ async function render_response({
     }
     return `${assets$1}/${path}`;
   };
-  if (inline_styles.size > 0) {
-    const content = Array.from(inline_styles.values()).join("\n");
+  const style = client.inline ? client.inline?.style : Array.from(inline_styles.values()).join("\n");
+  if (style) {
     const attributes = [];
     if (csp.style_needs_nonce) attributes.push(` nonce="${csp.nonce}"`);
-    csp.add_style(content);
+    csp.add_style(style);
     head += `
-	<style${attributes.join("")}>${content}</style>`;
+	<style${attributes.join("")}>${style}</style>`;
   }
   for (const dep of stylesheets10) {
     const path = prefixed(dep);
@@ -3682,6 +4037,7 @@ async function render_response({
     event,
     options2,
     branch.map((b) => b.server_data),
+    csp,
     global
   );
   if (page_config.ssr && page_config.csr) {
@@ -3691,21 +4047,31 @@ async function render_response({
     ).join("\n			")}`;
   }
   if (page_config.csr) {
+    const route = manifest2._.client.routes?.find((r) => r.id === event.route.id) ?? null;
     if (client.uses_env_dynamic_public && state.prerendering) {
-      modulepreloads.add(`${options2.app_dir}/env.js`);
+      modulepreloads.add(`${app_dir}/env.js`);
     }
-    const included_modulepreloads = Array.from(modulepreloads, (dep) => prefixed(dep)).filter(
-      (path) => resolve_opts.preload({ type: "js", path })
-    );
-    for (const path of included_modulepreloads) {
-      link_header_preloads.add(`<${encodeURI(path)}>; rel="modulepreload"; nopush`);
-      if (options2.preload_strategy !== "modulepreload") {
-        head += `
+    if (!client.inline) {
+      const included_modulepreloads = Array.from(modulepreloads, (dep) => prefixed(dep)).filter(
+        (path) => resolve_opts.preload({ type: "js", path })
+      );
+      for (const path of included_modulepreloads) {
+        link_header_preloads.add(`<${encodeURI(path)}>; rel="modulepreload"; nopush`);
+        if (options2.preload_strategy !== "modulepreload") {
+          head += `
 		<link rel="preload" as="script" crossorigin="anonymous" href="${path}">`;
-      } else if (state.prerendering) {
-        head += `
+        } else if (state.prerendering) {
+          head += `
 		<link rel="modulepreload" href="${path}">`;
+        }
       }
+    }
+    if (manifest2._.client.routes && state.prerendering && !state.prerendering.fallback) {
+      const pathname = add_resolution_suffix(event.url.pathname);
+      state.prerendering.dependencies.set(
+        pathname,
+        create_server_routing_response(route, event.params, new URL(pathname, event.url), manifest2)
+      );
     }
     const blocks = [];
     const load_env_eagerly = client.uses_env_dynamic_public && state.prerendering;
@@ -3722,26 +4088,32 @@ async function render_response({
 							deferred.set(id, { fulfil, reject });
 						})`);
       properties.push(`resolve: ({ id, data, error }) => {
-							const { fulfil, reject } = deferred.get(id);
-							deferred.delete(id);
-
-							if (error) reject(error);
-							else fulfil(data);
+							const try_to_resolve = () => {
+								if (!deferred.has(id)) {
+									setTimeout(try_to_resolve, 0);
+									return;
+								}
+								const { fulfil, reject } = deferred.get(id);
+								deferred.delete(id);
+								if (error) reject(error);
+								else fulfil(data);
+							}
+							try_to_resolve();
 						}`);
     }
     blocks.push(`${global} = {
 						${properties.join(",\n						")}
 					};`);
-    const args = ["app", "element"];
+    const args = ["element"];
     blocks.push("const element = document.currentScript.parentElement;");
     if (page_config.ssr) {
       const serialized = { form: "null", error: "null" };
-      blocks.push(`const data = ${data};`);
       if (form_value) {
         serialized.form = uneval_action_response(
           form_value,
           /** @type {string} */
-          event.route.id
+          event.route.id,
+          options2.hooks.transport
         );
       }
       if (error) {
@@ -3749,14 +4121,22 @@ async function render_response({
       }
       const hydrate = [
         `node_ids: [${branch.map(({ node }) => node.index).join(", ")}]`,
-        "data",
+        `data: ${data}`,
         `form: ${serialized.form}`,
         `error: ${serialized.error}`
       ];
       if (status !== 200) {
         hydrate.push(`status: ${status}`);
       }
-      if (options2.embedded) {
+      if (manifest2._.client.routes) {
+        if (route) {
+          const stringified = generate_route_object(route, event.url, manifest2).replaceAll(
+            "\n",
+            "\n							"
+          );
+          hydrate.push(`params: ${uneval(event.params)}`, `server_route: ${stringified}`);
+        }
+      } else if (options2.embedded) {
         hydrate.push(`params: ${uneval(event.params)}`, `route: ${s(event.route)}`);
       }
       const indent = "	".repeat(load_env_eagerly ? 7 : 6);
@@ -3765,24 +4145,24 @@ ${indent}	${hydrate.join(`,
 ${indent}	`)}
 ${indent}}`);
     }
-    if (load_env_eagerly) {
-      blocks.push(`import(${s(`${base$1}/${options2.app_dir}/env.js`)}).then(({ env }) => {
-						${global}.env = env;
+    const boot = client.inline ? `${client.inline.script}
 
-						Promise.all([
-							import(${s(prefixed(client.start))}),
-							import(${s(prefixed(client.app))})
-						]).then(([kit, app]) => {
-							kit.start(${args.join(", ")});
-						});
-					});`);
-    } else {
-      blocks.push(`Promise.all([
+					__sveltekit_${options2.version_hash}.app.start(${args.join(", ")});` : client.app ? `Promise.all([
 						import(${s(prefixed(client.start))}),
 						import(${s(prefixed(client.app))})
 					]).then(([kit, app]) => {
-						kit.start(${args.join(", ")});
+						kit.start(app, ${args.join(", ")});
+					});` : `import(${s(prefixed(client.start))}).then((app) => {
+						app.start(${args.join(", ")})
+					});`;
+    if (load_env_eagerly) {
+      blocks.push(`import(${s(`${base$1}/${app_dir}/env.js`)}).then(({ env }) => {
+						${global}.env = env;
+
+						${boot.replace(/\n/g, "\n	")}
 					});`);
+    } else {
+      blocks.push(boot);
     }
     if (options2.service_worker) {
       const opts = "";
@@ -3864,13 +4244,11 @@ ${indent}}`);
       type: "bytes"
     }),
     {
-      headers: {
-        "content-type": "text/html"
-      }
+      headers: headers2
     }
   );
 }
-function get_data(event, options2, nodes, global) {
+function get_data(event, options2, nodes, csp, global) {
   let promise_id = 1;
   let count = 0;
   const { iterator, push, done } = create_async_iterator();
@@ -3904,12 +4282,20 @@ function get_data(event, options2, nodes, global) {
             data = void 0;
             str = uneval({ id, data, error }, replacer);
           }
-          push(`<script>${global}.resolve(${str})<\/script>
+          const nonce = csp.script_needs_nonce ? ` nonce="${csp.nonce}"` : "";
+          push(`<script${nonce}>${global}.resolve(${str})<\/script>
 `);
           if (count === 0) done();
         }
       );
       return `${global}.defer(${id})`;
+    } else {
+      for (const key2 in options2.hooks.transport) {
+        const encoded = options2.hooks.transport[key2].encode(thing);
+        if (encoded) {
+          return `app.decode('${key2}', ${uneval(encoded, replacer)})`;
+        }
+      }
     }
   }
   try {
@@ -4167,6 +4553,9 @@ function get_data_json(event, options2, nodes) {
   let count = 0;
   const { iterator, push, done } = create_async_iterator();
   const reducers = {
+    ...Object.fromEntries(
+      Object.entries(options2.hooks.transport).map(([key2, value]) => [key2, value.encode])
+    ),
     /** @param {any} thing */
     Promise: (thing) => {
       if (typeof thing?.then === "function") {
@@ -4271,7 +4660,10 @@ async function render_page(event, page2, options2, manifest2, state, resolve_opt
         status = action_result.status;
       }
     }
-    const should_prerender_data = nodes.some((node) => node?.server?.load);
+    const should_prerender_data = nodes.some(
+      // prerender in case of trailingSlash because the client retrieves that value from the server
+      (node) => node?.server?.load || node?.server?.trailingSlash !== void 0
+    );
     const data_pathname = add_data_suffix(event.url.pathname);
     const should_prerender = get_option(nodes, "prerender") ?? false;
     if (should_prerender) {
@@ -4287,6 +4679,7 @@ async function render_page(event, page2, options2, manifest2, state, resolve_opt
     state.prerender_default = should_prerender;
     const fetched = [];
     if (get_option(nodes, "ssr") === false && !(state.prerendering && should_prerender_data)) {
+      if (BROWSER && action_result && !event.request.headers.has("x-sveltekit-action")) ;
       return await render_response({
         branch: [],
         fetched,
@@ -4468,43 +4861,7 @@ async function render_page(event, page2, options2, manifest2, state, resolve_opt
     });
   }
 }
-function exec(match, params, matchers) {
-  const result = {};
-  const values = match.slice(1);
-  const values_needing_match = values.filter((value) => value !== void 0);
-  let buffered = 0;
-  for (let i = 0; i < params.length; i += 1) {
-    const param = params[i];
-    let value = values[i - buffered];
-    if (param.chained && param.rest && buffered) {
-      value = values.slice(i - buffered, i + 1).filter((s2) => s2).join("/");
-      buffered = 0;
-    }
-    if (value === void 0) {
-      if (param.rest) result[param.name] = "";
-      continue;
-    }
-    if (!param.matcher || matchers[param.matcher](value)) {
-      result[param.name] = value;
-      const next_param = params[i + 1];
-      const next_value = values[i + 1];
-      if (next_param && !next_param.rest && next_param.optional && next_value && param.chained) {
-        buffered = 0;
-      }
-      if (!next_param && !next_value && Object.keys(result).length === values_needing_match.length) {
-        buffered = 0;
-      }
-      continue;
-    }
-    if (param.optional && param.chained) {
-      buffered++;
-      continue;
-    }
-    return;
-  }
-  if (buffered) return;
-  return result;
-}
+var INVALID_COOKIE_CHARACTER_REGEX = /[\x00-\x1F\x7F()<>@,;:"/[\]?={} \t]/;
 function validate_options(options2) {
   if (options2?.path === void 0) {
     throw new Error("You must specify a `path` when setting, deleting or serializing cookies");
@@ -4527,24 +4884,22 @@ function get_cookies(request, url, trailing_slash) {
     // sufficient to do so.
     /**
      * @param {string} name
-     * @param {import('cookie').CookieParseOptions} opts
+     * @param {import('cookie').CookieParseOptions} [opts]
      */
     get(name, opts) {
       const c = new_cookies[name];
       if (c && domain_matches(url.hostname, c.options.domain) && path_matches(url.pathname, c.options.path)) {
         return c.value;
       }
-      const decoder = opts?.decode || decodeURIComponent;
-      const req_cookies = (0, import_cookie.parse)(header, { decode: decoder });
+      const req_cookies = (0, import_cookie.parse)(header, { decode: opts?.decode });
       const cookie = req_cookies[name];
       return cookie;
     },
     /**
-     * @param {import('cookie').CookieParseOptions} opts
+     * @param {import('cookie').CookieParseOptions} [opts]
      */
     getAll(opts) {
-      const decoder = opts?.decode || decodeURIComponent;
-      const cookies2 = (0, import_cookie.parse)(header, { decode: decoder });
+      const cookies2 = (0, import_cookie.parse)(header, { decode: opts?.decode });
       for (const c of Object.values(new_cookies)) {
         if (domain_matches(url.hostname, c.options.domain) && path_matches(url.pathname, c.options.path)) {
           cookies2[c.name] = c.value;
@@ -4558,6 +4913,14 @@ function get_cookies(request, url, trailing_slash) {
      * @param {import('./page/types.js').Cookie['options']} options
      */
     set(name, value, options2) {
+      const illegal_characters = name.match(INVALID_COOKIE_CHARACTER_REGEX);
+      if (illegal_characters) {
+        console.warn(
+          `The cookie name "${name}" will be invalid in SvelteKit 3.0 as it contains ${illegal_characters.join(
+            " and "
+          )}. See RFC 2616 for more details https://datatracker.ietf.org/doc/html/rfc2616#section-2.2`
+        );
+      }
       validate_options(options2);
       set_internal(name, value, { ...defaults, ...options2 });
     },
@@ -4666,8 +5029,8 @@ function create_fetch({ event, options: options2, manifest: manifest2, state, ge
         const decoded = decodeURIComponent(url.pathname);
         const filename = (decoded.startsWith(prefix2) ? decoded.slice(prefix2.length) : decoded).slice(1);
         const filename_html = `${filename}/index.html`;
-        const is_asset = manifest2.assets.has(filename);
-        const is_asset_html = manifest2.assets.has(filename_html);
+        const is_asset = manifest2.assets.has(filename) || filename in manifest2._.server_assets;
+        const is_asset_html = manifest2.assets.has(filename_html) || filename_html in manifest2._.server_assets;
         if (is_asset || is_asset_html) {
           const file = is_asset ? filename : filename_html;
           if (state.read) {
@@ -4675,7 +5038,19 @@ function create_fetch({ event, options: options2, manifest: manifest2, state, ge
             return new Response(state.read(file), {
               headers: type ? { "content-type": type } : {}
             });
+          } else if (read_implementation && file in manifest2._.server_assets) {
+            const length = manifest2._.server_assets[file];
+            const type = manifest2.mimeTypes[file.slice(file.lastIndexOf("."))];
+            return new Response(read_implementation(file), {
+              headers: {
+                "Content-Length": "" + length,
+                "Content-Type": type
+              }
+            });
           }
+          return await fetch(request);
+        }
+        if (manifest2._.prerendered_routes.has(decoded) || decoded.at(-1) === "/" && manifest2._.prerendered_routes.has(decoded.slice(0, -1))) {
           return await fetch(request);
         }
         if (credentials !== "omit") {
@@ -4781,49 +5156,56 @@ async function respond(request, options2, manifest2, state) {
       return text(csrf_error.body.message, { status: csrf_error.status });
     }
   }
-  let rerouted_path;
+  if (options2.hash_routing && url.pathname !== base + "/" && url.pathname !== "/[fallback]") {
+    return text("Not found", { status: 404 });
+  }
+  let invalidated_data_nodes;
+  const is_route_resolution_request = has_resolution_suffix(url.pathname);
+  const is_data_request = has_data_suffix(url.pathname);
+  if (is_route_resolution_request) {
+    url.pathname = strip_resolution_suffix(url.pathname);
+  } else if (is_data_request) {
+    url.pathname = strip_data_suffix(url.pathname) + (url.searchParams.get(TRAILING_SLASH_PARAM) === "1" ? "/" : "") || "/";
+    url.searchParams.delete(TRAILING_SLASH_PARAM);
+    invalidated_data_nodes = url.searchParams.get(INVALIDATED_PARAM)?.split("").map((node) => node === "1");
+    url.searchParams.delete(INVALIDATED_PARAM);
+  }
+  let resolved_path;
   try {
-    rerouted_path = options2.hooks.reroute({ url: new URL(url) }) ?? url.pathname;
+    resolved_path = options2.hooks.reroute({ url: new URL(url) }) ?? url.pathname;
   } catch {
     return text("Internal Server Error", {
       status: 500
     });
   }
-  let decoded;
   try {
-    decoded = decode_pathname(rerouted_path);
+    resolved_path = decode_pathname(resolved_path);
   } catch {
     return text("Malformed URI", { status: 400 });
   }
   let route = null;
   let params = {};
   if (base && !state.prerendering?.fallback) {
-    if (!decoded.startsWith(base)) {
+    if (!resolved_path.startsWith(base)) {
       return text("Not found", { status: 404 });
     }
-    decoded = decoded.slice(base.length) || "/";
+    resolved_path = resolved_path.slice(base.length) || "/";
   }
-  if (decoded === `/${options2.app_dir}/env.js`) {
+  if (is_route_resolution_request) {
+    return resolve_route(resolved_path, new URL(request.url), manifest2);
+  }
+  if (resolved_path === `/${app_dir}/env.js`) {
     return get_public_env(request);
   }
-  if (decoded.startsWith(`/${options2.app_dir}`)) {
+  if (resolved_path.startsWith(`/${app_dir}`)) {
     const headers22 = new Headers();
     headers22.set("cache-control", "public, max-age=0, must-revalidate");
     return text("Not found", { status: 404, headers: headers22 });
   }
-  const is_data_request = has_data_suffix(decoded);
-  let invalidated_data_nodes;
-  if (is_data_request) {
-    decoded = strip_data_suffix(decoded) || "/";
-    url.pathname = strip_data_suffix(url.pathname) + (url.searchParams.get(TRAILING_SLASH_PARAM) === "1" ? "/" : "") || "/";
-    url.searchParams.delete(TRAILING_SLASH_PARAM);
-    invalidated_data_nodes = url.searchParams.get(INVALIDATED_PARAM)?.split("").map((node) => node === "1");
-    url.searchParams.delete(INVALIDATED_PARAM);
-  }
   if (!state.prerendering?.fallback) {
     const matchers = await manifest2._.matchers();
     for (const candidate of manifest2._.routes) {
-      const match = candidate.pattern.exec(decoded);
+      const match = candidate.pattern.exec(resolved_path);
       if (!match) continue;
       const matched = exec(match, candidate.params, matchers);
       if (matched) {
@@ -4885,12 +5267,12 @@ async function respond(request, options2, manifest2, state) {
         trailing_slash = "always";
       } else if (route.page) {
         const nodes = await load_page_nodes(route.page, manifest2);
-        if (DEV) ;
+        if (BROWSER) ;
         trailing_slash = get_option(nodes, "trailingSlash");
       } else if (route.endpoint) {
         const node = await route.endpoint();
         trailing_slash = node.trailingSlash;
-        if (DEV) ;
+        if (BROWSER) ;
       }
       if (!is_data_request) {
         const normalized = normalize_path(url.pathname, trailing_slash ?? "never");
@@ -4926,6 +5308,11 @@ async function respond(request, options2, manifest2, state) {
           event.platform = await state.emulator.platform({ config, prerender });
         }
       }
+    } else if (state.emulator?.platform) {
+      event.platform = await state.emulator.platform({
+        config: {},
+        prerender: !!state.prerendering?.fallback
+      });
     }
     const { cookies, new_cookies, get_cookie_header, set_internal } = get_cookies(
       request,
@@ -5017,7 +5404,7 @@ async function respond(request, options2, manifest2, state) {
           preload: opts.preload || default_preload
         };
       }
-      if (state.prerendering?.fallback) {
+      if (options2.hash_routing || state.prerendering?.fallback) {
         return await render_response({
           event: event2,
           options: options2,
@@ -5094,11 +5481,9 @@ async function respond(request, options2, manifest2, state) {
         return response;
       }
       if (state.error && event2.isSubRequest) {
-        return await fetch(request, {
-          headers: {
-            "x-sveltekit-error": "true"
-          }
-        });
+        const headers22 = new Headers(request.headers);
+        headers22.set("x-sveltekit-error", "true");
+        return await fetch(request, { headers: headers22 });
       }
       if (state.error) {
         return text("Internal Server Error", {
@@ -5153,6 +5538,7 @@ var prerender_env_handler = {
     );
   }
 };
+var init_promise;
 var _options, _manifest;
 var Server = class {
   /** @param {import('@sveltejs/kit').SSRManifest} manifest */
@@ -5184,7 +5570,10 @@ var Server = class {
       prerendering ? new Proxy({ type: "public" }, prerender_env_handler) : public_env2
     );
     set_safe_public_env(public_env2);
-    if (!__privateGet(this, _options).hooks) {
+    if (read) {
+      set_read_implementation(read);
+    }
+    await (init_promise ?? (init_promise = (async () => {
       try {
         const module = await get_hooks();
         __privateGet(this, _options).hooks = {
@@ -5192,14 +5581,18 @@ var Server = class {
           handleError: module.handleError || (({ error }) => console.error(error)),
           handleFetch: module.handleFetch || (({ request, fetch: fetch2 }) => fetch2(request)),
           reroute: module.reroute || (() => {
-          })
+          }),
+          transport: module.transport || {}
         };
+        if (module.init) {
+          await module.init();
+        }
       } catch (error) {
         {
           throw error;
         }
       }
-    }
+    })()));
   }
   /**
    * @param {Request} request
@@ -5228,7 +5621,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/branding_venissa.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { "start": "_app/immutable/entry/start.DnwuhOIm.js", "app": "_app/immutable/entry/app.DTytn7TN.js", "imports": ["_app/immutable/entry/start.DnwuhOIm.js", "_app/immutable/chunks/entry.PHmaxYOm.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/entry/app.DTytn7TN.js", "_app/immutable/chunks/scheduler.Bu15-wVR.js", "_app/immutable/chunks/index.O99BFJ2P.js"], "stylesheets": [], "fonts": [], "uses_env_dynamic_public": false },
+      client: { start: "_app/immutable/entry/start.B52IA6sV.js", app: "_app/immutable/entry/app.BTym7EnE.js", imports: ["_app/immutable/entry/start.B52IA6sV.js", "_app/immutable/chunks/C5zODcJA.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/entry/app.BTym7EnE.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"], stylesheets: [], fonts: [], uses_env_dynamic_public: false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),
@@ -5291,6 +5684,7 @@ var manifest = (() => {
           endpoint: null
         }
       ],
+      prerendered_routes: /* @__PURE__ */ new Set([]),
       matchers: async () => {
         return {};
       },
