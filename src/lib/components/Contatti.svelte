@@ -16,9 +16,9 @@
       tel: <br />
     </p>
     <p>
-      @qdstudios <br />
+      <a href="https://www.instagram.com/qdstudios?igsh=bWV6N2VoYmRwdTRq" class="underline underline-offset-2">@qdstudios</a><br />
       qstudiospadova@gmail.com <br />
-      Non lo abbiamo ancora <br />
+      <a href="https://www.linkedin.com/company/q-studios-padova/" class="underline underline-offset-2">Q Design Studios</a><br />
       +39 333 3218804 <br />
     </p>
   </div>

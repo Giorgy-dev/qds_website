@@ -99,6 +99,8 @@ whitespace-nowrap
   row-span-2 col-span-2 text-xl mt-10
   "
           >
+
+          <!--
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
@@ -137,6 +139,10 @@ whitespace-nowrap
               >{#if $page.url.pathname === "/fotografia"}›
               {/if}FOTOGRAFIA</a
             >
+
+            -->
+
+
             <!--<br />
             <a
               on:click={() => (isOpen = false)}
@@ -145,6 +151,17 @@ whitespace-nowrap
               >{#if $page.url.pathname === "/sounddesign"}›
               {/if}SOUND DESIGN</a
             >-->
+          </div>
+          <div class="col-span-4 row-span-2 grid content-end">
+            <p class="text-xs font-normal w-full">
+              Q Design Studio by The Hive S.r.l.
+              <br />
+              Viale dell'Industria, 19 - 35129 PADOVA - PD
+              <br />
+              P.IVA: 05260180285
+              <br />
+              Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
+            </p>
           </div>
         </nav>
       </div>

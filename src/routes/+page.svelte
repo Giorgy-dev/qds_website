@@ -5,7 +5,8 @@
   import Grid from "$lib/components/Grid.svelte";
   import VideoBtn from "$lib/components/VideoBtn.svelte";
   import Person from "$lib/components/Person.svelte";
-  
+  import Video from "$lib/components/Video.svelte";
+
   export let data;
   let trial = data.trial;
 </script>
@@ -25,36 +26,35 @@
     <Section title={["↓ SERVIZI", "↘ SERVIZI", "• SERVIZI", "SERVIZI"]}>
       <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-2.5">
         <div class="lg:col-span-2">
-          <a href="/branding">
-            <VideoBtn title="Branding" videoSrc="/assets/video/branding.mp4" />
-          </a>
+          <Video title="Branding" videoSrc="/assets/video/branding.mp4" />
+          <!--<a href="/branding"></a>-->
         </div>
         <div class="lg:row-span-2">
-          <a href="/grafica"
-            ><VideoBtn
+          <!--<a href="/grafica"
+          </a>-->
+            <Video
               title="Grafica"
               videoSrc="/assets/video/grafica.mp4"
-            /></a
-          >
+            />
         </div>
-        <a href="/uiuxdesign"
-          ><VideoBtn
+        <!--<a href="/uiuxdesign">
+        </a>-->
+          <Video
             title="UI/UX Design"
             videoSrc="/assets/video/uiux.mp4"
-          /></a
-        >
+          />
         <!--<a href="/sounddesign"
           ><VideoBtn
             title="Sound Design"
             videoSrc="/assets/video/sounddesign2.mp4"
           /></a
         >-->
-        <a href="/fotografia"
-          ><VideoBtn
+        <!--<a href="/fotografia">
+        </a>-->
+          <Video
             title="Fotografia"
             videoSrc="/assets/video/fotografia.mp4"
-          /></a
-        >
+          />
       </div>
     </Section>
 
@@ -63,9 +63,7 @@
     <Section
       title={["↓ CHI SIAMO", "↘ CHI SIAMO", "• CHI SIAMO", "CHI SIAMO"]}
     >
-      <div
-        class="w-full flex flex-wrap gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10"
-      >
+      <div class="w-full flex flex-wrap gap-5 lg:gap-10 lg:px-5 lg:pt-5 pb-10">
         {#each data.people as person}
           <Person
             imgsrc={person.imgsrc}

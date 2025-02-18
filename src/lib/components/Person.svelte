@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let imgsrc: string;
+  export let imgsrc: string | null;
   export let name: string;
   export let paragraph: string;
   export let label: string | string[];
@@ -7,11 +7,13 @@
 </script>
 
 <div class="rounded-lg border-2 overflow-hidden min-w-[315px] max-w-[420px]">
-  <img
-    src={imgsrc}
-    alt=""
-    class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"
-  />
+  {#if imgsrc}
+    <img
+      src={imgsrc}
+      alt=""
+      class="w-full h-[35vh] lg:h-[50vh] object-cover object-top"
+    />
+  {/if}
   <div class="grid p-5 gap-2.5">
     <div class="flex gap-0">
       <h2 class="text-2xl font-bold">{name}</h2>

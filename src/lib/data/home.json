@@ -3,7 +3,6 @@
         "hero": {
             "title": [
                 "Design Studios",
-                "↙Our Works",
                 "Contact Us↘",
                 "Never Lorem."
             ],
@@ -13,7 +12,6 @@
             ],
             "titleMobile": [
                 "Design Studios",
-                "Our Works↗",
                 "Contact Us↓",
                 "Never Lorem."
             ],
@@ -24,9 +22,8 @@
         "people": [
             {
                 "name": "Marco",
-                "imgsrc": "assets/img/stock_portrait.webp",
                 "label": "co-founder",
-                "paragraph": "Mi chiamo Marco, ho 21 anni e vengo da una formazione tecnica. Mi approccio al design con grande attenzione ai dettagli e alla funzionalità, senza mai rinunciare alla mia passione per il design concettuale.",
+                "paragraph": "Mi chiamo Marco, ho 21 anni, mi approccio al design con grande attenzione ai dettagli e alla funzionalità, senza mai rinunciare alla mia passione per il design concettuale.",
                 "skills": [
                     "Design",
                     "UI/UX",
@@ -35,7 +32,6 @@
             },
             {
                 "name": "Alessandro",
-                "imgsrc": "assets/img/stock_portrait.webp",
                 "label": "co-founder",
                 "paragraph": "Sono Alessandro, 20 anni, da sempre ho una passione ben radicata per il Web Design e la cura del cliente. L'unione di queste due peculiarità mi ha portato alla fondazione di Virgo.",
                 "skills": [
@@ -45,7 +41,6 @@
             },
             {
                 "name": "Giovanni",
-                "imgsrc": "assets/img/stock_portrait.webp",
                 "label": "co-founder",
                 "paragraph": "Ciao, sono Giovanni, ho 21 anni e oltre a Virgo studio Informatica presso UniTN. La mia esperienza può essere breve, ma abbonda di passione e desiderio di innovazione.",
                 "skills": [

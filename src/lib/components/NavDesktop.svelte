@@ -35,6 +35,8 @@
         grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion
         "
   >
+
+  <!--
     <a class="text-primary" href="/branding">
       {#if $page.url.pathname === "/branding"}›
       {/if}BRANDING</a
@@ -57,6 +59,8 @@
       >{#if $page.url.pathname === "/fotografia"}›
       {/if}FOTOGRAFIA</a
     >
+    -->
+
 
     <!--<br />
     <a class="text-primary" href="/sounddesign"
