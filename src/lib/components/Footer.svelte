@@ -10,13 +10,11 @@
   <div class="flex-auto w-full lg:max-w-[20vw]">
     <Section title={["LEGAL", "↓ LEGAL", "↘ LEGAL"]}>
       <p class="col-span-4 text-xs font-normal row-span-2 content-end">
-        Q Design Studio by The Hive S.r.l.
+        Q Design Studio by VIRGO S.r.l.
         <br />
-        Viale dell'Industria, 19 - 35129 PADOVA - PD
+        Strada comunale delle Corti, 54n- 31100 TREVISO - TV
         <br />
-        P.IVA: 05260180285
-        <br />
-        Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
+        Tutti i servizi Q Design Studio sono forniti da VIRGO S.r.l.
       </p>
     </Section>
   </div>

@@ -154,13 +154,11 @@ whitespace-nowrap
           </div>
           <div class="col-span-4 row-span-2 grid content-end">
             <p class="text-xs font-normal w-full">
-              Q Design Studio by The Hive S.r.l.
+              Q Design Studio by VIRGO S.r.l.
               <br />
-              Viale dell'Industria, 19 - 35129 PADOVA - PD
+              Strada comunale delle Corti, 54n- 31100 TREVISO - TV
               <br />
-              P.IVA: 05260180285
-              <br />
-              Tutti i servizi Q Design Studio sono forniti da The Hive S.r.l.
+              Tutti i servizi Q Design Studio sono forniti da VIRGO S.r.l.
             </p>
           </div>
         </nav>
