@@ -7,7 +7,7 @@
   <div class="flex-auto w-full lg:max-w-[20vw]">
     <Contatti />
   </div>
-  <div class="flex-auto w-full lg:max-w-[20vw]">
+  <div class="flex-auto w-full lg:max-w-[22vw]">
     <Section title={["LEGAL", "↓ LEGAL", "↘ LEGAL"]}>
       <p class="col-span-4 text-xs font-normal row-span-2 content-end">
         Q Design Studio by VIRGO S.r.l.
@@ -15,6 +15,8 @@
         Strada comunale delle Corti, 54n- 31100 TREVISO - TV
         <br />
         Tutti i servizi Q Design Studio sono forniti da VIRGO S.r.l.
+        <br />
+        P.IVA: 05543270267
       </p>
     </Section>
   </div>
