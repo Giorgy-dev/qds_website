@@ -10,7 +10,7 @@
     font-bold
     "
 >
-  <div class="row-span-5 col-span-4">
+  <div class="row-span-5 col-span-4 small-vh-hide">
     <img src="/assets/logo/logo_partial.svg" alt="" srcset="" />
   </div>
 
@@ -35,8 +35,7 @@
         grid grid-cols-subgrid row-span-2 col-span-2 text-xl mix-blend-exclusion
         "
   >
-
-  <!--
+    <!--
     <a class="text-primary" href="/branding">
       {#if $page.url.pathname === "/branding"}›
       {/if}BRANDING</a
@@ -60,7 +59,6 @@
       {/if}FOTOGRAFIA</a
     >
     -->
-
 
     <!--<br />
     <a class="text-primary" href="/sounddesign"
@@ -86,5 +84,11 @@
   a {
     font-family: Acid Grotesk;
     font-weight: 200;
+  }
+
+  @media (height<720px) {
+    .small-vh-hide {
+      display: none;
+    }
   }
 </style>

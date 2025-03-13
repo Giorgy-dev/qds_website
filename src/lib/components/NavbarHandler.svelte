@@ -54,7 +54,7 @@ grid grid-cols-4 grid-rows-12 gap-5
 whitespace-nowrap
 "
         >
-          <div class="row-span-5 col-span-4">
+          <div class="row-span-5 col-span-4 small-handling">
             <img src="/assets/logo/logo_partial_white.svg" alt="" srcset="" />
           </div>
 
@@ -99,8 +99,7 @@ whitespace-nowrap
   row-span-2 col-span-2 text-xl mt-10
   "
           >
-
-          <!--
+            <!--
             <a
               on:click={() => (isOpen = false)}
               class="text-neutral"
@@ -141,7 +140,6 @@ whitespace-nowrap
             >
 
             -->
-
 
             <!--<br />
             <a
@@ -202,4 +200,5 @@ whitespace-nowrap
     border: 2px solid;
     color: #0a0a0a;
   }
+  
 </style>
