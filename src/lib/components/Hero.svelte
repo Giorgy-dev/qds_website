@@ -45,16 +45,27 @@
 </div>
 
 <style>
-  .text-auto-scale {
-    font-size: 12vmin;
-    font-size: 17vmax;
-    line-height: 105%;
-    transform: translateY(-5%);
-  }
+  
   .text-auto-scale-mobile {
     font-size: 6vmin;
     font-size: 9vmax;
     line-height: 105%;
     transform: translateY(-5%);
+  }
+  @media (height > 800px) {
+    .text-auto-scale {
+      font-size: 12vmin;
+      font-size: 17vmax;
+      line-height: 105%;
+      transform: translateY(-5%);
+    }
+  }
+  @media (height <= 800px) {
+    .text-auto-scale {
+      font-size: 12vmin;
+      font-size: 13vmax;
+      line-height: 105%;
+      transform: translateY(-5%);
+    }
   }
 </style>
