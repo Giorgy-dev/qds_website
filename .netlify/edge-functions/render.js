@@ -839,7 +839,7 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.C68kQqjv.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DgoucFIR.js", "_app/immutable/chunks/Bw2f0gwZ.js"];
+    imports = ["_app/immutable/nodes/0.CctTQv1-.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/Bj-luM7w.js", "_app/immutable/chunks/Dcjy2Ky3.js"];
     stylesheets = ["_app/immutable/assets/0.CK1rjEeF.css", "_app/immutable/assets/Section.q3_R_wNJ.css"];
     fonts = [];
   }
@@ -878,7 +878,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.Dm7GmdD_.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DgoucFIR.js", "_app/immutable/chunks/Bw2f0gwZ.js"];
+    imports2 = ["_app/immutable/nodes/1.DxDwd70R.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/Bj-luM7w.js", "_app/immutable/chunks/Dcjy2Ky3.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -906,8 +906,8 @@ var init_page_ts = __esm({
             "Never Lorem."
           ],
           content: [
-            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione.",
-            "Di cosa? Tutto."
+            "Q Design Studios \xE8 dove ci\xF2 che inizialmente non percepiamo prende forma.",
+            "Definiamo idee e visioni che sono essenziali per vivere veramente."
           ],
           titleMobile: [
             "Design Studios",
@@ -915,7 +915,7 @@ var init_page_ts = __esm({
             "Never Lorem."
           ],
           contentMobile: [
-            "Q Design Studios \xE8 una realt\xE0 dedicata alla creazione, di cosa? tutto."
+            "Q Design Studios \xE8 dove ci\xF2 che inizialmente non percepiamo prende forma. Definiamo idee e visioni che sono essenziali per vivere veramente."
           ]
         },
         people: [
@@ -1157,7 +1157,7 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => component_cache3 ?? (component_cache3 = (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default);
     universal_id = "src/routes/+page.ts";
-    imports3 = ["_app/immutable/nodes/2.BIZSC089.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/D1WQKXfQ.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/BVD3xV-H.js"];
+    imports3 = ["_app/immutable/nodes/2.CPpx2c4d.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/D1WQKXfQ.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/BVD3xV-H.js"];
     stylesheets3 = ["_app/immutable/assets/2.CAntiSs9.css", "_app/immutable/assets/Scroll.kBqFF_Ph.css", "_app/immutable/assets/Section.q3_R_wNJ.css"];
     fonts3 = [];
   }
@@ -1868,7 +1868,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "zsxsrh"
+  version_hash: "1atzf5f"
 };
 async function get_hooks() {
   let handle;
@@ -5620,7 +5620,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/Timeline 1.mp4", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/branding_venissa.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { start: "_app/immutable/entry/start.BwSoOCtL.js", app: "_app/immutable/entry/app.BRInHGhE.js", imports: ["_app/immutable/entry/start.BwSoOCtL.js", "_app/immutable/chunks/Bw2f0gwZ.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/entry/app.BRInHGhE.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"], stylesheets: [], fonts: [], uses_env_dynamic_public: false },
+      client: { start: "_app/immutable/entry/start.bH2p3mYC.js", app: "_app/immutable/entry/app.Dx3D1vD0.js", imports: ["_app/immutable/entry/start.bH2p3mYC.js", "_app/immutable/chunks/Dcjy2Ky3.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/entry/app.Dx3D1vD0.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"], stylesheets: [], fonts: [], uses_env_dynamic_public: false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),
