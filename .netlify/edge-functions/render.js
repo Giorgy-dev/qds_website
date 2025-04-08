@@ -839,7 +839,7 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     index = 0;
     component = async () => component_cache ?? (component_cache = (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default);
-    imports = ["_app/immutable/nodes/0.C787I2cv.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/CppMNFW5.js", "_app/immutable/chunks/BkgILUWi.js"];
+    imports = ["_app/immutable/nodes/0.DrUqvkuK.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/DMntwZay.js", "_app/immutable/chunks/oItSYdui.js", "_app/immutable/chunks/Mcva588Y.js", "_app/immutable/chunks/B67tyITN.js"];
     stylesheets = ["_app/immutable/assets/0.CK1rjEeF.css", "_app/immutable/assets/Section.q3_R_wNJ.css"];
     fonts = [];
   }
@@ -878,7 +878,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => component_cache2 ?? (component_cache2 = (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default);
-    imports2 = ["_app/immutable/nodes/1.CtPz6gwt.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/CppMNFW5.js", "_app/immutable/chunks/BkgILUWi.js"];
+    imports2 = ["_app/immutable/nodes/1.DgnSSaCC.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js", "_app/immutable/chunks/Mcva588Y.js", "_app/immutable/chunks/B67tyITN.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -1796,7 +1796,7 @@ var options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body: body2, assets: assets2, nonce, env }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body2 + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body: body2, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n\n\n  <!-- Google tag (gtag.js) -->\n  <script\n    async\n    src="https://www.googletagmanager.com/gtag/js?id=AW-16755659389"\n  ><\/script>\n  <script>\n    window.dataLayer = window.dataLayer || [];\n    function gtag() {\n      dataLayer.push(arguments);\n    }\n    gtag("js", new Date());\n\n    gtag("config", "AW-16755659389");\n  <\/script>\n\n\n  <head>\n    <meta charset="utf-8" />\n    <link rel="icon" href="' + assets2 + '/favicon.png" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    ' + head + '\n  </head>\n  <body data-sveltekit-preload-data="hover">\n    <div style="display: contents">' + body2 + "</div>\n  </body>\n</html>\n",
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -1868,7 +1868,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1oj1olu"
+  version_hash: "spmwj6"
 };
 async function get_hooks() {
   let handle;
@@ -5620,7 +5620,7 @@ var manifest = (() => {
     assets: /* @__PURE__ */ new Set([".DS_Store", "assets/.DS_Store", "assets/fonts/.DS_Store", "assets/fonts/FFF Acid Grotesk Bold.eot", "assets/fonts/FFF Acid Grotesk Bold.otf", "assets/fonts/FFF Acid Grotesk Bold.svg", "assets/fonts/FFF Acid Grotesk Bold.woff", "assets/fonts/FFF Acid Grotesk Bold.woff2", "assets/fonts/FFFAcidGroteskVariable.ttf", "assets/graphics/chirale.svg", "assets/graphics/connection.svg", "assets/graphics/contrasto.svg", "assets/graphics/determinazione.svg", "assets/graphics/espandi.svg", "assets/graphics/expand.svg", "assets/graphics/expand_in.svg", "assets/graphics/expand_out.svg", "assets/graphics/expand_us.svg", "assets/graphics/pen.svg", "assets/graphics/pulizia.svg", "assets/graphics/sfondo.svg", "assets/img/stock_portrait.jpg", "assets/img/stock_portrait.webp", "assets/logo/logo.svg", "assets/logo/logo_extended.svg", "assets/logo/logo_grid.svg", "assets/logo/logo_partial.svg", "assets/logo/logo_partial_white.svg", "assets/logo/text.svg", "assets/logo/text_extended.svg", "assets/video/.DS_Store", "assets/video/Timeline 1.mp4", "assets/video/branding.mp4", "assets/video/branding_stock.mp4", "assets/video/branding_venissa.mp4", "assets/video/fotografia.mp4", "assets/video/grafica.mp4", "assets/video/sounddesign.mp4", "assets/video/sounddesign2.mp4", "assets/video/uiux.mp4", "favicon.png"]),
     mimeTypes: { ".otf": "font/otf", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp4": "video/mp4", ".png": "image/png" },
     _: {
-      client: { start: "_app/immutable/entry/start.BHp6GoX0.js", app: "_app/immutable/entry/app.CcFMnaPq.js", imports: ["_app/immutable/entry/start.BHp6GoX0.js", "_app/immutable/chunks/BkgILUWi.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/entry/app.CcFMnaPq.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"], stylesheets: [], fonts: [], uses_env_dynamic_public: false },
+      client: { start: "_app/immutable/entry/start.D81rwBkO.js", app: "_app/immutable/entry/app.B3mDIqbA.js", imports: ["_app/immutable/entry/start.D81rwBkO.js", "_app/immutable/chunks/B67tyITN.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/entry/app.B3mDIqbA.js", "_app/immutable/chunks/DSniZyfg.js", "_app/immutable/chunks/Du05DkRF.js"], stylesheets: [], fonts: [], uses_env_dynamic_public: false },
       nodes: [
         __memo(() => Promise.resolve().then(() => (init__(), __exports))),
         __memo(() => Promise.resolve().then(() => (init__2(), __exports2))),
